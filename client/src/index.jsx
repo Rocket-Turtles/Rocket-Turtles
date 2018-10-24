@@ -10,38 +10,71 @@ class App extends React.Component {
     super();
 
     this.state = {
-      food: ''
+      // calories
+      food: '',
 
+      //sleep states:
+      sleepNights: [{
+        id: 1,
+        user: 1,
+        hourCount: 8,
+        startHour: '14:05:00',
+        endHour: '22:05:00',
+        nightSlept: '2018-08-22'
+      }]
     };
-
+    
+    this.getSleepData = this.getSleepData.bind(this);
   }
+  
+  componentDidMount() {
+    this.getSleepData();
+  };
 
   handleClick(event){
     event.preventDefault();
     // send to server
-    console.log('state food', this.state.food)
-    axios.post('/calories', {food: this.state.food})
+    if (event.target.name === 'calories') {
+      axios.post('/calories', {food: this.state.food})
+    }
   }
 
   handleChange(event){
     event.preventDefault();
     event.persist();
 
-    this.setState({
-      food: event.target.value
-    })
+    if (event.target.name === 'calories') {
+      this.setState({
+        food: event.target.value
+      })
+    }
+  };
 
-  }
+
+  //sleep methods:
+  getSleepData() {
+    console.log('getSleepData() invoked')
+    axios.get('/api/sleep')
+    .then(sleepData => {
+      console.log(`sleepdata on client is: ${JSON.stringify(sleepData.data)}`)
+    })
+    .catch(err => {
+      console.log(`error getting sleepdata on client: ${sleepData}`)
+    });
+  };
+
 
   render() {
     return(
       <div>
         hi
-        <Sleep />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
+        <Sleep 
+          sleepNights={this.state.sleepNights}
+        />
       </div>
     )
-  }
+  };
 }
 
 ReactDOM.render(<App />, document.getElementById('App'));

@@ -7,8 +7,8 @@ const Calories = (props) => {
       <h1>Calories</h1> 
       <form >
         <label>What did you eat?</label>
-        <input type="text" onChange={props.handleChange}/>
-        <input type="submit" onClick={props.handleClick}/>
+        <input type="text" name="calories" onChange={props.handleChange}/>
+        <input type="submit" name="calories" onClick={props.handleClick}/>
       </form>
     </div>
 
