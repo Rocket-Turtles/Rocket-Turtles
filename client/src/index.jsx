@@ -8,27 +8,42 @@ class App extends React.Component {
     super();
     this.state = {
       //sleep states:
-      sleepNights: []
+      sleepNights: [{
+        id: 1,
+        user: 1,
+        hourCount: 8,
+        startHour: '14:05:00',
+        endHour: '22:05:00',
+        nightSlept: '2018-08-22'
+      }]
       
     };
+    this.getSleepData = this.getSleepData.bind(this);
   }
 
   //sleep methods:
   getSleepData() {
+    console.log('getSleepData() invoked')
     axios.get('/api/sleep')
     .then(sleepData => {
-      console.log(`sleepdata on client is: ${sleepData}`)
+      console.log(`sleepdata on client is: ${JSON.stringify(sleepData.data)}`)
     })
     .catch(err => {
       console.log(`error getting sleepdata on client: ${sleepData}`)
     });
   }
 
+  componentDidMount() {
+    this.getSleepData();
+  }
+
   render() {
     return(
       <div>
         hi
-        <Sleep />
+        <Sleep 
+          sleepNights={this.state.sleepNights}
+        />
       </div>
     )
   }

@@ -7,7 +7,6 @@
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
     "seed:tables": "knex seed:run"
-
   },
   "repository": {
     "type": "git",
