@@ -20,7 +20,6 @@ exports.up = function (knex, Promise) {
       table.integer('user').unsigned().notNullable();
       table.integer('hourCount');
       table.time('startHour');
-      table.time('endHour');
       table.date('nightSlept');
 
       //fks
@@ -34,9 +33,11 @@ exports.up = function (knex, Promise) {
       table.increments('id');
       table.integer('user').unsigned().notNullable();
       table.integer('calories');
-      table.time('timeAte');
-      table.date('dayAte');
-      table.string('foodAte');
+      // do we need to track time...?
+        // table.time('timeAte');
+        // table.date('dayAte');
+      table.string('foodString');
+      table.string('ndbno');
 
       //fks
       table.foreign('user').references('id').inTable('users');

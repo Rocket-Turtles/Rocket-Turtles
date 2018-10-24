@@ -1,0 +1,1 @@
+module.exports.USDA_TOKEN = 'fLnoQvpg17ECECAj8NiUj37R9O2rvBEnYEWCCRH4';
