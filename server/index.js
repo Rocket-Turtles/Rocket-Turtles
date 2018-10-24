@@ -17,7 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
-app.get('/api/sleep')
+app.get('/api/sleep', (req, res) => {
+  
+
+})
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

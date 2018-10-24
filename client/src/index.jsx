@@ -16,6 +16,12 @@ class App extends React.Component {
   //sleep methods:
   getSleepData() {
     axios.get('/api/sleep')
+    .then(sleepData => {
+      console.log(`sleepdata on client is: ${sleepData}`)
+    })
+    .catch(err => {
+      console.log(`error getting sleepdata on client: ${sleepData}`)
+    });
   }
 
   render() {
