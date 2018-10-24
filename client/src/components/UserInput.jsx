@@ -11,6 +11,15 @@ class UserInput extends React.Component {
       _heightFt: 0,
       _heightIn: 9
     }
+    this.handleNumber = this.handleNumber.bind(this);
+  }
+
+  handleNumber(e, state) {
+    if (!isNaN(e.target.value)) {
+      this.setState({[state]: Number(e.target.value)})
+    } else {
+      console.log('Invalid Number');
+    }
   }
 
   submit() {
@@ -18,20 +27,21 @@ class UserInput extends React.Component {
       name: this.state._name,
       age: this.state._age,
       weight: this.state._weight,
-      height: this.state._heightFt + (this.state._heightIn / 12)
+      height: Number(this.state._heightFt + (this.state._heightIn / 12))
     }
-    Axios.post('/user', newUser);
+    Axios.post('/api/user', newUser);
   }
 
   render() {
     return(
       <div>
+        <h2>User Input</h2>
         <form>
           <input type='text' value={this.state._name} placeholder='name' onChange={(e) => {this.setState({_name: e.target.value})}}></input>
-          <input type='text' value={this.state._age} placeholder='age' onChange={(e) => {!isNaN(e.target.value) ? this.setState({_age: Number(e.target.value)}) : console.log('Invalid Age')}}></input>
-          <input type='text' value={this.state._weight} placeholder='weight' onChange={(e) => {this.setState({_weight: Number(e.target.value)})}}></input>
-          <input type='text' value={this.state._heightFt} placeholder='height(ft)' onChange={(e) => {this.setState({_heightFt: Number(e.target.value)})}}></input>
-          <input type='text' value={this.state._heightIn} placeholder='height(in)' onChange={(e) => {this.setState({_heightIn: Number(e.target.value)})}}></input>
+          <input type='text' value={this.state._age} placeholder='age' onChange={(e) => {this.handleNumber(e, '_age')}}></input>
+          <input type='text' value={this.state._weight} placeholder='weight' onChange={(e) => {this.handleNumber(e, '_weight')}}></input>
+          <input type='text' value={this.state._heightFt} placeholder='height(ft)' onChange={(e) => {this.handleNumber(e, '_heightFt')}}></input>
+          <input type='text' value={this.state._heightIn} placeholder='height(in)' onChange={(e) => {this.handleNumber(e, '_heightIn')}}></input>
           <button onClick={this.submit.bind(this)}>Submit</button>
         </form>
       </div>

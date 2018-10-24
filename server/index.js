@@ -14,11 +14,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/api/user', (req, res) => {
-  res.send(req.body);
+  console.log(req.body);
+  database('users').insert(req.body)
+    .then(() => {
+      console.log('Post Success');
+      res.send('Post Success');
+    }).catch(err => {
+      console.error(`error on server posting user ${err}`);
+    })
 });
 
 app.get('/api/sleep', (req, res) => {
-  console.log(`request on server is: ${req.body}`)
+  // console.log(`request on server is:`, req.body)
   database.select().from('sleep')
     .then(sleepData => {
       //console.log(`sleepData on server is ${sleepData}`)
