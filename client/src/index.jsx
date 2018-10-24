@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Sleep from './components/Sleep.jsx';
+import UserInput from './components/UserInput.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +14,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        hi
+        <UserInput />
         <Sleep />
       </div>
     )

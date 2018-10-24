@@ -17,6 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
+app.post('/user', (req, res) => {
+  res.send(req.body);
+})
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
