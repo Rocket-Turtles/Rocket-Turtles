@@ -15,7 +15,10 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/api/sleep', (req, res) => {
   console.log(`request on server is: ${req.body}`)
-  database.select().from('sleep')
+  database.select()
+    .from('sleep')
+    .orderBy('nightSlept', 'asc')
+    .limit(7)
     .then(sleepData => {
       //console.log(`sleepData on server is ${sleepData}`)
       res.json(sleepData);

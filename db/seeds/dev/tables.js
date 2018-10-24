@@ -19,8 +19,56 @@ exports.seed = function (knex, Promise) {
         hourCount: 8,
         startHour: '02:05 PM',
         endHour: '10:05 PM',
+        nightSlept: '2018-08-16'
+      },
+      {
+        id: 2,
+        user: 1,
+        hourCount: 7,
+        startHour: '02:05 PM',
+        endHour: '10:05 PM',
+        nightSlept: '2018-08-17'
+      },
+      {
+        id: 3,
+        user: 1,
+        hourCount: 6,
+        startHour: '02:05 PM',
+        endHour: '10:05 PM',
+        nightSlept: '2018-08-18'
+      },
+      {
+        id: 4,
+        user: 1,
+        hourCount: 4,
+        startHour: '02:05 PM',
+        endHour: '10:05 PM',
+        nightSlept: '2018-08-19'
+      },
+      {
+        id: 5,
+        user: 1,
+        hourCount: 7,
+        startHour: '02:05 PM',
+        endHour: '10:05 PM',
+        nightSlept: '2018-08-20'
+      },
+      {
+        id: 6,
+        user: 1,
+        hourCount: 5,
+        startHour: '02:05 PM',
+        endHour: '10:05 PM',
+        nightSlept: '2018-08-21'
+      },
+      {
+        id: 7,
+        user: 1,
+        hourCount: 6,
+        startHour: '02:05 PM',
+        endHour: '10:05 PM',
         nightSlept: '2018-08-22'
-      }])
+    }])
     })
     .then(() => {
       return knex('calories').insert([{
