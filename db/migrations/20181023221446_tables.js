@@ -50,9 +50,9 @@ exports.up = function (knex, Promise) {
 }
 
 exports.down = function (knex, Promise) {
-  let dropUsers = `DROP TABLE users`;
-  let dropSleep = `DROP TABLE sleep`;
-  let dropCalories = `DROP TABLE calories`;
+  let dropUsers = `DROP TABLE IF EXISTS users`;
+  let dropSleep = `DROP TABLE IF EXISTS sleep`;
+  let dropCalories = `DROP TABLE IF EXISTS calories`;
   return knex.raw(dropCalories)
     .then(knex.raw(dropSleep))
     .then(knex.raw(dropUsers))
