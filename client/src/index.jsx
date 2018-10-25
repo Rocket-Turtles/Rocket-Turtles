@@ -16,7 +16,13 @@ class App extends React.Component {
       food: '',
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
-      userID: 1,
+      user: {
+        id: '',
+        name: '',
+        age: '',
+        weight: '',
+        height: ''
+      },
 
       //sleep states:
       sleepWeek: [],
@@ -101,7 +107,7 @@ class App extends React.Component {
     let start = moment(this.state.sleepTime).format('hh:mm A')
     let end = moment(this.state.wakeTime).format('hh:mm A')
     let sleepObj = {
-      user: this.state.userID,
+      user: this.state.user.id,
       hourCount: hourCount,
       startHour: start,
       endHour: end,
