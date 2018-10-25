@@ -23,6 +23,7 @@ class App extends React.Component {
     };
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
+    this.postSleepEntry = this.postSleepEntry.bind(this);
   }
   
   componentDidMount() {
@@ -52,10 +53,10 @@ class App extends React.Component {
   //sleep methods:
   //gets sleep data
   getSleepData() {
-    console.log('getSleepData() invoked')
+    //console.log('getSleepData() invoked')
     axios.get('/api/sleep')
     .then(sleepData => {
-      console.log(`sleepdata on client is: ${JSON.stringify(sleepData.data)}`)
+      //console.log(`sleepdata on client is: ${JSON.stringify(sleepData.data)}`)
       this.setState({
         sleepWeek: sleepData.data
       })
@@ -95,10 +96,13 @@ class App extends React.Component {
   }
 
   postSleepEntry() {
-    sleepObj = {
-      // todo set up object to sent to db and finish post request
+    let hourCount = moment(this.state.wakeTime).subtract(this.state.sleepTime).toDate();
+    console.log('hour count is: ', hourCount)
+    let sleepObj = {
+      user: 1,
+      hourCount: hourCount
     }
-    axios.post('/api/sleep', {})
+    axios.post('/api/sleep', {sleepObj})
   }
 
 
@@ -113,6 +117,7 @@ class App extends React.Component {
           weeklyAverage={this.state.weeklyAverage}
           getSleepTime={this.getSleepTime}
           getWakeTime={this.getWakeTime}
+          postSleepEntry={this.postSleepEntry}
         />
       </div>
     )

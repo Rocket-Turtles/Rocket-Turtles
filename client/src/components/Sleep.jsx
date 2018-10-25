@@ -93,7 +93,7 @@ const Sleep = (props) => {
           </tr>
         </tbody>
       </table>
-      <button>Submit</button>
+      <button onClick={() => props.postSleepEntry()}>Submit</button>
     </div>
   )
 }
