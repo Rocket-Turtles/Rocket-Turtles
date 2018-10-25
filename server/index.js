@@ -42,20 +42,42 @@ app.get('/api/user', (req, res) => {
 
 
 //sleep routes
-app.get('/api/sleep', (req, res) => {
-  //console.log(`request on server is: ${req.body}`)
+//gets sleep data
+app.post('/api/sleep', (req, res) => {
   database.select()
+    .where({user: req.body.user})
     .from('sleep')
-    .orderBy('nightSlept', 'asc')
+    .orderBy('nightSlept', 'desc')
     .limit(7)
     .then(sleepData => {
-      //console.log(`sleepData on server is ${sleepData}`)
       res.json(sleepData);
     })
     .catch(err => {
       console.error(`error on server getting sleepData ${err}`)
     })
 });
+
+app.post('/api/sleep', (req, res) => {
+
+  //console.log('server req', req.body);
+  sleepObj = req.body;
+  //console.log('sleepObj', sleepObj);
+  database('sleep').insert({
+    user: sleepObj.user,
+    hourCount: sleepObj.hourCount,
+    startHour: sleepObj.startHour,
+    endHour: sleepObj.endHour,
+    nightSlept: sleepObj.nightSlept
+  })
+  .then(() => {
+    console.log('post successful')
+    res.end('sleep post successful')
+    })
+  .catch((err) => {
+    console.log('error posting', err)
+    res.end('error posting sleep data', err)
+  })
+})
 
 // calories
 app.post('/api/calories', (req, res) => {
@@ -72,8 +94,8 @@ app.post('/api/calories', (req, res) => {
       api_key: USDA_TOKEN
     }
   }).then((search) => {
-    const ndbno = search.data.list.item[0].ndbno  //.item[0].ndbno;  // get top most relevant object (is array)
-    
+    const ndbno = search.data.list.item[0].ndbno;  // get top most relevant object (is array)
+
     // make USDA API report request for nutrients
     axios.get('https://api.nal.usda.gov/ndb/V2/reports/', {
       params: {
@@ -82,7 +104,7 @@ app.post('/api/calories', (req, res) => {
         api_key: USDA_TOKEN
       }
     }).then((report) => {
-      const nutrients = report.data.foods[0].food.nutrients;  // first food
+      const nutrients = report.data.foods[0].food.nutrients;  // first food report
 
       const nutObj = {};
       for (let obj of nutrients) {
@@ -103,19 +125,21 @@ app.post('/api/calories', (req, res) => {
 
       nutObj.user = user;
       nutObj.food = food;
-      nutObj.ndbno = ndbno;
+      nutObj.ndbno = parseInt(ndbno);
 
       // save 'food' and 'ndbno' to database
-      database.insert(nutObj)
+      database('calories').insert(nutObj).then((data) => {
+        // console.log('>>> DB inserted!')
+      }).catch((err) => {
+        console.error(err)
+      })
+      // send to front end
+      res.status(201).send(nutObj)
 
     })
 
   })
 
-})
-
-app.post('/api/sleep', (req, res) => {
-  // todo finish this 
 })
 
 

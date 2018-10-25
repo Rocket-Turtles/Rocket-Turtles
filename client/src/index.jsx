@@ -7,7 +7,6 @@ import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Calories from './components/Calories.jsx';
-import dummySleepData from '../../dummydata/dummySleepData.js'
 
 class App extends React.Component {
   constructor() {
@@ -16,6 +15,8 @@ class App extends React.Component {
     this.state = {
       // calories
       food: '',
+      calDisplay: false,
+      nutrients: {},
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
       user: {
@@ -27,7 +28,7 @@ class App extends React.Component {
       },
 
       //sleep states:
-      sleepWeek: dummySleepData,
+      sleepWeek: [],
       weeklyAverage: 0,
       sleepTime: '',
       wakeTime: ''
@@ -35,18 +36,25 @@ class App extends React.Component {
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
+    this.getSleepData = this.getSleepData.bind(this);
   }
   
   componentDidMount() {
-    this.getSleepData();
     this.getUserData();
+    this.getSleepData();
   };
 
   handleClick(event){
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/api/calories', {food: this.state.food, user: this.state.userID})
+      axios.post('/api/calories', {food: this.state.food, user: this.state.user.id}).then((res) => {
+        // display on screen
+        this.setState({
+          calDisplay: true,
+          nutrients: res.data
+        })
+      })
     }
   }
 
@@ -76,8 +84,7 @@ class App extends React.Component {
   //sleep methods:
   //gets sleep data
   getSleepData() {
- 
-    axios.get('/api/sleep')
+    axios.post('/api/sleep', {user: this.state.user.id})
     .then(sleepData => {
     
       this.setState({
@@ -95,10 +102,7 @@ class App extends React.Component {
   //calculates average hours from most recent 7 nights of sleep
   getAverage(weekData) {
     const reducer = (acc, cur) => acc + cur.hourCount;
-    const getAverage = (arr) => {
-      return weekData.reduce(reducer, 0)
-    };
-    let average = (getAverage(weekData.sleepWeek) / 7).toFixed(2);
+    let average = this.state.sleepWeek.length ? (this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length).toFixed(2) : 0;
     this.setState({
       weeklyAverage: average
     })
@@ -119,25 +123,38 @@ class App extends React.Component {
   }
 
   postSleepEntry() {
-    let hourCount = moment(this.state.wakeTime).subtract(this.state.sleepTime).toDate();
-    console.log('hour count is: ', hourCount)
+    let duration = moment.duration(moment(this.state.wakeTime).diff(moment(this.state.sleepTime)));
+    let hourCount = duration.asHours();
+    let nightSlept = moment(this.state.sleepTime).format('YYYY-MM-DD');
+    let start = moment(this.state.sleepTime).format('hh:mm A')
+    let end = moment(this.state.wakeTime).format('hh:mm A')
     let sleepObj = {
-      user: 1,
+      user: this.state.user.id,
       hourCount: hourCount,
-      startHour: this.state.sleepTime,
-      endHour: this.state.wakeTime,
-      
+      startHour: start,
+      endHour: end,
+      nightSlept: nightSlept
     }
-    axios.post('/api/sleep', {sleepObj})
+    axios.post('/api/sleep', sleepObj)
+    .then(() => {
+      console.log('post response received');
+      this.getSleepData();
+    })
+    .catch(err => {
+      console.log('error posting new sleep night on client: ', err)
+    })
   }
 
 
   render() {
+    let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
+
     return(
       <div>
         <UserProfile user={this.state.user}/>
         <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
+        {calDisElem}
         <br></br>
         <Sleep 
           sleepWeek={this.state.sleepWeek}
