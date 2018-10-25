@@ -14,6 +14,9 @@ class App extends React.Component {
       // calories
       food: '',
 
+      // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
+      userID: '',
+
       //sleep states:
       sleepNights: [{
         id: 1,
@@ -36,7 +39,7 @@ class App extends React.Component {
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/calories', {food: this.state.food})
+      axios.post('/api/calories', {food: this.state.food, user: this.state.userID})
     }
   }
 
@@ -54,13 +57,10 @@ class App extends React.Component {
 
   //sleep methods:
   getSleepData() {
-    console.log('getSleepData() invoked')
     axios.get('/api/sleep')
     .then(sleepData => {
-      console.log(`sleepdata on client is: ${JSON.stringify(sleepData.data)}`)
     })
     .catch(err => {
-      console.log(`error getting sleepdata on client: ${sleepData}`)
     });
   };
 
