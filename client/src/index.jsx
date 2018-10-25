@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import Sleep from './components/Sleep.jsx';
+import UserInput from './components/UserInput.jsx';
 import Calories from './components/Calories.jsx';
 
 class App extends React.Component {
@@ -67,7 +68,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        hi
+        <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
         <Sleep 
           sleepNights={this.state.sleepNights}
