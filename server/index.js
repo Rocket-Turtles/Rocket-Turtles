@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/api/user', (req, res) => {
-  console.log(req.body);
   database('users').insert(req.body)
     .then(() => {
       console.log('Post Success');
