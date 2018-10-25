@@ -26,10 +26,14 @@ exports.seed = function (knex, Promise) {
       return knex('calories').insert([{
         id: 1,
         user: 1,
+        food: 'pizza',
+        ndbno: 21272,
         calories: 200,
-        timeAte: '10:10 AM',
-        dayAte: '2018-10-22',
-        foodAte: 'cheeseburger'
+        protein: 100,
+        carbs: 100,
+        fiber: 50,
+        sugar: 100, 
+        fat: 100
       }])
     })
 };

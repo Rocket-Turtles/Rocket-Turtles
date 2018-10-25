@@ -33,17 +33,14 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('calories', (table) => {
       table.increments('id');
       table.integer('user').unsigned().notNullable();
-      // do we need to track time...?
-      // table.time('timeAte');
-      // table.date('dayAte');
       table.string('food');
-      table.string('ndbno');
-      table.integer('calories');
-      table.string('protien');
-      table.string('carbs');
-      table.string('fiber');
-      table.string('sugar');
-      table.string('fat');
+      table.integer('ndbno');
+      table.float('calories');
+      table.float('protein');
+      table.float('carbs');
+      table.float('fiber');
+      table.float('sugar');
+      table.float('fat');
 
       //fks
       table.foreign('user').references('id').inTable('users');
@@ -57,9 +54,9 @@ exports.up = function (knex, Promise) {
 }
 
 exports.down = function (knex, Promise) {
-  let dropUsers = `DROP TABLE users`;
-  let dropSleep = `DROP TABLE sleep`;
-  let dropCalories = `DROP TABLE calories`;
+  let dropUsers = `DROP TABLE IF EXISTS users`;
+  let dropSleep = `DROP TABLE IF EXISTS sleep`;
+  let dropCalories = `DROP TABLE IF EXISTS calories`;
   return knex.raw(dropCalories)
     .then(knex.raw(dropSleep))
     .then(knex.raw(dropUsers))

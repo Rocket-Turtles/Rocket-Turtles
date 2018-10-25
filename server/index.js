@@ -59,7 +59,7 @@ app.post('/api/calories', (req, res) => {
         } else if (obj.nutrient_id === '203') {
           nutObj.protein = parseFloat(obj.value)
         } else if (obj.nutrient_id === '205') {
-          nutObj.carbs = parseFloat(ob.value)
+          nutObj.carbs = parseFloat(obj.value)
         } else if (obj.nutrient_id === '291') {
           nutObj.fiber = parseFloat(obj.value)
         } else if (obj.nutrient_id === '269') {
@@ -71,6 +71,9 @@ app.post('/api/calories', (req, res) => {
 
       nutObj.user = user;
       nutObj.food = food;
+      nutObj.ndbno = ndbno;
+
+      database.insert(nutObj)
 
     })
     // save 'food' and 'ndbno' to database
