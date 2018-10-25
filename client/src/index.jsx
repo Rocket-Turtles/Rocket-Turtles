@@ -19,11 +19,11 @@ class App extends React.Component {
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
       user: {
-        id: null,
-        name: null,
-        age: null,
-        weight: null,
-        height: null
+        id: '',
+        name: '',
+        age: '',
+        weight: '',
+        height: ''
       },
 
       //sleep states:
