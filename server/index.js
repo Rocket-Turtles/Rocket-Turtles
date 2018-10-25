@@ -13,6 +13,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
+//user routes
+app.post('/api/user', (req, res) => {
+  database('users').insert(req.body)
+    .then(() => {
+      console.log('Post Success');
+      res.send('Post Success');
+    }).catch(err => {
+      console.error(`error on server posting user ${err}`);
+    })
+});
+
 //sleep routes
 app.get('/api/sleep', (req, res) => {
   //console.log(`request on server is: ${req.body}`)

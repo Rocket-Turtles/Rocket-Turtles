@@ -100,7 +100,10 @@ class App extends React.Component {
     console.log('hour count is: ', hourCount)
     let sleepObj = {
       user: 1,
-      hourCount: hourCount
+      hourCount: hourCount,
+      startHour: this.state.sleepTime,
+      endHour: this.state.wakeTime,
+      
     }
     axios.post('/api/sleep', {sleepObj})
   }
