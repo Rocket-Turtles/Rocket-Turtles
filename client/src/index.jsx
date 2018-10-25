@@ -48,7 +48,7 @@ class App extends React.Component {
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/api/calories', {food: this.state.food, user: this.state.userID}).then((res) => {
+      axios.post('/api/calories', {food: this.state.food, user: this.state.user.id}).then((res) => {
         // display on screen
         this.setState({
           calDisplay: true,
