@@ -4,6 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 
 import Sleep from './components/Sleep.jsx';
+import UserInput from './components/UserInput.jsx';
 import Calories from './components/Calories.jsx';
 import dummySleepData from '../../dummydata/dummySleepData.js'
 
@@ -14,6 +15,9 @@ class App extends React.Component {
     this.state = {
       // calories
       food: '',
+
+      // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
+      userID: '',
 
       //sleep states:
       sleepWeek: dummySleepData,
@@ -34,7 +38,7 @@ class App extends React.Component {
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/calories', {food: this.state.food})
+      axios.post('/api/calories', {food: this.state.food, user: this.state.userID})
     }
   }
 
@@ -53,6 +57,7 @@ class App extends React.Component {
   //sleep methods:
   //gets sleep data
   getSleepData() {
+
     //console.log('getSleepData() invoked')
     axios.get('/api/sleep')
     .then(sleepData => {
@@ -109,7 +114,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        hi
+        <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
         <br></br>
         <Sleep 

@@ -8,7 +8,7 @@ exports.up = function (knex, Promise) {
       table.increments('id');
       table.string('name');
       table.integer('weight');
-      table.integer('height'); // TODO figure out how we want to store height
+      table.decimal('height');
       table.integer('age');
     })
   }
@@ -33,10 +33,14 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('calories', (table) => {
       table.increments('id');
       table.integer('user').unsigned().notNullable();
-      table.integer('calories');
-      table.time('timeAte');
-      table.date('dayAte');
-      table.string('foodAte');
+      table.string('food');
+      table.integer('ndbno');
+      table.float('calories');
+      table.float('protein');
+      table.float('carbs');
+      table.float('fiber');
+      table.float('sugar');
+      table.float('fat');
 
       //fks
       table.foreign('user').references('id').inTable('users');
