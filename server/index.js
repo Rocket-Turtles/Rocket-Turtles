@@ -43,7 +43,7 @@ app.get('/api/user', (req, res) => {
 
 //sleep routes
 //gets sleep data
-app.post('/api/sleep', (req, res) => {
+app.post('/api/sleep/get', (req, res) => {
   database.select()
     .where({user: req.body.user})
     .from('sleep')
@@ -57,7 +57,7 @@ app.post('/api/sleep', (req, res) => {
     })
 });
 
-app.post('/api/sleep', (req, res) => {
+app.post('/api/sleep/post', (req, res) => {
 
   //console.log('server req', req.body);
   sleepObj = req.body;

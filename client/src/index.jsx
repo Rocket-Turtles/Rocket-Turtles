@@ -84,7 +84,7 @@ class App extends React.Component {
   //sleep methods:
   //gets sleep data
   getSleepData() {
-    axios.post('/api/sleep', {user: this.state.user.id})
+    axios.post('/api/sleep/get', {user: this.state.user.id})
     .then(sleepData => {
     
       this.setState({
@@ -135,7 +135,7 @@ class App extends React.Component {
       endHour: end,
       nightSlept: nightSlept
     }
-    axios.post('/api/sleep', sleepObj)
+    axios.post('/api/sleep/post', sleepObj)
     .then(() => {
       console.log('post response received');
       this.getSleepData();
