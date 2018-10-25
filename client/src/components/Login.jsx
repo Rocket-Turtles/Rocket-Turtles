@@ -6,7 +6,11 @@ import '../../../css/style.css'
 const Login = (props) => {
   return (
     <div> 
-      <UserInput />
+      <UserInput 
+        handleNewUserSubmit={props.handleNewUserSubmit}
+        handleNumber={props.handleNumber}
+        user={props.user}
+      />
     </div>
   )
 }

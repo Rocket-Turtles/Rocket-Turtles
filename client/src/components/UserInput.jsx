@@ -11,26 +11,26 @@ class UserInput extends React.Component {
       _heightFt: '',
       _heightIn: ''
     }
-    this.handleNumber = this.handleNumber.bind(this);
+    // this.handleNumber = this.handleNumber.bind(this);
   }
 
-  handleNumber(e, state) {
-    if (!isNaN(e.target.value)) {
-      this.setState({[state]: Number(e.target.value)})
-    } else {
-      console.log('Invalid Number');
-    }
-  }
+  // handleNumber(e, state) {
+  //   if (!isNaN(e.target.value)) {
+  //     this.setState({[state]: Number(e.target.value)})
+  //   } else {
+  //     console.log('Invalid Number');
+  //   }
+  // }
 
-  submit() {
-    let newUser = {
-      name: this.state._name,
-      age: this.state._age,
-      weight: this.state._weight,
-      height: Number(this.state._heightFt + (this.state._heightIn / 12))
-    }
-    Axios.post('/api/user', newUser);
-  }
+  // submit() {
+  //   let newUser = {
+  //     name: this.state._name,
+  //     age: this.state._age,
+  //     weight: this.state._weight,
+  //     height: Number(this.state._heightFt + (this.state._heightIn / 12))
+  //   }
+  //   Axios.post('/api/user', newUser);
+  // }
 
   render() {
     return(
@@ -42,7 +42,7 @@ class UserInput extends React.Component {
           <input type='text' value={this.state._weight} placeholder='weight' onChange={(e) => {this.handleNumber(e, '_weight')}}></input>
           <input type='text' value={this.state._heightFt} placeholder='height(ft)' onChange={(e) => {this.handleNumber(e, '_heightFt')}}></input>
           <input type='text' value={this.state._heightIn} placeholder='height(in)' onChange={(e) => {this.handleNumber(e, '_heightIn')}}></input>
-          <button onClick={this.submit.bind(this)}>Submit</button>
+          <button onClick={() => handleNewUserSubmit()}>Submit</button>
         </form>
       </div>
     )
