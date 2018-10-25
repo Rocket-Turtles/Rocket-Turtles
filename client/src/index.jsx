@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
+import UserProfile from './components/UserProfile.jsx';
 import Calories from './components/Calories.jsx';
 
 class App extends React.Component {
@@ -14,6 +15,8 @@ class App extends React.Component {
     this.state = {
       // calories
       food: '',
+      calDisplay: false,
+      nutrients: {},
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
       user: {
@@ -37,13 +40,20 @@ class App extends React.Component {
   
   componentDidMount() {
     this.getSleepData();
+    this.getUserData();
   };
 
   handleClick(event){
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/api/calories', {food: this.state.food, user: this.state.userID})
+      axios.post('/api/calories', {food: this.state.food, user: this.state.userID}).then((res) => {
+        // display on screen
+        this.setState({
+          calDisplay: true,
+          nutrients: res.data
+        })
+      })
     }
   }
 
@@ -58,6 +68,17 @@ class App extends React.Component {
     }
   };
 
+  //user methods
+  //get user data
+
+  getUserData() {
+    axios.get('/api/user')
+      .then(userData => {
+        this.setState({
+          user: userData.data[0]
+        })
+      })
+  }
 
   //sleep methods:
   //gets sleep data
@@ -126,10 +147,14 @@ class App extends React.Component {
 
 
   render() {
+    let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
+
     return(
       <div>
+        <UserProfile user={this.state.user}/>
         <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
+        {calDisElem}
         <br></br>
         <Sleep 
           sleepWeek={this.state.sleepWeek}

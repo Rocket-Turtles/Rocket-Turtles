@@ -5,11 +5,11 @@ class UserInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      _name: 'turts',
-      _age: 2,
-      _weight: 1,
-      _heightFt: 0,
-      _heightIn: 9
+      _name: '',
+      _age: '',
+      _weight: '',
+      _heightFt: '',
+      _heightIn: ''
     }
     this.handleNumber = this.handleNumber.bind(this);
   }

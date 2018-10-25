@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
-
-//user routes
+// user routes
+// user input data
 app.post('/api/user', (req, res) => {
   database('users').insert(req.body)
     .then(() => {
@@ -25,6 +25,20 @@ app.post('/api/user', (req, res) => {
       console.error(`error on server posting user ${err}`);
     })
 });
+// grab user data from database
+// currently grabbing the first user in the database
+app.get('/api/user', (req, res) => {
+  database.select()
+    .from('users')
+    .orderBy('id', 'desc')
+    .limit(1)
+    .then(userData => {
+      res.send(userData);
+    })
+    .catch(err => {
+      console.error(`error on server getting userData ${err}`);
+    })
+})
 
 
 //sleep routes
@@ -80,8 +94,8 @@ app.post('/api/calories', (req, res) => {
       api_key: USDA_TOKEN
     }
   }).then((search) => {
-    const ndbno = search.data.list.item[0].ndbno  //.item[0].ndbno;  // get top most relevant object (is array)
-    
+    const ndbno = search.data.list.item[0].ndbno;  // get top most relevant object (is array)
+
     // make USDA API report request for nutrients
     axios.get('https://api.nal.usda.gov/ndb/V2/reports/', {
       params: {
@@ -90,7 +104,7 @@ app.post('/api/calories', (req, res) => {
         api_key: USDA_TOKEN
       }
     }).then((report) => {
-      const nutrients = report.data.foods[0].food.nutrients;  // first food
+      const nutrients = report.data.foods[0].food.nutrients;  // first food report
 
       const nutObj = {};
       for (let obj of nutrients) {
@@ -111,10 +125,16 @@ app.post('/api/calories', (req, res) => {
 
       nutObj.user = user;
       nutObj.food = food;
-      nutObj.ndbno = ndbno;
+      nutObj.ndbno = parseInt(ndbno);
 
       // save 'food' and 'ndbno' to database
-      database.insert(nutObj)
+      database('calories').insert(nutObj).then((data) => {
+        // console.log('>>> DB inserted!')
+      }).catch((err) => {
+        console.error(err)
+      })
+      // send to front end
+      res.status(201).send(nutObj)
 
     })
 
