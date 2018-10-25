@@ -73,17 +73,11 @@ app.post('/api/calories', (req, res) => {
       nutObj.food = food;
       nutObj.ndbno = ndbno;
 
+      // save 'food' and 'ndbno' to database
       database.insert(nutObj)
 
     })
-    // save 'food' and 'ndbno' to database
 
-  })
-
-  
-  // save to db
-  database.insert({
-    user, food
   })
 
 })
