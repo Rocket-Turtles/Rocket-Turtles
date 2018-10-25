@@ -50,8 +50,27 @@ app.post('/api/calories', (req, res) => {
         api_key: USDA_TOKEN
       }
     }).then((report) => {
-      // const calories = report.data.report.food.nutrients;
-      console.log('>>> calorie report', report.data.foods[0].food.nutrients)
+      const nutrients = report.data.foods[0].food.nutrients;  // first food
+
+      const nutObj = {};
+      for (let obj of nutrients) {
+        if (obj.nutrient_id === '208') {
+          nutObj.calories = parseFloat(obj.value)
+        } else if (obj.nutrient_id === '203') {
+          nutObj.protein = parseFloat(obj.value)
+        } else if (obj.nutrient_id === '205') {
+          nutObj.carbs = parseFloat(ob.value)
+        } else if (obj.nutrient_id === '291') {
+          nutObj.fiber = parseFloat(obj.value)
+        } else if (obj.nutrient_id === '269') {
+          nutObj.sugar = parseFloat(obj.value)
+        } else if (obj.nutrient_id === '204') {
+          nutObj.fat = parseFloat(obj.value)
+        }
+      }
+
+      nutObj.user = user;
+      nutObj.food = food;
 
     })
     // save 'food' and 'ndbno' to database

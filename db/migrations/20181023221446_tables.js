@@ -20,6 +20,7 @@ exports.up = function (knex, Promise) {
       table.integer('user').unsigned().notNullable();
       table.integer('hourCount');
       table.time('startHour');
+      table.time('endHour');
       table.date('nightSlept');
 
       //fks
@@ -32,12 +33,17 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('calories', (table) => {
       table.increments('id');
       table.integer('user').unsigned().notNullable();
-      table.integer('calories');
       // do we need to track time...?
-        // table.time('timeAte');
-        // table.date('dayAte');
-      table.string('foodString');
+      // table.time('timeAte');
+      // table.date('dayAte');
+      table.string('food');
       table.string('ndbno');
+      table.integer('calories');
+      table.string('protien');
+      table.string('carbs');
+      table.string('fiber');
+      table.string('sugar');
+      table.string('fat');
 
       //fks
       table.foreign('user').references('id').inTable('users');
