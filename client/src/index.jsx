@@ -43,14 +43,13 @@ class App extends React.Component {
   
   componentDidMount() {
     this.getUserData();
-    this.getSleepData();
   };
 
   handleClick(event){
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/api/calories', {food: this.state.food, user: this.state.userID}).then((res) => {
+      axios.post('/api/calories', {food: this.state.food, user: this.state.user.id}).then((res) => {
         // display on screen
         this.setState({
           calDisplay: true,
@@ -73,22 +72,24 @@ class App extends React.Component {
 
   //user methods
   //get user data
-
   getUserData() {
     axios.get('/api/user')
       .then(userData => {
         this.setState({
+          // Change the array index to switch users for now
+          // Will change this later
           user: userData.data[0]
         })
+      }).then(() => {
+        this.getSleepData();
       })
   }
 
   //sleep methods:
   //gets sleep data
   getSleepData() {
-    axios.post('/api/sleep/get', {user: this.state.user.id})
+    axios.get(`/api/sleep/${this.state.user.id}`)
     .then(sleepData => {
-    
       this.setState({
         sleepWeek: sleepData.data
       })

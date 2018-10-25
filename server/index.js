@@ -30,8 +30,7 @@ app.post('/api/user', (req, res) => {
 app.get('/api/user', (req, res) => {
   database.select()
     .from('users')
-    .orderBy('id', 'desc')
-    .limit(1)
+    .orderBy('id', 'asc')
     .then(userData => {
       res.send(userData);
     })
@@ -43,9 +42,9 @@ app.get('/api/user', (req, res) => {
 
 //sleep routes
 //gets sleep data
-app.post('/api/sleep/get', (req, res) => {
+app.get('/api/sleep/:userID', (req, res) => {
   database.select()
-    .where({user: req.body.user})
+    .where({user: req.params.userID})
     .from('sleep')
     .orderBy('nightSlept', 'desc')
     .limit(7)
@@ -57,11 +56,8 @@ app.post('/api/sleep/get', (req, res) => {
     })
 });
 
-app.post('/api/sleep/post', (req, res) => {
-
-  //console.log('server req', req.body);
+app.post('/api/sleep', (req, res) => {
   sleepObj = req.body;
-  //console.log('sleepObj', sleepObj);
   database('sleep').insert({
     user: sleepObj.user,
     hourCount: sleepObj.hourCount,
