@@ -13,8 +13,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
+//sleep routes
 app.get('/api/sleep', (req, res) => {
-  console.log(`request on server is: ${req.body}`)
+  //console.log(`request on server is: ${req.body}`)
   database.select()
     .from('sleep')
     .orderBy('nightSlept', 'asc')
@@ -27,6 +28,11 @@ app.get('/api/sleep', (req, res) => {
       console.error(`error on server getting sleepData ${err}`)
     })
 })
+
+app.post('/api/sleep', (req, res) => {
+  // todo finish this 
+})
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

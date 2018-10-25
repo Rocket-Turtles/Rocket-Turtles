@@ -2,6 +2,9 @@ import React from 'react';
 //import Chart from 'chart.js';
 //import {Bar} from 'react-chartjs-2';
 import moment from 'moment';
+import DateTime from 'react-datetime';
+import "../../../node_modules/react-datetime/css/react-datetime.css";
+
 
 //CSS objects
 const tableStyle = {
@@ -22,17 +25,9 @@ const tdHeaderStyle = {
 
 const Sleep = (props) => {
 
-  // This function calculates the average hours of sleep
-  const reducer = (acc, cur) => acc + cur.hourCount;
-  const getAverage = (arr) => {
-    return arr.reduce(reducer, 0)
-  };
-  let average = (getAverage(props.sleepNights) / 7).toFixed(2);
-
-
   return (
     <div>
-      Sleep:
+      Your Sleep Stats for the Week:
       {/* Start of Sleep Table */}
       <table style={tableStyle}>
         <thead>
@@ -40,22 +35,23 @@ const Sleep = (props) => {
           <tr>
             <td style={tdHeaderStyle}>
             Average:
-            {' ' + average + ' hrs'}  
+            {' ' + props.weeklyAverage + ' hrs'}  
             </td>
-            {props.sleepNights.map(night => (
-              <td style={tdStyle}>
+            {props.sleepWeek.map((night, i) => (
+              <td key={i} style={tdStyle}>
                 { moment(night.nightSlept).format('dddd MMM Do') }
               </td>
             ))}
           </tr>
         </thead>
+        {/* body rows contain hour count and begin-end hours */}
         <tbody>
           <tr>
             <td style={tdStyle}>
               Hours Slept:
             </td>
-              {props.sleepNights.map(night => (
-                <td style={tdStyle}>
+              {props.sleepWeek.map((night, i) => (
+              <td key={i} style={tdStyle}>
                   {night.hourCount}
                 </td>
               ))}
@@ -64,8 +60,8 @@ const Sleep = (props) => {
             <td style={tdStyle}>
               From:
             </td>
-            {props.sleepNights.map(night => (
-              <td style={tdStyle}>
+            {props.sleepWeek.map((night, i) => (
+            <td key={i} style={tdStyle}>
                 {moment(night.startHour, "HH:mm:ss").format("h:mm a") + ' '}
                 to 
                 {' ' + moment(night.endHour, "HH:mm:ss").format("h:mm a")}
@@ -74,9 +70,30 @@ const Sleep = (props) => {
           </tr>
         </tbody>
         <tfoot>
-
+          {/* planning on putting edit buttons in footer row */}
         </tfoot>
       </table>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              When did you go to bed?
+            </td>
+            <td>
+              When did you wake up?
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DateTime onChange={(date) => props.getSleepTime(date)}/>
+            </td>
+            <td>
+              <DateTime onChange={(date) => props.getWakeTime(date)}/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button>Submit</button>
     </div>
   )
 }
