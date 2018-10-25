@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
-
-//user routes
+// user routes
+// user input data
 app.post('/api/user', (req, res) => {
   database('users').insert(req.body)
     .then(() => {
@@ -25,6 +25,20 @@ app.post('/api/user', (req, res) => {
       console.error(`error on server posting user ${err}`);
     })
 });
+// grab user data from database
+// currently grabbing the first user in the database
+app.get('/api/user', (req, res) => {
+  database.select()
+    .from('users')
+    .orderBy('id', 'desc')
+    .limit(1)
+    .then(userData => {
+      res.send(userData);
+    })
+    .catch(err => {
+      console.error(`error on server getting userData ${err}`);
+    })
+})
 
 
 //sleep routes

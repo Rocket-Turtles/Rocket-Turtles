@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
+import UserProfile from './components/UserProfile.jsx';
 import Calories from './components/Calories.jsx';
 import dummySleepData from '../../dummydata/dummySleepData.js'
 
@@ -19,7 +20,13 @@ class App extends React.Component {
       nutrients: {},
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
-      userID: 1,
+      user: {
+        id: '',
+        name: '',
+        age: '',
+        weight: '',
+        height: ''
+      },
 
       //sleep states:
       sleepWeek: dummySleepData,
@@ -34,6 +41,7 @@ class App extends React.Component {
   
   componentDidMount() {
     this.getSleepData();
+    this.getUserData();
   };
 
   handleClick(event){
@@ -61,6 +69,17 @@ class App extends React.Component {
     }
   };
 
+  //user methods
+  //get user data
+
+  getUserData() {
+    axios.get('/api/user')
+      .then(userData => {
+        this.setState({
+          user: userData.data[0]
+        })
+      })
+  }
 
   //sleep methods:
   //gets sleep data
@@ -126,6 +145,7 @@ class App extends React.Component {
 
     return(
       <div>
+        <UserProfile user={this.state.user}/>
         <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
         {calDisElem}
