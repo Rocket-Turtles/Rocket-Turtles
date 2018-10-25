@@ -18,7 +18,7 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('sleep', (table) => {
       table.increments('id');
       table.integer('user').unsigned().notNullable();
-      table.integer('hourCount');
+      table.float('hourCount');
       table.time('startHour');
       table.time('endHour');
       table.date('nightSlept');

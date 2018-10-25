@@ -25,7 +25,7 @@ exports.seed = function (knex, Promise) {
         id: 2,
         user: 1,
         hourCount: 7,
-        startHour: '02:05 PM',
+        startHour: '03:05 PM',
         endHour: '10:05 PM',
         nightSlept: '2018-08-17'
       },
@@ -33,7 +33,7 @@ exports.seed = function (knex, Promise) {
         id: 3,
         user: 1,
         hourCount: 6,
-        startHour: '02:05 PM',
+        startHour: '04:05 PM',
         endHour: '10:05 PM',
         nightSlept: '2018-08-18'
       },
@@ -41,7 +41,7 @@ exports.seed = function (knex, Promise) {
         id: 4,
         user: 1,
         hourCount: 4,
-        startHour: '02:05 PM',
+        startHour: '06:05 PM',
         endHour: '10:05 PM',
         nightSlept: '2018-08-19'
       },
@@ -49,7 +49,7 @@ exports.seed = function (knex, Promise) {
         id: 5,
         user: 1,
         hourCount: 7,
-        startHour: '02:05 PM',
+        startHour: '03:05 PM',
         endHour: '10:05 PM',
         nightSlept: '2018-08-20'
       },
@@ -57,7 +57,7 @@ exports.seed = function (knex, Promise) {
         id: 6,
         user: 1,
         hourCount: 5,
-        startHour: '02:05 PM',
+        startHour: '05:05 PM',
         endHour: '10:05 PM',
         nightSlept: '2018-08-21'
       },
@@ -65,7 +65,7 @@ exports.seed = function (knex, Promise) {
         id: 7,
         user: 1,
         hourCount: 6,
-        startHour: '02:05 PM',
+        startHour: '04:05 PM',
         endHour: '10:05 PM',
         nightSlept: '2018-08-22'
     }])

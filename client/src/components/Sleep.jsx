@@ -1,14 +1,16 @@
 import React from 'react';
 //import Chart from 'chart.js';
 //import {Bar} from 'react-chartjs-2';
+import moment from 'moment';
 
+//CSS objects
 const tableStyle = {
   border: 'solid 1px',
   borderCollapse: 'collapse'
 }
 
 const tdStyle = {
-  width: '80px',
+  width: '160px',
   border: 'solid 1px'
 }
 
@@ -17,107 +19,58 @@ const tdHeaderStyle = {
   border: 'solid 1px'
 }
 
+
 const Sleep = (props) => {
 
+  // This function calculates the average hours of sleep
+  const reducer = (acc, cur) => acc + cur.hourCount;
+  const getAverage = (arr) => {
+    return arr.reduce(reducer, 0)
+  };
+  let average = (getAverage(props.sleepNights) / 7).toFixed(2);
 
 
   return (
     <div>
       Sleep:
-      <table
-        style={tableStyle}
-      >
+      {/* Start of Sleep Table */}
+      <table style={tableStyle}>
         <thead>
+          {/* header row contains avg hours and dates */}
           <tr>
-            <td
-              style={tdHeaderStyle}
-            ></td>
-            <td
-              style={tdStyle}
-            >
-              Sunday:
+            <td style={tdHeaderStyle}>
+            Average:
+            {' ' + average + ' hrs'}  
             </td>
-            <td
-              style={tdStyle}
-            >
-              Monday:
-            </td>
-            <td
-              style={tdStyle}
-            >
-              Tuesday:
-            </td>
-            <td
-              style={tdStyle}
-            >
-              Wednesday:
-            </td>
-            <td
-              style={tdStyle}
-            >
-              Thursday:
-            </td>
-            <td
-              style={tdStyle}
-            >
-              Friday:
-            </td>
-            <td
-              style={tdStyle}
-            >
-              Saturday:
-            </td>
+            {props.sleepNights.map(night => (
+              <td style={tdStyle}>
+                { moment(night.nightSlept).format('dddd MMM Do') }
+              </td>
+            ))}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td
-              style={tdStyle}
-            >
+            <td style={tdStyle}>
               Hours Slept:
             </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[0].hourCount}
-            </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[1].hourCount}
-            </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[2].hourCount}
-            </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[3].hourCount}
-            </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[4].hourCount}
-            </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[5].hourCount}
-            </td>
-            <td
-              style={tdStyle}
-            >
-              {props.sleepNights[6].hourCount}
-            </td>
+              {props.sleepNights.map(night => (
+                <td style={tdStyle}>
+                  {night.hourCount}
+                </td>
+              ))}
           </tr>
           <tr>
-            <td
-              style={tdStyle}
-            >
+            <td style={tdStyle}>
               From:
             </td>
+            {props.sleepNights.map(night => (
+              <td style={tdStyle}>
+                {moment(night.startHour, "HH:mm:ss").format("h:mm a") + ' '}
+                to 
+                {' ' + moment(night.endHour, "HH:mm:ss").format("h:mm a")}
+              </td>
+            ))}
           </tr>
         </tbody>
         <tfoot>
