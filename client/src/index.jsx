@@ -6,7 +6,7 @@ import moment from 'moment';
 import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
 import Calories from './components/Calories.jsx';
-import dummySleepData from '../../dummydata/dummySleepData.js'
+import dummySleepData from '../../sample_data/dummySleepData.js'
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +17,7 @@ class App extends React.Component {
       food: '',
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
-      userID: '',
+      userID: 1,
 
       //sleep states:
       sleepWeek: dummySleepData,
@@ -100,16 +100,27 @@ class App extends React.Component {
   }
 
   postSleepEntry() {
-    let hourCount = moment(this.state.wakeTime).subtract(this.state.sleepTime).toDate();
-    console.log('hour count is: ', hourCount)
+    let duration = moment.duration(moment(this.state.wakeTime).diff(moment(this.state.sleepTime)));
+    let hourCount = duration.asHours();
+    let nightSlept = moment(this.state.sleepTime).format('YYYY-MM-DD');
+    let start = moment(this.state.sleepTime).format('hh:mm A')
+    let end = moment(this.state.wakeTime).format('hh:mm A')
     let sleepObj = {
-      user: 1,
+      user: this.state.userID,
       hourCount: hourCount,
-      startHour: this.state.sleepTime,
-      endHour: this.state.wakeTime,
-      
+      startHour: start,
+      endHour: end,
+      nightSlept: nightSlept
     }
-    axios.post('/api/sleep', {sleepObj})
+    console.log('sleepObj', sleepObj);
+    axios.post('/api/sleep', sleepObj)
+    .then(() => {
+      console.log('post response received');
+      this.getSleepData();
+    })
+    .catch(err => {
+      console.log('error posting new sleep night on client: ', err)
+    })
   }
 
 

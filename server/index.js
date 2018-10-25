@@ -32,7 +32,7 @@ app.get('/api/sleep', (req, res) => {
   //console.log(`request on server is: ${req.body}`)
   database.select()
     .from('sleep')
-    .orderBy('nightSlept', 'asc')
+    .orderBy('nightSlept', 'desc')
     .limit(7)
     .then(sleepData => {
       //console.log(`sleepData on server is ${sleepData}`)
@@ -42,6 +42,37 @@ app.get('/api/sleep', (req, res) => {
       console.error(`error on server getting sleepData ${err}`)
     })
 });
+
+app.post('/api/sleep', (req, res) => {
+
+  console.log('server req', req.body);
+  sleepObj = req.body;
+  console.log('sleepObj', sleepObj);
+  database('sleep').insert({
+    user: sleepObj.user,
+    hourCount: sleepObj.hourCount,
+    startHour: sleepObj.startHour,
+    endHour: sleepObj.endHour,
+    nightSlept: sleepObj.nightSlept
+  })
+  //.into('sleep')
+  .then(() => {
+    console.log('post successful')
+    res.end('sleep post successful')
+    })
+  .catch((err) => {
+    console.log('error posting', err)
+    res.end('error posting sleep data', err)
+  })
+
+  // insertOrUpdate = (knex, tableName, data) => {
+  //   //const firstData = data[0] ? data[0] : data;
+  //   return knex.raw(knex(tableName).insert(data).toQuery() + " ON DUPLICATE KEY UPDATE " +
+  //     Object.getOwnPropertyNames(data).map((field) => `${field}=VALUES(${field})`).join(", "));
+  // }
+  // insertOrUpdate(database, 'sleep', req.body);
+  
+})
 
 // calories
 app.post('/api/calories', (req, res) => {
@@ -98,10 +129,6 @@ app.post('/api/calories', (req, res) => {
 
   })
 
-})
-
-app.post('/api/sleep', (req, res) => {
-  // todo finish this 
 })
 
 
