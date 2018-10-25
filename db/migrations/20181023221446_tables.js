@@ -8,9 +8,8 @@ exports.up = function (knex, Promise) {
       table.increments('id');
       table.string('name');
       table.integer('weight');
-      table.integer('height');
-      table.integer('age');
       table.decimal('height');
+      table.integer('age');
     })
   }
 
