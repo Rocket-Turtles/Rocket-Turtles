@@ -5,16 +5,47 @@ body {
 }
 
 nav {
-  display: grid;
+  display: flex;
   margin: 40px auto 0;
-  grid-template-areas:
-  "name empty calories sleep";
-  width: 65%;
+  width: 100%;
+  align-items: center;
   padding: 10px;
   height: 50px;
   background-color: rgba(46, 204, 113, 0.8);
   color: white;
   font-size: 2em;
-   grid-template-columns: repeat(3, 1fr);
 }
 
+.logo {
+  flex-grow: 1;
+  font-size: 40px;
+}
+
+.navbtn {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.main {
+  margin: auto;
+  width: 65%;
+}
+
+.userProfile {
+  border: solid 1px black;
+  width: 30%;
+  float: right;
+}
+
+.userData {
+  /* border: solid 1px; */
+  display: flex;
+  float: right;
+  margin: 0 auto 10;
+}
+
+.userEntry {
+  display: flex;
+  margin: 0px 3px 10px 3px ;
+}

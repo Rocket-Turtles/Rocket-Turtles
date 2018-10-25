@@ -8,6 +8,8 @@ import UserInput from './components/UserInput.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Calories from './components/Calories.jsx';
 import Welcome from './components/Welcome.jsx'
+import Login from './components/Login.jsx'
+
 import '../../css/style.css'
 
 class App extends React.Component {
@@ -152,25 +154,34 @@ class App extends React.Component {
   render() {
     let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
 
-    return(
-      <div>
-        <Welcome 
-          user={this.state.user}
-        />
-        <UserProfile user={this.state.user}/>
-        <UserInput />
-        <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
-        {calDisElem}
-        <br></br>
-        <Sleep 
-          sleepWeek={this.state.sleepWeek}
-          weeklyAverage={this.state.weeklyAverage}
-          getSleepTime={this.getSleepTime}
-          getWakeTime={this.getWakeTime}
-          postSleepEntry={this.postSleepEntry}
-        />
-      </div>
-    )
+    {if (this.state.user.id !== '') {
+      return(
+        <div className='main'>
+          <Welcome 
+            user={this.state.user}
+          />
+          <UserProfile user={this.state.user}/>
+          <UserInput />
+          <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
+          {calDisElem}
+          <br></br>
+          <Sleep 
+            sleepWeek={this.state.sleepWeek}
+            weeklyAverage={this.state.weeklyAverage}
+            getSleepTime={this.getSleepTime}
+            getWakeTime={this.getWakeTime}
+            postSleepEntry={this.postSleepEntry}
+          />
+        </div>
+      )
+    } else {
+      return(
+        <div className='main'>
+          hello
+          <UserInput />
+        </div>
+      )
+    }}
   };
 }
 

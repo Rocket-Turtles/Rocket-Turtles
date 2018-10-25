@@ -8,16 +8,13 @@ const Welcome = (props) => {
         
       </header>
       <nav>
-        <div>
+        <div className='logo'>
           Rocket Turtle
         </div>
-        <div>
-          
-        </div>
-        <div>
+        <div className='navbtn'>
           Nutrition
         </div>
-        <div>
+        <div className='navbtn'>
           Sleep
         </div>
       </nav>
