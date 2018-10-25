@@ -42,7 +42,6 @@ class App extends React.Component {
   
   componentDidMount() {
     this.getUserData();
-    this.getSleepData();
   };
 
   handleClick(event){
@@ -73,17 +72,18 @@ class App extends React.Component {
 
   //user methods
   //get user data
-
   getUserData() {
     axios.get('/api/user')
       .then(userData => {
         this.setState({
+          // Change the array index to switch users for now
+          // Will change this later
           user: userData.data[0]
         })
       }).then(() => {
         axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
-          
           this.setState({totalCalories: JSON.parse(cal.data)})
+          this.getSleepData();
         })
         
       })
@@ -92,9 +92,8 @@ class App extends React.Component {
   //sleep methods:
   //gets sleep data
   getSleepData() {
-    axios.post('/api/sleep', {user: this.state.user.id})
+    axios.get(`/api/sleep/${this.state.user.id}`)
     .then(sleepData => {
-    
       this.setState({
         sleepWeek: sleepData.data
       })
