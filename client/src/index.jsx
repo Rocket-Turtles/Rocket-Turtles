@@ -7,6 +7,8 @@ import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Calories from './components/Calories.jsx';
+import Welcome from './components/Welcome.jsx'
+import '../../css/style.css'
 
 class App extends React.Component {
   constructor() {
@@ -151,6 +153,9 @@ class App extends React.Component {
 
     return(
       <div>
+        <Welcome 
+          user={this.state.user}
+        />
         <UserProfile user={this.state.user}/>
         <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
