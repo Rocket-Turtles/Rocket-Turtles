@@ -15,9 +15,11 @@ class App extends React.Component {
     this.state = {
       // calories
       food: '',
+      calDisplay: false,
+      nutrients: {},
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
-      userID: '',
+      userID: 1,
 
       //sleep states:
       sleepWeek: dummySleepData,
@@ -38,7 +40,13 @@ class App extends React.Component {
     event.preventDefault();
     // send to server
     if (event.target.name === 'calories') {
-      axios.post('/api/calories', {food: this.state.food, user: this.state.userID})
+      axios.post('/api/calories', {food: this.state.food, user: this.state.userID}).then((res) => {
+        // display on screen
+        this.setState({
+          calDisplay: true,
+          nutrients: res.data
+        })
+      })
     }
   }
 
@@ -114,10 +122,13 @@ class App extends React.Component {
 
 
   render() {
+    let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
+
     return(
       <div>
         <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
+        {calDisElem}
         <br></br>
         <Sleep 
           sleepWeek={this.state.sleepWeek}
