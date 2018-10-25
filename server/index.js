@@ -45,9 +45,9 @@ app.get('/api/sleep', (req, res) => {
 
 app.post('/api/sleep', (req, res) => {
 
-  console.log('server req', req.body);
+  //console.log('server req', req.body);
   sleepObj = req.body;
-  console.log('sleepObj', sleepObj);
+  //console.log('sleepObj', sleepObj);
   database('sleep').insert({
     user: sleepObj.user,
     hourCount: sleepObj.hourCount,
@@ -55,7 +55,6 @@ app.post('/api/sleep', (req, res) => {
     endHour: sleepObj.endHour,
     nightSlept: sleepObj.nightSlept
   })
-  //.into('sleep')
   .then(() => {
     console.log('post successful')
     res.end('sleep post successful')
@@ -64,14 +63,6 @@ app.post('/api/sleep', (req, res) => {
     console.log('error posting', err)
     res.end('error posting sleep data', err)
   })
-
-  // insertOrUpdate = (knex, tableName, data) => {
-  //   //const firstData = data[0] ? data[0] : data;
-  //   return knex.raw(knex(tableName).insert(data).toQuery() + " ON DUPLICATE KEY UPDATE " +
-  //     Object.getOwnPropertyNames(data).map((field) => `${field}=VALUES(${field})`).join(", "));
-  // }
-  // insertOrUpdate(database, 'sleep', req.body);
-  
 })
 
 // calories

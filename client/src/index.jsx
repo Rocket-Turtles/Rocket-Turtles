@@ -6,7 +6,6 @@ import moment from 'moment';
 import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
 import Calories from './components/Calories.jsx';
-import dummySleepData from '../../sample_data/dummySleepData.js'
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +19,7 @@ class App extends React.Component {
       userID: 1,
 
       //sleep states:
-      sleepWeek: dummySleepData,
+      sleepWeek: [],
       weeklyAverage: 0,
       sleepTime: '',
       wakeTime: ''
@@ -57,7 +56,6 @@ class App extends React.Component {
   //sleep methods:
   //gets sleep data
   getSleepData() {
- 
     axios.get('/api/sleep')
     .then(sleepData => {
     
@@ -76,10 +74,7 @@ class App extends React.Component {
   //calculates average hours from most recent 7 nights of sleep
   getAverage(weekData) {
     const reducer = (acc, cur) => acc + cur.hourCount;
-    const getAverage = (arr) => {
-      return weekData.reduce(reducer, 0)
-    };
-    let average = (getAverage(weekData.sleepWeek) / 7).toFixed(2);
+    let average = this.state.sleepWeek.length ? (this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length).toFixed(2) : 0;
     this.setState({
       weeklyAverage: average
     })
