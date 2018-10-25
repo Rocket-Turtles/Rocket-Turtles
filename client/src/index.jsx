@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
 import Calories from './components/Calories.jsx';
+import dummySleepData from '../../dummydata/dummySleepData.js'
 
 class App extends React.Component {
   constructor() {
@@ -18,17 +20,14 @@ class App extends React.Component {
       userID: '',
 
       //sleep states:
-      sleepNights: [{
-        id: 1,
-        user: 1,
-        hourCount: 8,
-        startHour: '14:05:00',
-        endHour: '22:05:00',
-        nightSlept: '2018-08-22'
-      }]
+      sleepWeek: dummySleepData,
+      weeklyAverage: 0,
+      sleepTime: '',
+      wakeTime: ''
     };
-    
-    this.getSleepData = this.getSleepData.bind(this);
+    this.getSleepTime = this.getSleepTime.bind(this);
+    this.getWakeTime = this.getWakeTime.bind(this);
+    this.postSleepEntry = this.postSleepEntry.bind(this);
   }
   
   componentDidMount() {
@@ -56,13 +55,62 @@ class App extends React.Component {
 
 
   //sleep methods:
+  //gets sleep data
   getSleepData() {
+ 
     axios.get('/api/sleep')
     .then(sleepData => {
+    
+      this.setState({
+        sleepWeek: sleepData.data
+      })
+    })
+    .then(() => {
+      this.getAverage(this.state.sleepWeek);
     })
     .catch(err => {
+      console.log(`error getting sleepdata on client: ${err}`)
     });
   };
+
+  //calculates average hours from most recent 7 nights of sleep
+  getAverage(weekData) {
+    const reducer = (acc, cur) => acc + cur.hourCount;
+    const getAverage = (arr) => {
+      return weekData.reduce(reducer, 0)
+    };
+    let average = (getAverage(weekData.sleepWeek) / 7).toFixed(2);
+    this.setState({
+      weeklyAverage: average
+    })
+  }
+
+  //gets time for new going to sleep entry
+  getSleepTime(date) {
+    this.setState({
+      sleepTime: date.toDate()
+    });
+  }
+
+  //gets time for new waking up entry
+  getWakeTime(date) {
+    this.setState({
+      wakeTime: date.toDate()
+    });
+  }
+
+  postSleepEntry() {
+    let hourCount = moment(this.state.wakeTime).subtract(this.state.sleepTime).toDate();
+    console.log('hour count is: ', hourCount)
+    let sleepObj = {
+      user: 1,
+      hourCount: hourCount,
+      startHour: this.state.sleepTime,
+      endHour: this.state.wakeTime,
+      
+    }
+    axios.post('/api/sleep', {sleepObj})
+  }
 
 
   render() {
@@ -70,8 +118,13 @@ class App extends React.Component {
       <div>
         <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
+        <br></br>
         <Sleep 
-          sleepNights={this.state.sleepNights}
+          sleepWeek={this.state.sleepWeek}
+          weeklyAverage={this.state.weeklyAverage}
+          getSleepTime={this.getSleepTime}
+          getWakeTime={this.getWakeTime}
+          postSleepEntry={this.postSleepEntry}
         />
       </div>
     )

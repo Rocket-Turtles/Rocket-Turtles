@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
+
+//user routes
 app.post('/api/user', (req, res) => {
   database('users').insert(req.body)
     .then(() => {
@@ -24,8 +26,14 @@ app.post('/api/user', (req, res) => {
     })
 });
 
+
+//sleep routes
 app.get('/api/sleep', (req, res) => {
-  database.select().from('sleep')
+  //console.log(`request on server is: ${req.body}`)
+  database.select()
+    .from('sleep')
+    .orderBy('nightSlept', 'asc')
+    .limit(7)
     .then(sleepData => {
       //console.log(`sleepData on server is ${sleepData}`)
       res.json(sleepData);
@@ -91,6 +99,11 @@ app.post('/api/calories', (req, res) => {
   })
 
 })
+
+app.post('/api/sleep', (req, res) => {
+  // todo finish this 
+})
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
