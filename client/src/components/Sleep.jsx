@@ -85,10 +85,10 @@ const Sleep = (props) => {
           </tr>
           <tr>
             <td>
-              <DateTime onChange={(date) => props.getSleepTime(date)}/>
+              <DateTime onBlur={(date) => props.getSleepTime(date)}/>
             </td>
             <td>
-              <DateTime onChange={(date) => props.getWakeTime(date)}/>
+              <DateTime onBlur={(date) => props.getWakeTime(date)}/>
             </td>
           </tr>
         </tbody>

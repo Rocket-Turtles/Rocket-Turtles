@@ -42,20 +42,42 @@ app.get('/api/user', (req, res) => {
 
 
 //sleep routes
-app.get('/api/sleep', (req, res) => {
-  //console.log(`request on server is: ${req.body}`)
+//gets sleep data
+app.post('/api/sleep', (req, res) => {
   database.select()
+    .where({user: req.body.user})
     .from('sleep')
-    .orderBy('nightSlept', 'asc')
+    .orderBy('nightSlept', 'desc')
     .limit(7)
     .then(sleepData => {
-      //console.log(`sleepData on server is ${sleepData}`)
       res.json(sleepData);
     })
     .catch(err => {
       console.error(`error on server getting sleepData ${err}`)
     })
 });
+
+app.post('/api/sleep', (req, res) => {
+
+  //console.log('server req', req.body);
+  sleepObj = req.body;
+  //console.log('sleepObj', sleepObj);
+  database('sleep').insert({
+    user: sleepObj.user,
+    hourCount: sleepObj.hourCount,
+    startHour: sleepObj.startHour,
+    endHour: sleepObj.endHour,
+    nightSlept: sleepObj.nightSlept
+  })
+  .then(() => {
+    console.log('post successful')
+    res.end('sleep post successful')
+    })
+  .catch((err) => {
+    console.log('error posting', err)
+    res.end('error posting sleep data', err)
+  })
+})
 
 // calories
 app.post('/api/calories', (req, res) => {
@@ -118,10 +140,6 @@ app.post('/api/calories', (req, res) => {
 
   })
 
-})
-
-app.post('/api/sleep', (req, res) => {
-  // todo finish this 
 })
 
 
