@@ -1,0 +1,258 @@
+{
+    "report": {
+        "sr": "July, 2018",
+        "type": "Basic",
+        "food": {
+            "ndbno": "45117588",
+            "name": "CHICKEN BREAST FRIES, BREADED FRY SHAPED CHICKEN BREAST PATTIES WITH RIB MEAT, MADE WITH WHITE MEAT, UPC: 075901384955",
+            "ds": "Label Insight",
+            "manu": "AdvancePierre Foods Inc.",
+            "ru": "g",
+            "ing": {
+                "desc": "CHICKEN BREAST WITH RIB MEAT, WATER, SOY PROTEIN CONCENTRATE, CONTAINS LESS THAN 2% OF: SALT, SUGAR, SODIUM PHOSPHATE, FLAVORING, YEAST EXTRACT, CHICKEN FAT, CANOLA OIL, SOYBEAN OIL, COTTONSEED OIL, CORN SYRUP SOLIDS, CITRIC ACID, DEHYDRATED LEMON JUICE, DEHYDRATED CHICKEN BROTH, GELATIN. BATTERED AND BREADED WITH: BLEACHED WHEAT FLOUR, WATER, WHEAT FLOUR, SALT, CONTAINS LESS THAN 2% OF: MODIFIED FOOD STARCH, YELLOW CORN FLOUR, DEXTROSE, EXTRACTIVES OF PAPRIKA (COLOR), WHEY, YEAST, SPICE, SUGAR, MALTODEXTRIN, CARAMEL COLOR, YEAST EXTRACT, LEAVENING (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE), GUAR GUM, SPICE EXTRACTIVE. BREADING SET IN VEGETABLE OIL.",
+                "upd": "07/14/2017"
+            },
+            "nutrients": [
+                {
+                    "nutrient_id": "208",
+                    "name": "Energy",
+                    "derivation": "LCCS",
+                    "group": "Proximates",
+                    "unit": "kcal",
+                    "value": "238",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "200"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "203",
+                    "name": "Protein",
+                    "derivation": "LCCS",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "11.90",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "10.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "204",
+                    "name": "Total lipid (fat)",
+                    "derivation": "LCCS",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "14.29",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "12.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "205",
+                    "name": "Carbohydrate, by difference",
+                    "derivation": "LCCS",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "16.67",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "14.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "291",
+                    "name": "Fiber, total dietary",
+                    "derivation": "LCCS",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "1.2",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "1.0"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "269",
+                    "name": "Sugars, total",
+                    "derivation": "LCCS",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "1.19",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "1.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "301",
+                    "name": "Calcium, Ca",
+                    "derivation": "LCCD",
+                    "group": "Minerals",
+                    "unit": "mg",
+                    "value": "24",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "20"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "303",
+                    "name": "Iron, Fe",
+                    "derivation": "LCCD",
+                    "group": "Minerals",
+                    "unit": "mg",
+                    "value": "0.86",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "0.72"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "307",
+                    "name": "Sodium, Na",
+                    "derivation": "LCCS",
+                    "group": "Minerals",
+                    "unit": "mg",
+                    "value": "679",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "570"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "401",
+                    "name": "Vitamin C, total ascorbic acid",
+                    "derivation": "LCCD",
+                    "group": "Vitamins",
+                    "unit": "mg",
+                    "value": "1.4",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "1.2"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "318",
+                    "name": "Vitamin A, IU",
+                    "derivation": "LCCD",
+                    "group": "Vitamins",
+                    "unit": "IU",
+                    "value": "119",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "100"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "606",
+                    "name": "Fatty acids, total saturated",
+                    "derivation": "LCCS",
+                    "group": "Lipids",
+                    "unit": "g",
+                    "value": "3.570",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "2.999"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "605",
+                    "name": "Fatty acids, total trans",
+                    "derivation": "LCCS",
+                    "group": "Lipids",
+                    "unit": "g",
+                    "value": "0.000",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "0.000"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "601",
+                    "name": "Cholesterol",
+                    "derivation": "LCCS",
+                    "group": "Lipids",
+                    "unit": "mg",
+                    "value": "30",
+                    "measures": [
+                        {
+                            "label": "PIECES",
+                            "eqv": 84,
+                            "eunit": "g",
+                            "qty": 6,
+                            "value": "25"
+                        }
+                    ]
+                }
+            ]
+        },
+        "footnotes": []
+    }
+}

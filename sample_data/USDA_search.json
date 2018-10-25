@@ -1,0 +1,214 @@
+{
+  "list": {
+      "q": "fried chicken",
+      "sr": "1",
+      "ds": "any",
+      "start": 0,
+      "end": 25,
+      "total": 243,
+      "group": "",
+      "sort": "r",
+      "item": [
+          {
+              "offset": 0,
+              "group": "Branded Food Products Database",
+              "name": "CHICKEN BREAST FRIES, BREADED FRY SHAPED CHICKEN BREAST PATTIES WITH RIB MEAT, MADE WITH WHITE MEAT, UPC: 075901384955",
+              "ndbno": "45117588",
+              "ds": "LI",
+              "manu": "AdvancePierre Foods Inc."
+          },
+          {
+              "offset": 1,
+              "group": "Branded Food Products Database",
+              "name": "SEASONED CRISPY CHICKEN FRY, CHICKEN BATTER MIX, UPC: 039156004129",
+              "ndbno": "45286424",
+              "ds": "LI",
+              "manu": "none"
+          },
+          {
+              "offset": 2,
+              "group": "Branded Food Products Database",
+              "name": "SEASONED CRISPY CHICKEN FRY CHICKEN BATTER MIX, SPICY RECIPE, UPC: 039156000138",
+              "ndbno": "45010359",
+              "ds": "LI",
+              "manu": "none"
+          },
+          {
+              "offset": 3,
+              "group": "Branded Food Products Database",
+              "name": "BANQUET Classic Chicken Fried Chicken Meal, UNPREPARED, GTIN: 00031000109769",
+              "ndbno": "45134416",
+              "ds": "GDSN",
+              "manu": "Conagra Brands"
+          },
+          {
+              "offset": 4,
+              "group": "Branded Food Products Database",
+              "name": "RANGER, THE FREE RANGE CHICKEN, FRYING CHICKEN, WHOLE, UPC: 203780710293",
+              "ndbno": "45025374",
+              "ds": "LI",
+              "manu": "none"
+          },
+          {
+              "offset": 5,
+              "group": "Branded Food Products Database",
+              "name": "COUNTRY FRIES CHICKEN, CHICKEN FRITTER WITH GRAVY, UPC: 811663024100",
+              "ndbno": "45202907",
+              "ds": "LI",
+              "manu": "none"
+          },
+          {
+              "offset": 6,
+              "group": "Branded Food Products Database",
+              "name": "CHICKEN BREAST FRIES, CHICKEN BREAST PATTY FRITTERS WITH RIB MEAT, UPC: 064563223320",
+              "ndbno": "45290386",
+              "ds": "LI",
+              "manu": "none"
+          },
+          {
+              "offset": 7,
+              "group": "Branded Food Products Database",
+              "name": "ZATARAIN'S, CHICKEN FRYING MIX, CHICKEN BREADING MIX, CRISPY SOUTHERN, UPC: 071429026681",
+              "ndbno": "45107449",
+              "ds": "LI",
+              "manu": "Zatarain's Inc."
+          },
+          {
+              "offset": 8,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, ORIGINAL RECIPE, Skin and Breading",
+              "ndbno": "21424",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 9,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, EXTRA CRISPY, Skin and Breading",
+              "ndbno": "21429",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 10,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Skin and Breading",
+              "ndbno": "21444",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          },
+          {
+              "offset": 11,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, ORIGINAL RECIPE, Breast, meat and skin with breading",
+              "ndbno": "21434",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 12,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, ORIGINAL RECIPE, Drumstick, meat and skin with breading",
+              "ndbno": "21435",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 13,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, ORIGINAL RECIPE, Thigh, meat and skin with breading",
+              "ndbno": "21436",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 14,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, ORIGINAL RECIPE, Wing, meat and skin with breading",
+              "ndbno": "21437",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 15,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, EXTRA CRISPY, Breast, meat and skin with breading",
+              "ndbno": "21438",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 16,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, EXTRA CRISPY, Drumstick, meat and skin with breading",
+              "ndbno": "21439",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 17,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, EXTRA CRISPY, Thigh, meat and skin with breading",
+              "ndbno": "21440",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 18,
+              "group": "Fast Foods",
+              "name": "KFC, Fried Chicken, EXTRA CRISPY, Wing, meat and skin with breading",
+              "ndbno": "21441",
+              "ds": "SR",
+              "manu": "Kentucky Fried Chicken"
+          },
+          {
+              "offset": 19,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Drumstick, meat only, skin and breading removed",
+              "ndbno": "21443",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          },
+          {
+              "offset": 20,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Thigh, meat only, skin and breading removed",
+              "ndbno": "21445",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          },
+          {
+              "offset": 21,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Wing, meat only, skin and breading removed",
+              "ndbno": "21446",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          },
+          {
+              "offset": 22,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Breast, meat and skin with breading",
+              "ndbno": "21456",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          },
+          {
+              "offset": 23,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Drumstick, meat and skin with breading",
+              "ndbno": "21457",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          },
+          {
+              "offset": 24,
+              "group": "Fast Foods",
+              "name": "POPEYES, Fried Chicken, Mild, Thigh, meat and skin with breading",
+              "ndbno": "21458",
+              "ds": "SR",
+              "manu": "Popeyes Chicken and Biscuits"
+          }
+      ]
+  }
+}
