@@ -77,7 +77,7 @@ class App extends React.Component {
       .then(userData => {
         this.setState({
           user: userData.data[0]
-        }, this.getSleepData())
+        })
       })
   }
 
@@ -135,7 +135,6 @@ class App extends React.Component {
       endHour: end,
       nightSlept: nightSlept
     }
-    console.log('sleepObj', sleepObj);
     axios.post('/api/sleep', sleepObj)
     .then(() => {
       console.log('post response received');
@@ -153,9 +152,7 @@ class App extends React.Component {
     return(
       <div>
         <UserProfile user={this.state.user}/>
-        <UserInput 
-          getSleepData={this.getSleepData}
-        />
+        <UserInput />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
         {calDisElem}
         <br></br>
