@@ -7,6 +7,7 @@ import Sleep from './components/Sleep.jsx';
 import UserInput from './components/UserInput.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Calories from './components/Calories.jsx';
+import Blob from './components/BlobBuddy.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -163,6 +164,8 @@ class App extends React.Component {
           getWakeTime={this.getWakeTime}
           postSleepEntry={this.postSleepEntry}
         />
+        <br></br>
+        <Blob props={this.state}/>
       </div>
     )
   };

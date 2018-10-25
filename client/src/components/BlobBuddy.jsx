@@ -5,15 +5,22 @@ class Blob extends React.Component {
     super(props);
     this.state = {
       Blob: {
-        name: '',
-        tiredness: 0
+        name: ''
       }
     }
   }
 
+  checkSleep() {
+    let sleepAverage = this.state.weeklyAverage;
+
+  }
+
   render() {
     return (
-      <div></div>
+      <div>
+        I'm Blob.
+        {console.log('Can I read this?', this.props.weeklyAverage)}
+      </div>
     )
   }
 }
