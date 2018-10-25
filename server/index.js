@@ -42,9 +42,11 @@ app.get('/api/user', (req, res) => {
 
 
 //sleep routes
-app.get('/api/sleep', (req, res) => {
-  //console.log(`request on server is: ${req.body}`)
+//gets sleep data
+app.post('/api/sleep', (req, res) => {
+  console.log('request on server is: ', req.body)
   database.select()
+    .where({user: req.body.user})
     .from('sleep')
     .orderBy('nightSlept', 'desc')
     .limit(7)

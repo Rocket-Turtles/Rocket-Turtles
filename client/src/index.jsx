@@ -36,11 +36,12 @@ class App extends React.Component {
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
+    this.getSleepData = this.getSleepData.bind(this);
   }
   
   componentDidMount() {
-    this.getSleepData();
     this.getUserData();
+    this.getSleepData();
   };
 
   handleClick(event){
@@ -76,14 +77,14 @@ class App extends React.Component {
       .then(userData => {
         this.setState({
           user: userData.data[0]
-        })
+        }, this.getSleepData())
       })
   }
 
   //sleep methods:
   //gets sleep data
   getSleepData() {
-    axios.get('/api/sleep')
+    axios.post('/api/sleep', {user: this.state.user.id})
     .then(sleepData => {
     
       this.setState({
@@ -152,7 +153,9 @@ class App extends React.Component {
     return(
       <div>
         <UserProfile user={this.state.user}/>
-        <UserInput />
+        <UserInput 
+          getSleepData={this.getSleepData}
+        />
         <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
         {calDisElem}
         <br></br>
