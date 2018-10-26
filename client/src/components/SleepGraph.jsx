@@ -3,7 +3,7 @@ import {HorizontalBar} from 'react-chartjs-2';
 
 
 
-import '../../../css/style.css'
+import '../../css/style.css'
 
 const SleepGraph = (props) => {
   const data = {

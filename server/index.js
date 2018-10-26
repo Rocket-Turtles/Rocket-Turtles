@@ -16,19 +16,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 // user routes
-// user input data
-app.post('/api/user', (req, res) => {
-  console.log(req.body)
-  database('users').insert(req.body)
-    .then(() => {
-      console.log('Post Success');
-      res.send('Post Success');
-    }).catch(err => {
-      console.error(`error on server posting user ${err}`);
-    })
-});
 // grab user data from database
-// currently grabbing the first user in the database
 app.get('/api/user', (req, res) => {
   database.select()
     .from('users')
@@ -40,7 +28,17 @@ app.get('/api/user', (req, res) => {
       console.error(`error on server getting userData ${err}`);
     })
 })
-
+// user input data
+app.post('/api/user', (req, res) => {
+  console.log(req.body)
+  database('users').insert(req.body)
+    .then(() => {
+      console.log('Post Success');
+      res.send('Post Success');
+    }).catch(err => {
+      console.error(`error on server posting user ${err}`);
+    })
+});
 
 //sleep routes
 //gets sleep data
