@@ -6,10 +6,10 @@ body {
 
 nav {
   display: flex;
-  margin: 40px auto 0;
+  margin: 40px auto 20px;
   width: 100%;
   align-items: center;
-  height: 50px;
+  height: 60px;
   background-color: rgba(46, 204, 113, 0.8);
   color: white;
   font-size: 2em;
@@ -21,9 +21,26 @@ nav {
 }
 
 .navbtn {
-  display: flex;
-  align-items: center;
-  margin: 5px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* margin: 5px;
+  font-size: 30px; */
+  padding: 5px;
+  margin-right: 5px;
+  font-size: 1.1em;
+}
+
+.navbtnSelected {
+  /* display: flex; */
+  /* align-items: center; */
+  /* margin: 5px;
+  font-size: 30px;
+  font-style: bold; */
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 1.1em;
 }
 
 .main {
@@ -31,20 +48,32 @@ nav {
   width: 65%;
 }
 
-.userProfile {
+.sidebar {
   border: solid 1px black;
   width: 30%;
   float: right;
 }
 
+.userProfile {
+  display: block;
+}
+
 .userData {
   /* border: solid 1px; */
-  display: flex;
-  float: right;
   margin: 0 auto 10;
 }
 
 .userEntry {
   display: flex;
   margin: 0px 3px 10px 3px ;
+}
+
+.calories {
+  height: 100%;
+  border: solid 1px blue;
+}
+
+.sleep {
+  height: 100%;
+  border: solid 1px red;
 }

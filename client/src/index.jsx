@@ -18,6 +18,8 @@ class App extends React.Component {
     super();
 
     this.state = {
+      view: 'nutrition',
+
       // calories
       food: '',
       calDisplay: false,
@@ -38,6 +40,8 @@ class App extends React.Component {
       sleepTime: '',
       wakeTime: ''
     };
+    this.handleViewChange = this.handleViewChange.bind(this);
+
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
@@ -46,13 +50,28 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    this.handleNumber = this.handleNumber.bind(this);
-    this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
+    // this.handleNumber = this.handleNumber.bind(this);
+    // this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
+    this.getUserData = this.getUserData.bind(this);
   }
   
   componentDidMount() {
-    this.getUserData();
-    this.getSleepData();
+    if (this.state.user.id !== '') {
+      this.getUserData();
+      this.getSleepData();
+    } 
+  };
+
+  handleViewChange(option) {
+    if (option === 'nutrition') {
+      this.setState({
+        view: 'nutrition'
+      })
+    } else {
+      this.setState({
+        view: 'sleep'
+      })
+    }
   };
 
   // calorie methods
@@ -94,24 +113,6 @@ class App extends React.Component {
       }).then(() => {
         this.getSleepData();
       })
-  }
-
-  handleNewUserSubmit() {
-    let newUser = {
-      name: this.state._name,
-      age: this.state._age,
-      weight: this.state._weight,
-      height: Number(this.state._heightFt + (this.state._heightIn / 12))
-    }
-    Axios.post('/api/user', newUser);
-  }
-
-  handleNumber(e, state) {
-    if (!isNaN(e.target.value)) {
-      this.setState({[state]: Number(e.target.value)})
-    } else {
-      console.log('Invalid Number');
-    }
   }
 
   //sleep methods:
@@ -189,21 +190,26 @@ class App extends React.Component {
       return(
         <div className='main'>
           <Welcome 
-            user={this.state.user}
+            handleViewChange={this.handleViewChange}
+            view={this.state.view}
           />
-          <Sidebar
-            user={this.state.user}
-            
+          <div className='sidebar'>
+            <Sidebar
 
-            handleChange={this.handleChange} 
-            handleClick={this.handleClick}
+              view={this.state.view}
+              user={this.state.user}
+              
+              
+              handleChange={this.handleChange} 
+              handleClick={this.handleClick}
 
-            sleepWeek={this.state.sleepWeek}
-            weeklyAverage={this.state.weeklyAverage}
-            getSleepTime={this.getSleepTime}
-            getWakeTime={this.getWakeTime}
-            postSleepEntry={this.postSleepEntry}
-          />
+              sleepWeek={this.state.sleepWeek}
+              weeklyAverage={this.state.weeklyAverage}
+              getSleepTime={this.getSleepTime}
+              getWakeTime={this.getWakeTime}
+              postSleepEntry={this.postSleepEntry}
+            />
+          </div>
         </div>
       )
     } else {
@@ -211,9 +217,7 @@ class App extends React.Component {
         <div className='main'>
           <Welcome />
           <Login 
-            handleNewUserSubmit={this.handleNewUserSubmit}
-            handleNumber={this.handleNumber}
-            user={this.state.user}
+            getUserData={this.getUserData}
           />
         </div>
       )

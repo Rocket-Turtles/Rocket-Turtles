@@ -11,10 +11,16 @@ const Welcome = (props) => {
         <div className='logo'>
           Rocket Turtle
         </div>
-        <div className='navbtn'>
+        <div 
+          className={props.view === 'nutrition' ? 'navbtnSelected' : 'navbtn'}
+          onClick={() => props.handleViewChange('nutrition')}
+        >
           Nutrition
         </div>
-        <div className='navbtn'>
+        <div 
+          className={props.view === 'sleep' ? 'navbtnSelected' : 'navbtn'}
+          onClick={() => props.handleViewChange('sleep')}
+        >
           Sleep
         </div>
       </nav>

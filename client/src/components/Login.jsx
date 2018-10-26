@@ -7,9 +7,7 @@ const Login = (props) => {
   return (
     <div> 
       <UserInput 
-        handleNewUserSubmit={props.handleNewUserSubmit}
-        handleNumber={props.handleNumber}
-        user={props.user}
+        getUserData={props.getUserData}
       />
     </div>
   )

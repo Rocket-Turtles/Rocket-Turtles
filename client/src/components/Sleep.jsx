@@ -26,9 +26,31 @@ const tdHeaderStyle = {
 const Sleep = (props) => {
 
   return (
-    <div>
+    <div className='sleep'>
       Your Sleep Stats for the Week:
       {/* Start of Sleep Table */}
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              When did you go to bed?
+            </td>
+            <td>
+              When did you wake up?
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DateTime onBlur={(date) => props.getSleepTime(date)}/>
+            </td>
+            <td>
+              <DateTime onBlur={(date) => props.getWakeTime(date)}/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button onClick={() => props.postSleepEntry()}>Submit</button>
+      <br></br>
       <table style={tableStyle}>
         <thead>
           {/* header row contains avg hours and dates */}
@@ -73,27 +95,7 @@ const Sleep = (props) => {
           {/* planning on putting edit buttons in footer row */}
         </tfoot>
       </table>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              When did you go to bed?
-            </td>
-            <td>
-              When did you wake up?
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DateTime onBlur={(date) => props.getSleepTime(date)}/>
-            </td>
-            <td>
-              <DateTime onBlur={(date) => props.getWakeTime(date)}/>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button onClick={() => props.postSleepEntry()}>Submit</button>
+      
     </div>
   )
 }

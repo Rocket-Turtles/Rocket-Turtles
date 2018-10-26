@@ -3,7 +3,7 @@ import React from 'react';
 const Calories = (props) => {
   
   return (
-    <div>
+    <div className='calories'>
       <h1>Calories</h1> 
       <form >
         <label>What did you eat?</label>
