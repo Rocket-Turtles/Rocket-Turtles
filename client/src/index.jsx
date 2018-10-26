@@ -163,8 +163,10 @@ class App extends React.Component {
           handleChange={this.handleChange.bind(this)} 
           handleClick={this.handleClick.bind(this)} 
           calDisplay={this.state.calDisplay} 
-          nutrients={this.state.nutrients}/>
-        <div>Today's Total: {this.state.totalCalories} kcal</div>
+          nutrients={this.state.nutrients}
+          totalCalories={this.state.totalCalories}
+          />
+        
         <br></br>
         <Sleep 
           sleepWeek={this.state.sleepWeek}

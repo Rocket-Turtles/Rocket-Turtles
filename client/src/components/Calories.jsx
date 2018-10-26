@@ -13,6 +13,7 @@ const Calories = (props) => {
       </form>
 
       {calDisElem}
+      <div>Today's Total: {props.totalCalories} kcal</div>
     </div>
 
   )
