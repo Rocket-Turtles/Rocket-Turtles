@@ -47,6 +47,20 @@ exports.up = function (knex, Promise) {
     })
   }
 
+  //makes blob table
+  createBlobTable = () => {
+    return knex.schema.createTable('blobs', (table) => {
+      table.increments('id');
+      table.string('name');
+      table.integer('user').unsigned().notNullable();
+      table.integer('sleep');
+      table.integer('calories');
+
+      //fks
+      table.foreign('users').references('id').inTable('users');
+    })
+  }
+
   return createUserTable()
     .then(createSleepTable)
     .then(createCalorieTable)

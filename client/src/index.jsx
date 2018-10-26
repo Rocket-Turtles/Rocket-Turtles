@@ -166,7 +166,7 @@ class App extends React.Component {
           postSleepEntry={this.postSleepEntry}
         />
         <br></br>
-        <Blob props={this.state}/>
+        <Blob state={this.state}/>
       </div>
     )
   };
