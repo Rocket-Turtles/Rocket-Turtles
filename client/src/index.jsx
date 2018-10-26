@@ -24,6 +24,7 @@ class App extends React.Component {
       food: '',
       calDisplay: false,
       nutrients: {},
+      totalCalories: 0,
 
       // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
       user: {
@@ -83,7 +84,8 @@ class App extends React.Component {
         // display on screen
         this.setState({
           calDisplay: true,
-          nutrients: res.data
+          nutrients: res.data,
+          totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
         })
       })
     }
@@ -111,7 +113,11 @@ class App extends React.Component {
           user: userData.data[0]
         })
       }).then(() => {
-        this.getSleepData();
+        axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
+          this.setState({totalCalories: JSON.parse(cal.data)})
+          this.getSleepData();
+        })
+        
       })
   }
 
@@ -180,11 +186,6 @@ class App extends React.Component {
 
 
   render() {
-
-    // ? not sure what this is
-    let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
-    {/* {calDisElem}
-    <br></br> */}
 
     {if (this.state.user.id !== '') {
       return(
