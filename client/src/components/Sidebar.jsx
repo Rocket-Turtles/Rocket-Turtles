@@ -4,7 +4,7 @@ import UserProfile from './UserProfile.jsx';
 import Calories from './Calories.jsx';
 //import Login from './Login.jsx'
 
-import '../../../css/style.css'
+import '../../css/style.css'
 
 
 
@@ -12,6 +12,7 @@ const Sidebar = (props) => {
 
   const renderView = (viewOption) => {
     if (viewOption === 'nutrition') {
+      props.getSleepData()
       return (<Calories 
         handleChange={props.handleChange} 
         handleClick={props.handleClick} 
