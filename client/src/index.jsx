@@ -73,11 +73,22 @@ class App extends React.Component {
       this.setState({
         view: 'nutrition'
       })
-    } else {
+    } else if (option === 'sleep') {
       this.setState({
         view: 'sleep'
       })
       this.getSleepData();
+    } else if (option === 'login') {
+      this.setState({
+        view: 'login',
+        user: {
+          id: '',
+          name: '',
+          age: '',
+          weight: '',
+          height: ''
+        }
+      })
     }
   };
 
