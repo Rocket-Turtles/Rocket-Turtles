@@ -18,6 +18,8 @@ nav {
 .logo {
   flex-grow: 1;
   font-size: 40px;
+  font-weight: bolder;
+  margin-left: 10px;
 }
 
 .navbtn {
