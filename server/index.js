@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const moment = require('moment');
 
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
@@ -15,18 +16,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 // user routes
-// user input data
-app.post('/api/user', (req, res) => {
-  database('users').insert(req.body)
-    .then(() => {
-      console.log('Post Success');
-      res.send('Post Success');
-    }).catch(err => {
-      console.error(`error on server posting user ${err}`);
-    })
-});
 // grab user data from database
-// currently grabbing the first user in the database
 app.get('/api/user', (req, res) => {
   database.select()
     .from('users')
@@ -38,7 +28,17 @@ app.get('/api/user', (req, res) => {
       console.error(`error on server getting userData ${err}`);
     })
 })
-
+// user input data
+app.post('/api/user', (req, res) => {
+  console.log(req.body)
+  database('users').insert(req.body)
+    .then(() => {
+      console.log('Post Success');
+      res.send('Post Success');
+    }).catch(err => {
+      console.error(`error on server posting user ${err}`);
+    })
+});
 
 //sleep routes
 //gets sleep data
@@ -56,7 +56,7 @@ app.get('/api/sleep/:userID', (req, res) => {
     })
 });
 
-app.post('/api/sleep', (req, res) => {
+app.post('/api/sleep/post', (req, res) => {
   sleepObj = req.body;
   database('sleep').insert({
     user: sleepObj.user,
@@ -76,6 +76,34 @@ app.post('/api/sleep', (req, res) => {
 })
 
 // calories
+app.post('/api/getCalories', (req, res) => {
+  database
+  .where({user: req.body.user})
+  .select('currDate', 'calories')
+  .from('calories')
+  .then((table) => {
+    const today = new Date();
+
+    const todayCalArr = [];
+    let totalCal = 0;
+
+    for (let obj of table) {
+      if (obj.currDate.getDate() === today.getDate() && 
+          obj.currDate.getMonth() === today.getMonth()) {
+        todayCalArr.push(obj);
+        totalCal += obj.calories;
+      } else {
+        break;
+      }
+    }
+
+    // send back to front end
+    res.send(JSON.stringify(totalCal))
+
+  }).catch((err) => console.error(err))
+
+})
+
 app.post('/api/calories', (req, res) => {
   const food = req.body.food;
   const user = req.body.user;
@@ -122,6 +150,7 @@ app.post('/api/calories', (req, res) => {
       nutObj.user = user;
       nutObj.food = food;
       nutObj.ndbno = parseInt(ndbno);
+      nutObj.currDate = moment().format('YYYY-MM-DD');
 
       // save 'food' and 'ndbno' to database
       database('calories').insert(nutObj).then((data) => {

@@ -41,6 +41,7 @@ exports.up = function (knex, Promise) {
       table.float('fiber');
       table.float('sugar');
       table.float('fat');
+      table.dateTime('currDate');
 
       //fks
       table.foreign('user').references('id').inTable('users');

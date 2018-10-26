@@ -3,23 +3,29 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import moment from 'moment';
 
-import Sleep from './components/Sleep.jsx';
-import UserInput from './components/UserInput.jsx';
-import UserProfile from './components/UserProfile.jsx';
-import Calories from './components/Calories.jsx';
+import Welcome from './components/Welcome.jsx';
+import Login from './components/Login.jsx';
+import Sidebar from './components/Sidebar.jsx';
 import Blob from './components/BlobBuddy.jsx';
+
+import '../css/style.css'
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      // calories
+      view: 'nutrition',
+
+      // calories states:
       food: '',
       calDisplay: false,
       nutrients: {},
+      totalCalories: 0,
 
-      // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
+      // list of all users in the db:
+      users: [],
+      // current user's state
       user: {
         id: '',
         name: '',
@@ -29,21 +35,53 @@ class App extends React.Component {
       },
 
       //sleep states:
-      sleepWeek: [],
+      sleepWeek: [{
+        endHour: "00:00:00",
+        hourCount: 0,
+        id: 0,
+        nightSlept: "0000-00-00T00:00:00.000Z",
+        startHour: "00:00:00",
+        user: 0
+      }],
       weeklyAverage: 0,
       sleepTime: '',
       wakeTime: ''
     };
+    this.handleViewChange = this.handleViewChange.bind(this);
+
+    this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
-    this.getSleepData = this.getSleepData.bind(this);
+    //this.getSleepData = this.getSleepData.bind(this);
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
+
+    // this.handleNumber = this.handleNumber.bind(this);
+    // this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
+    this.getUserData = this.getUserData.bind(this);
   }
   
   componentDidMount() {
     this.getUserData();
   };
 
+  handleViewChange(option) {
+    if (option === 'nutrition') {
+      this.setState({
+        view: 'nutrition'
+      })
+    } else {
+      this.setState({
+        view: 'sleep'
+      })
+      this.getSleepData();
+    }
+  };
+
+  // calorie methods
   handleClick(event){
     event.preventDefault();
     // send to server
@@ -52,7 +90,8 @@ class App extends React.Component {
         // display on screen
         this.setState({
           calDisplay: true,
-          nutrients: res.data
+          nutrients: res.data,
+          totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
         })
       })
     }
@@ -69,18 +108,25 @@ class App extends React.Component {
     }
   };
 
+  handleUserChange(e){
+    this.setState({
+      user: JSON.parse(e.target.value)
+    })
+  }
+
   //user methods
   //get user data
   getUserData() {
     axios.get('/api/user')
       .then(userData => {
         this.setState({
-          // Change the array index to switch users for now
-          // Will change this later
-          user: userData.data[0]
+          users: userData.data
         })
       }).then(() => {
-        this.getSleepData();
+        axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
+          this.setState({totalCalories: JSON.parse(cal.data)})
+        })
+        
       })
   }
 
@@ -137,10 +183,10 @@ class App extends React.Component {
       endHour: end,
       nightSlept: nightSlept
     }
-    axios.post('/api/sleep', sleepObj)
+    axios.post('/api/sleep/post', sleepObj)
     .then(() => {
       console.log('post response received');
-      this.getSleepData();
+      //this.getSleepData();
     })
     .catch(err => {
       console.log('error posting new sleep night on client: ', err)
@@ -149,26 +195,49 @@ class App extends React.Component {
 
 
   render() {
-    let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
 
-    return(
-      <div>
-        <UserProfile user={this.state.user}/>
-        <UserInput />
-        <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
-        {calDisElem}
-        <br></br>
-        <Sleep 
-          sleepWeek={this.state.sleepWeek}
-          weeklyAverage={this.state.weeklyAverage}
-          getSleepTime={this.getSleepTime}
-          getWakeTime={this.getWakeTime}
-          postSleepEntry={this.postSleepEntry}
-        />
-        <br></br>
-        <Blob state={this.state}/>
-      </div>
-    )
+    {if (this.state.user.id !== '') {
+      return(
+        <div className='main'>
+          <Welcome 
+            handleViewChange={this.handleViewChange}
+            view={this.state.view}
+          />
+          <Blob />
+          <div className='sidebar'>
+            <Sidebar
+
+              view={this.state.view}
+              user={this.state.user}
+              
+              
+              handleChange={this.handleChange} 
+              handleClick={this.handleClick}
+
+              getSleepData={this.getSleepData}
+              sleepWeek={this.state.sleepWeek}
+              weeklyAverage={this.state.weeklyAverage}
+              getSleepTime={this.getSleepTime}
+              getWakeTime={this.getWakeTime}
+              postSleepEntry={this.postSleepEntry}
+            />
+          </div>
+          <div className='footer'>
+            ® Rocket Turtle
+          </div>
+        </div>
+      )
+    } else {
+      return(
+        <div className='main'>
+          <Welcome />
+          <Login getUserData={this.getUserData} handleUserChange={this.handleUserChange} users={this.state.users}/>
+          <div className='footer'>
+            ® Rocket Turtle LLC
+          </div>
+        </div>
+      )
+    }}
   };
 }
 
