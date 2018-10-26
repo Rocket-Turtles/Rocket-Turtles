@@ -30,7 +30,7 @@ const Sleep = (props) => {
       <div className='sleepTitle'>
         Your Sleep Stats for the Week:
       </div>
-      {/* Start of Sleep Table */}
+      {/* Start of Sleep Entry Table */}
       <table>
         <tbody>
           <tr>
@@ -53,6 +53,7 @@ const Sleep = (props) => {
       </table>
       <button onClick={() => props.postSleepEntry()}>Submit</button>
       <br></br>
+      {/* Start of Sleep Week Table */}
       <table style={tableStyle}>
         <thead>
           {/* header row contains avg hours and dates */}
