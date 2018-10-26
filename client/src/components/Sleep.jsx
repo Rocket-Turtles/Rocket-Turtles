@@ -60,7 +60,12 @@ const Sleep = (props) => {
       </button>
       <br></br>
       {/* Start of Sleep Week Table */}
-      <SleepGraph />
+      <div>
+        Average:{' ' + props.weeklyAverage + ' hrs'}
+      </div>
+      <SleepGraph 
+        sleepWeek={props.sleepWeek}
+      />
     </div>
   )
 }
