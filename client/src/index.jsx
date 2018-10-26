@@ -48,6 +48,7 @@ class App extends React.Component {
     };
     this.handleViewChange = this.handleViewChange.bind(this);
 
+    this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
