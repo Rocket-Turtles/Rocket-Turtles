@@ -154,14 +154,16 @@ class App extends React.Component {
 
 
   render() {
-    let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
 
     return(
       <div>
         <UserProfile user={this.state.user}/>
         <UserInput />
-        <Calories handleChange={this.handleChange.bind(this)} handleClick={this.handleClick.bind(this)} />
-        {calDisElem}
+        <Calories 
+          handleChange={this.handleChange.bind(this)} 
+          handleClick={this.handleClick.bind(this)} 
+          calDisplay={this.state.calDisplay} 
+          nutrients={this.state.nutrients}/>
         <div>Today's Total: {this.state.totalCalories} kcal</div>
         <br></br>
         <Sleep 
