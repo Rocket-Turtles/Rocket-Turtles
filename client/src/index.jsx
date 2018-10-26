@@ -14,7 +14,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      view: 'sleep',
+      view: 'nutrition',
 
       // calories states:
       food: '',
@@ -26,7 +26,7 @@ class App extends React.Component {
       users: [],
       // current user's state
       user: {
-        id: '30',
+        id: '',
         name: '',
         age: '',
         weight: '',
@@ -211,6 +211,7 @@ class App extends React.Component {
               handleChange={this.handleChange} 
               handleClick={this.handleClick}
 
+              getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
               getSleepTime={this.getSleepTime}

@@ -18,8 +18,6 @@ const Sidebar = (props) => {
         handleClick={props.handleClick} 
 
       />
-      // {/* {calDisElem}
-      // <br></br> */}
       )
     } else {
       return (<Sleep 
