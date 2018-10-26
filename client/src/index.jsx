@@ -26,7 +26,7 @@ class App extends React.Component {
       users: [],
       // current user's state
       user: {
-        id: '30',
+        id: '',
         name: '',
         age: '',
         weight: '',
@@ -48,6 +48,7 @@ class App extends React.Component {
     };
     this.handleViewChange = this.handleViewChange.bind(this);
 
+    this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
@@ -211,6 +212,7 @@ class App extends React.Component {
               handleChange={this.handleChange} 
               handleClick={this.handleClick}
 
+              getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
               getSleepTime={this.getSleepTime}
