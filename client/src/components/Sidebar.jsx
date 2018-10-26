@@ -10,6 +10,7 @@ import '../../css/style.css'
 
 const Sidebar = (props) => {
 
+
   const renderView = (viewOption) => {
     if (viewOption === 'nutrition') {
       //props.getSleepData()
@@ -35,10 +36,9 @@ const Sidebar = (props) => {
     <div>
       <UserProfile 
         user={props.user}
+        globalTimeOfDay={props.globalTimeOfDay}
       />
     {renderView(props.view)}  
-      
-      
       
     </div>
   )

@@ -27,6 +27,11 @@ nav {
   font-size: 0.8em;
 }
 
+.footerReg {
+  margin-left: 10px;
+  text-align: right;
+}
+
 .logo {
   flex-grow: 1;
   font-size: 40px;
