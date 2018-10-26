@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import {HorizontalBar} from 'react-chartjs-2';
 
-import '../../../css/style.css'
+import '../../css/style.css'
 
 const sleepWeekEntryExample = {
   endHour: "07:03:00",

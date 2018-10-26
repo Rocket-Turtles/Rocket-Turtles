@@ -1,14 +1,18 @@
 import React from 'react';
-import UserInput from './UserInput.jsx'
+import UserInput from './UserSignUp.jsx'
 
-import '../../../css/style.css'
+import '../../css/style.css'
 
-const Login = (props) => {
+const Login = ({getUserData, handleUserChange, users}) => {
   return (
     <div> 
-      <UserInput 
-        getUserData={props.getUserData}
-      />
+      <UserInput getUserData={getUserData}/>
+      <select onChange={(e) => handleUserChange(e)}>
+        <option>Select</option>
+        {users.map((user, i) => {
+          return <option value={JSON.stringify(user)} key={i}>{user.name}</option>
+        })}
+      </select>
     </div>
   )
 }
