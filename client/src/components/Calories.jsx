@@ -4,7 +4,7 @@ const Calories = (props) => {
   let calDisElem = props.calDisplay ? <div>+ {props.nutrients.calories} kcal</div> : <div></div> ;
 
   return (
-    <div>
+    <div className='calories'>
       <h1>Calories</h1> 
       <form >
         <label>What did you eat?</label>

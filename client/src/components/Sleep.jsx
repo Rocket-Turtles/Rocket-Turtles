@@ -3,6 +3,8 @@ import React from 'react';
 //import {Bar} from 'react-chartjs-2';
 import moment from 'moment';
 import DateTime from 'react-datetime';
+import SleepGraph from './SleepGraph.jsx'
+
 import "../../../node_modules/react-datetime/css/react-datetime.css";
 
 
@@ -26,53 +28,11 @@ const tdHeaderStyle = {
 const Sleep = (props) => {
 
   return (
-    <div>
-      Your Sleep Stats for the Week:
-      {/* Start of Sleep Table */}
-      <table style={tableStyle}>
-        <thead>
-          {/* header row contains avg hours and dates */}
-          <tr>
-            <td style={tdHeaderStyle}>
-            Average:
-            {' ' + props.weeklyAverage + ' hrs'}  
-            </td>
-            {props.sleepWeek.map((night, i) => (
-              <td key={i} style={tdStyle}>
-                { moment(night.nightSlept).format('dddd MMM Do') }
-              </td>
-            ))}
-          </tr>
-        </thead>
-        {/* body rows contain hour count and begin-end hours */}
-        <tbody>
-          <tr>
-            <td style={tdStyle}>
-              Hours Slept:
-            </td>
-              {props.sleepWeek.map((night, i) => (
-              <td key={i} style={tdStyle}>
-                  {night.hourCount}
-                </td>
-              ))}
-          </tr>
-          <tr>
-            <td style={tdStyle}>
-              From:
-            </td>
-            {props.sleepWeek.map((night, i) => (
-            <td key={i} style={tdStyle}>
-                {moment(night.startHour, "HH:mm:ss").format("h:mm a") + ' '}
-                to 
-                {' ' + moment(night.endHour, "HH:mm:ss").format("h:mm a")}
-              </td>
-            ))}
-          </tr>
-        </tbody>
-        <tfoot>
-          {/* planning on putting edit buttons in footer row */}
-        </tfoot>
-      </table>
+    <div className='sleep'>
+      <div className='sleepTitle'>
+        Your Sleep Stats for the Week:
+      </div>
+      {/* Start of Sleep Entry Table */}
       <table>
         <tbody>
           <tr>
@@ -93,13 +53,64 @@ const Sleep = (props) => {
           </tr>
         </tbody>
       </table>
-      <button onClick={() => props.postSleepEntry()}>Submit</button>
+      <button 
+        onClick={() => props.postSleepEntry()}
+        className='sleepSubmitbtn'>
+        Submit
+      </button>
+      <br></br>
+      {/* Start of Sleep Week Table */}
+      <SleepGraph />
     </div>
   )
 }
 
 export default Sleep;
 
+      // <table style={tableStyle}>
+      //   <thead>
+      //     {/* header row contains avg hours and dates */}
+      //     <tr>
+      //       <td style={tdHeaderStyle}>
+      //       Average:
+      //       {' ' + props.weeklyAverage + ' hrs'}  
+      //       </td>
+      //       {props.sleepWeek.map((night, i) => (
+      //         <td key={i} style={tdStyle}>
+      //           { moment(night.nightSlept).format('dddd MMM Do') }
+      //         </td>
+      //       ))}
+      //     </tr>
+      //   </thead>
+      //   {/* body rows contain hour count and begin-end hours */}
+      //   <tbody>
+      //     <tr>
+      //       <td style={tdStyle}>
+      //         Hours Slept:
+      //       </td>
+      //         {props.sleepWeek.map((night, i) => (
+      //         <td key={i} style={tdStyle}>
+      //             {night.hourCount}
+      //           </td>
+      //         ))}
+      //     </tr>
+      //     <tr>
+      //       <td style={tdStyle}>
+      //         From:
+      //       </td>
+      //       {props.sleepWeek.map((night, i) => (
+      //       <td key={i} style={tdStyle}>
+      //           {moment(night.startHour, "HH:mm:ss").format("h:mm a") + ' '}
+      //           to 
+      //           {' ' + moment(night.endHour, "HH:mm:ss").format("h:mm a")}
+      //         </td>
+      //       ))}
+      //     </tr>
+      //   </tbody>
+      //   <tfoot>
+      //     {/* planning on putting edit buttons in footer row */}
+      //   </tfoot>
+      // </table>
 
 /*
 chart.js stuff to use later

@@ -18,6 +18,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 // user routes
 // user input data
 app.post('/api/user', (req, res) => {
+  console.log(req.body)
   database('users').insert(req.body)
     .then(() => {
       console.log('Post Success');
@@ -57,7 +58,7 @@ app.get('/api/sleep/:userID', (req, res) => {
     })
 });
 
-app.post('/api/sleep', (req, res) => {
+app.post('/api/sleep/post', (req, res) => {
   sleepObj = req.body;
   database('sleep').insert({
     user: sleepObj.user,

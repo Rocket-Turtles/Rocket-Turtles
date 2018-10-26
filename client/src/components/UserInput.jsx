@@ -22,14 +22,18 @@ class UserInput extends React.Component {
     }
   }
 
-  submit() {
+  submit(e) {
+    e.preventDefault();
     let newUser = {
       name: this.state._name,
       age: this.state._age,
       weight: this.state._weight,
       height: Number(this.state._heightFt + (this.state._heightIn / 12))
     }
-    Axios.post('/api/user', newUser);
+    Axios.post('/api/user', newUser)
+    .then(() => {
+      this.props.getUserData();
+    });
   }
 
   render() {
@@ -42,7 +46,7 @@ class UserInput extends React.Component {
           <input type='text' value={this.state._weight} placeholder='weight' onChange={(e) => {this.handleNumber(e, '_weight')}}></input>
           <input type='text' value={this.state._heightFt} placeholder='height(ft)' onChange={(e) => {this.handleNumber(e, '_heightFt')}}></input>
           <input type='text' value={this.state._heightIn} placeholder='height(in)' onChange={(e) => {this.handleNumber(e, '_heightIn')}}></input>
-          <button onClick={this.submit.bind(this)}>Submit</button>
+          <button onClick={(e) => this.submit(e)}>Submit</button>
         </form>
       </div>
     )
