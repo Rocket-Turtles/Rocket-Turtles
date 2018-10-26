@@ -3,15 +3,11 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import moment from 'moment';
 
-import Sleep from './components/Sleep.jsx';
-import UserInput from './components/UserInput.jsx';
-import UserProfile from './components/UserProfile.jsx';
-import Calories from './components/Calories.jsx';
 import Welcome from './components/Welcome.jsx'
 import Login from './components/Login.jsx'
 import Sidebar from './components/Sidebar.jsx'
 
-import '../../css/style.css'
+import '../css/style.css'
 
 class App extends React.Component {
   constructor() {
@@ -20,13 +16,15 @@ class App extends React.Component {
     this.state = {
       view: 'sleep',
 
-      // calories
+      // calories states:
       food: '',
       calDisplay: false,
       nutrients: {},
       totalCalories: 0,
 
-      // after user signs in --> go to DB and check if we have user in database --> if user exists --> bring back user id --> else --> insert user in DB and retrieve user id
+      // list of all users in the db:
+      users: [],
+      // current user's state
       user: {
         id: '30',
         name: '',
@@ -57,6 +55,7 @@ class App extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
 
     // this.handleNumber = this.handleNumber.bind(this);
     // this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
@@ -64,10 +63,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    if (this.state.user.id !== '') {
-      this.getUserData();
-      this.getSleepData();
-    } 
+    this.getUserData();
   };
 
   handleViewChange(option) {
@@ -79,6 +75,7 @@ class App extends React.Component {
       this.setState({
         view: 'sleep'
       })
+      this.getSleepData();
     }
   };
 
@@ -109,15 +106,19 @@ class App extends React.Component {
     }
   };
 
+  handleUserChange(e){
+    this.setState({
+      user: JSON.parse(e.target.value)
+    })
+  }
+
   //user methods
   //get user data
   getUserData() {
     axios.get('/api/user')
       .then(userData => {
         this.setState({
-          // Change the array index to switch users for now
-          // Will change this later
-          user: userData.data[0]
+          users: userData.data
         })
       }).then(() => {
         axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
@@ -226,9 +227,7 @@ class App extends React.Component {
       return(
         <div className='main'>
           <Welcome />
-          <Login 
-            getUserData={this.getUserData}
-          />
+          <Login getUserData={this.getUserData} handleUserChange={this.handleUserChange} users={this.state.users}/>
           <div className='footer'>
             ® Rocket Turtle LLC
           </div>
