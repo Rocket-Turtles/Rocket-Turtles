@@ -64,6 +64,7 @@ const Sleep = (props) => {
         Average:{' ' + props.weeklyAverage + ' hrs'}
       </div>
       <SleepGraph 
+        user={props.user}
         sleepWeek={props.sleepWeek}
       />
     </div>

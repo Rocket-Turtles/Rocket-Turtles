@@ -22,6 +22,7 @@ const Sidebar = (props) => {
       )
     } else {
       return (<Sleep 
+        user={props.user}
         sleepWeek={props.sleepWeek}
         weeklyAverage={props.weeklyAverage}
         getSleepTime={props.getSleepTime}
