@@ -1,3 +1,4 @@
+const moment = require('moment');
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
@@ -23,7 +24,8 @@ exports.seed = function (knex, Promise) {
         carbs: 100,
         fiber: 50,
         sugar: 100, 
-        fat: 100
+        fat: 100,
+        currDate: moment().format('YYYY-MM-DD')
       }])
     })
 };
