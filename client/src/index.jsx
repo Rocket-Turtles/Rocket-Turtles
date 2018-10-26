@@ -185,7 +185,7 @@ class App extends React.Component {
     axios.post('/api/sleep/post', sleepObj)
     .then(() => {
       console.log('post response received');
-      //this.getSleepData();
+      this.getSleepData();
     })
     .catch(err => {
       console.log('error posting new sleep night on client: ', err)
