@@ -186,7 +186,7 @@ class App extends React.Component {
     axios.post('/api/sleep/post', sleepObj)
     .then(() => {
       console.log('post response received');
-      //this.getSleepData();
+      this.getSleepData();
     })
     .catch(err => {
       console.log('error posting new sleep night on client: ', err)
@@ -203,7 +203,7 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange}
             view={this.state.view}
           />
-          <Blob />
+          <Blob state={this.state}/>
           <div className='sidebar'>
             <Sidebar
 

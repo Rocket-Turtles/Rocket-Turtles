@@ -20,7 +20,7 @@ class Blob extends React.Component {
     return (
       <div>
         I'm {this.state.blob.name}.
-        {/* {console.log('Can I read this?', this.state.weeklyAverage)} */}
+        {console.log('Can I read this?', this.state)}
         <div>{this.checkSleep()}</div>
       </div>
     )
