@@ -34,17 +34,25 @@ class App extends React.Component {
       },
 
       //sleep states:
-      sleepWeek: [],
+      sleepWeek: [{
+        endHour: "00:00:00",
+        hourCount: 0,
+        id: 0,
+        nightSlept: "0000-00-00T00:00:00.000Z",
+        startHour: "00:00:00",
+        user: 0
+      }],
       weeklyAverage: 0,
       sleepTime: '',
       wakeTime: ''
     };
     this.handleViewChange = this.handleViewChange.bind(this);
 
+    this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
-    this.getSleepData = this.getSleepData.bind(this);
+    //this.getSleepData = this.getSleepData.bind(this);
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -116,7 +124,6 @@ class App extends React.Component {
       }).then(() => {
         axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
           this.setState({totalCalories: JSON.parse(cal.data)})
-          this.getSleepData();
         })
         
       })
@@ -178,7 +185,7 @@ class App extends React.Component {
     axios.post('/api/sleep/post', sleepObj)
     .then(() => {
       console.log('post response received');
-      this.getSleepData();
+      //this.getSleepData();
     })
     .catch(err => {
       console.log('error posting new sleep night on client: ', err)
@@ -205,6 +212,7 @@ class App extends React.Component {
               handleChange={this.handleChange} 
               handleClick={this.handleClick}
 
+              getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
               getSleepTime={this.getSleepTime}

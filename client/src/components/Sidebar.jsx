@@ -12,17 +12,16 @@ const Sidebar = (props) => {
 
   const renderView = (viewOption) => {
     if (viewOption === 'nutrition') {
-      props.getSleepData()
+      //props.getSleepData()
       return (<Calories 
         handleChange={props.handleChange} 
         handleClick={props.handleClick} 
 
       />
-      // {/* {calDisElem}
-      // <br></br> */}
       )
     } else {
       return (<Sleep 
+        user={props.user}
         sleepWeek={props.sleepWeek}
         weeklyAverage={props.weeklyAverage}
         getSleepTime={props.getSleepTime}
