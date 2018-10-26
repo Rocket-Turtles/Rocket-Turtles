@@ -27,7 +27,9 @@ const Sleep = (props) => {
 
   return (
     <div className='sleep'>
-      Your Sleep Stats for the Week:
+      <div className='sleepTitle'>
+        Your Sleep Stats for the Week:
+      </div>
       {/* Start of Sleep Table */}
       <table>
         <tbody>

@@ -210,6 +210,9 @@ class App extends React.Component {
               postSleepEntry={this.postSleepEntry}
             />
           </div>
+          <div className='footer'>
+            ® Rocket Turtle
+          </div>
         </div>
       )
     } else {
@@ -219,6 +222,9 @@ class App extends React.Component {
           <Login 
             getUserData={this.getUserData}
           />
+          <div className='footer'>
+            ® Rocket Turtle LLC
+          </div>
         </div>
       )
     }}

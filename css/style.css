@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Niramit', sans-serif;
+  background-color: rgba(209, 209, 209, 0.726);
 }
 
 nav {
@@ -15,6 +16,17 @@ nav {
   font-size: 2em;
 }
 
+.footer {
+  display: flex;
+  margin: 40px auto 20px;
+  width: 100%;
+  align-items: center;
+  height: 60px;
+  background-color: rgba(46, 204, 113, 0.8);
+  color: white;
+  font-size: 0.8em;
+}
+
 .logo {
   flex-grow: 1;
   font-size: 40px;
@@ -23,21 +35,12 @@ nav {
 }
 
 .navbtn {
-  /* display: flex; */
-  /* align-items: center; */
-  /* margin: 5px;
-  font-size: 30px; */
   padding: 5px;
   margin-right: 5px;
   font-size: 1.1em;
 }
 
 .navbtnSelected {
-  /* display: flex; */
-  /* align-items: center; */
-  /* margin: 5px;
-  font-size: 30px;
-  font-style: bold; */
   padding: 5px;
   color: white;
   font-weight: bold;
@@ -54,6 +57,7 @@ nav {
   border: solid 1px black;
   width: 30%;
   float: right;
+  margin-bottom: 40px;
 }
 
 .userProfile {
@@ -78,4 +82,10 @@ nav {
 .sleep {
   height: 100%;
   border: solid 1px red;
+ 
+}
+
+.sleepTitle {
+  font-size: 1.1em;
+  font-weight: bold;
 }
