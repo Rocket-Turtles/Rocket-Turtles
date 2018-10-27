@@ -73,6 +73,10 @@ app.post('/api/sleep/post', (req, res) => {
     console.log('error posting', err)
     res.end('error posting sleep data', err)
   })
+
+  database('blobs').insert({
+    sleep: sleepObj.hourCount
+  })
 })
 
 
@@ -159,13 +163,21 @@ app.post('/api/calories', (req, res) => {
       nutObj.ndbno = parseInt(ndbno);
       nutObj.currDate = moment().format('YYYY-MM-DD');
 
+      
       // save 'food' and 'ndbno' to database
       database('calories').insert(nutObj).then((data) => {
         // console.log('>>> DB inserted!')
+        
       })
       .catch((err) => {
         console.log('>>> ERROR in inserting nutrients to DB!', err)
       })
+      
+      // save calories to blob table
+      database('blobs').insert({calories: nutObj.calories}).catch((err) => {
+        console.log('>>> Error in inserting calories to blob table')
+      })
+      
       // send to front end
       res.status(201).send(nutObj)
 
