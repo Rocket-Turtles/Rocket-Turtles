@@ -25,7 +25,7 @@ const UserProfile = ({user: {name, age, weight, height}, globalTimeOfDay}) => {
       <span className='userData'>
         <div className='userEntry'>Age: {age}</div>
         <div className='userEntry'>Weight: {weight}</div>
-        <div className='userEntry'>Height: {height}</div>
+        <div className='userEntry'>Height: {Math.floor(height) + '\'' + (height % 1).toFixed(2).substring(2) + '\"'}</div>
       </span>
     </div>
   )
