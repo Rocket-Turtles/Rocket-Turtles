@@ -13,10 +13,10 @@ module.exports = {
       database: 'rocketturtle'
     }, 
     migrations: {
-      directory: './db/migrations'
+      directory: './migrations'
     },
     seeds: {
-      directory: './db/seeds/dev'
+      directory: './seeds'
     },
     useNullAsDefault: true
   },

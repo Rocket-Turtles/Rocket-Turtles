@@ -52,11 +52,11 @@ exports.up = function (knex, Promise) {
       table.increments('id');
       table.string('name');
       table.integer('user').unsigned().notNullable();
-      table.integer('sleep');
+      table.float('sleep');
       table.integer('calories');
 
       //fks
-      table.foreign('users').references('id').inTable('users');
+      table.foreign('user').references('id').inTable('users');
     })
   }
 
@@ -71,8 +71,10 @@ exports.down = function (knex, Promise) {
   let dropUsers = `DROP TABLE IF EXISTS users`;
   let dropSleep = `DROP TABLE IF EXISTS sleep`;
   let dropCalories = `DROP TABLE IF EXISTS calories`;
+  let dropBlobs = `DROP TABLE IF EXISTS blobs`;
   return knex.raw(dropCalories)
     .then(knex.raw(dropSleep))
+    .then(knex.raw(dropBlobs))
     .then(knex.raw(dropUsers))
     .catch('error dropping tables');
 }
