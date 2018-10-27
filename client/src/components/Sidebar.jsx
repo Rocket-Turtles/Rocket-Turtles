@@ -16,6 +16,10 @@ const Sidebar = (props) => {
       return (<Calories 
         handleChange={props.handleChange} 
         handleClick={props.handleClick} 
+        food={props.food}
+        calDisplay={props.calDisplay}
+        nutrients={props.nutrients}
+        totalCalories={props.totalCalories}
 
       />
       )
