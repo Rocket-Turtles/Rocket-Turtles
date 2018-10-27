@@ -93,7 +93,7 @@ app.post('/api/getCalories', (req, res) => {
         todayCalArr.push(obj);
         totalCal += obj.calories;
       } else {
-        break;
+        break; 
       }
     }
 

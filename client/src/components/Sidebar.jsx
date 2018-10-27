@@ -15,12 +15,8 @@ const Sidebar = (props) => {
       //props.getSleepData()
       return (
       <Calories 
-        handleChange={props.handleChange} 
-        handleClick={props.handleClick} 
-        food={props.food}
-        calDisplay={props.calDisplay}
-        nutrients={props.nutrients}
         totalCalories={props.totalCalories}
+        id={props.user.id}
 
       />
       )
