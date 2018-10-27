@@ -107,6 +107,7 @@ nav {
 }
 
 .blobWindow {
+  position: relative;
   display: inline-flex;
   border: 1px solid purple;
   height: 567px;
@@ -115,20 +116,11 @@ nav {
 
 .blob {
   position: absolute;
-}
-
-.skyMorning {
-  position: absolute;
-  background: rgb(175, 222, 255);
-  height: 567px;
-  width: 44%;
-}
-
-.ground {
-  position: absolute;
-  top: 367px;
-  float: bottom;
-  height: 200px;
-  width: 100%;
-  background: rgb(130, 226, 127);
+  border: 1px solid black;
+  bottom: 0;
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  background: url('../../images/placeholder.jpg');
 }

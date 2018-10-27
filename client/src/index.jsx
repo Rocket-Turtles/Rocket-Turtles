@@ -29,7 +29,7 @@ class App extends React.Component {
       users: [],
       // current user's state
       user: {
-        id: '',
+        id: 'a',
         name: '',
         age: '',
         weight: '',

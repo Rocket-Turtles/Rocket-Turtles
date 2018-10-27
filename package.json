@@ -29,7 +29,6 @@
     "express": "^4.16.4",
     "knex": "^0.15.2",
     "moment": "^2.22.2",
-    "nodemon": "^1.18.5",
     "pg": "^7.5.0",
     "react": "^16.5.2",
     "react-chartjs-2": "^2.7.4",
@@ -47,8 +46,10 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "nodemon": "^1.18.5",
     "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
     "webpack": "^4.23.0",
-    "nodemon": "^1.18.5"
+    "webpack-cli": "^3.1.2"
   }
 }
