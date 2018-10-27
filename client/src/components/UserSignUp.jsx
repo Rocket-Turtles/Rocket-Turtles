@@ -18,7 +18,7 @@ class UserSignUp extends React.Component {
     if (!isNaN(e.target.value)) {
       this.setState({[state]: Number(e.target.value)})
     } else {
-      console.log('Invalid Number');
+      window.alert('Invalid Number');
     }
   }
 
