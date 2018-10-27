@@ -268,7 +268,12 @@ class App extends React.Component {
       return(
         <div className='main'>
           <Welcome />
-          <Login getUserData={this.getUserData} handleUserChange={this.handleUserChange} users={this.state.users}/>
+          <Login 
+            getUserData={this.getUserData} 
+            handleUserChange={this.handleUserChange} 
+            users={this.state.users}
+            handleViewChange={this.handleViewChange} 
+            />
           <div className='footer'>
             ® Rocket Turtle LLC
           </div>
