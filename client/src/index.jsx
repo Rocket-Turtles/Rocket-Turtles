@@ -240,6 +240,9 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange}
             view={this.state.view}
           />
+          <div className='blobWindow'>
+            
+          </div>
           <div className='sidebar'>
             <Sidebar
               view={this.state.view}

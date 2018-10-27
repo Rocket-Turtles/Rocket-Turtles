@@ -59,6 +59,7 @@ nav {
 }
 
 .sidebar {
+  display: inline-flex;
   border: solid 1px black;
   width: 30%;
   float: right;
@@ -81,6 +82,7 @@ nav {
 
 .calories {
   height: 400px;
+  width: 100%;
   border: solid 1px blue;
 }
 
@@ -102,4 +104,11 @@ nav {
 .sleepGraph {
   height: 240px;
   border: 1px solid green;
+}
+
+.blobWindow {
+  display: inline-flex;
+  border: 1px solid purple;
+  height: 567px;
+  width: 69%;
 }

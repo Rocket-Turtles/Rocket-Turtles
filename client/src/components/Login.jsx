@@ -1,14 +1,16 @@
 import React from 'react';
-import UserInput from './UserSignUp.jsx'
+import UserSignUp from './UserSignUp.jsx'
 
 import '../../css/style.css'
 
 const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
   return (
     <div> 
-      <UserInput 
+      <UserSignUp
+        users={users}
         getUserData={getUserData}
         handleViewChange={handleViewChange}
+        handleUserChange={handleUserChange}
       />
       <select 
         onChange={(e) => handleUserChange(e)}

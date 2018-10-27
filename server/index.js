@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
+
 // user routes
 // grab user data from database
 app.get('/api/user', (req, res) => {
@@ -168,6 +169,6 @@ app.post('/api/calories', (req, res) => {
 })
 
 
-app.listen((process.env.PORT || 3000), () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`listening on port ${PORT}`);
 });
