@@ -9,7 +9,7 @@ module.exports = {
     path: DIST_DIR
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?/,
         include: SRC_DIR,
@@ -22,16 +22,7 @@ module.exports = {
       test: /\.(css|less)$/,
       use: ["style-loader", "css-loader"]
       }
-    ],
-    // entry: [
-    //  'script-loader!jquery/dist/jquery.min.js',
-    //  'script-loader!foundation-sites/dist/foundation.min.js',
-    //  'script-loader!react-datetime/dist/react-datetime.min.js',//add this line in your webpack.config file
-    // './app/app.jsx'],
-    // externals:{
-    //   jquery:'jQuery'
-
-    // },
+    ]
   }
 };
 
