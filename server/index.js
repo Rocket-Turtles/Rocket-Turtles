@@ -100,7 +100,7 @@ app.post('/api/getCalories', (req, res) => {
     // send back to front end
     res.send(JSON.stringify(totalCal))
 
-  }).catch((err) => console.log('>>> ERROR in getting total cal from db', err))
+  }).catch((err) => console.log('>>> ERROR in retrieving total cal from db', err))
 
 })
 
@@ -118,7 +118,7 @@ app.post('/api/calories', (req, res) => {
       api_key: USDA_TOKEN
     }
   }).catch((err)=> {
-    console.log('>>> ERRRR in query', err)
+    console.log('>>> ERROR getting query for food from USDA in query', err)
   }).then((search) => {
     const ndbno = search.data.list.item[0].ndbno;  // get top most relevant object (is array)
 
@@ -156,10 +156,10 @@ app.post('/api/calories', (req, res) => {
 
       // save 'food' and 'ndbno' to database
       database('calories').insert(nutObj).then((data) => {
-        console.log('>>> DB inserted!')
+        // console.log('>>> DB inserted!')
       })
       .catch((err) => {
-        console.log('>>> ERROR in inserting to DB!', err)
+        console.log('>>> ERROR in inserting nutrients to DB!', err)
       })
       // send to front end
       res.status(201).send(nutObj)

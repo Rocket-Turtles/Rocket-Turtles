@@ -28,7 +28,8 @@ class App extends React.Component {
       // list of all users in the db:
       users: [],
       // current user's state
-      user: {
+      // TODO:: can we add gender?
+      user: {  
         id: '',
         name: '',
         age: '',
@@ -247,7 +248,12 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            <Blob weeklyAverage={this.state.weeklyAverage}/>
+            <Blob 
+              weeklyAverage={this.state.weeklyAverage}
+              totalCalories={this.state.totalCalories}
+              globalTimeOfDay={this.state.globalTimeOfDay}
+
+            />
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
             />
