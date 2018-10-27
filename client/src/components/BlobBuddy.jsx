@@ -30,9 +30,9 @@ class Blob extends React.Component {
 
   render() {
     return (
-      <div className='blob'>
+      <div>
         I'm {this.state.blob.name}.
-        <url></url>
+        <div className='blob'></div>
         <div>{this.checkSleep()}</div>
       </div>
     )

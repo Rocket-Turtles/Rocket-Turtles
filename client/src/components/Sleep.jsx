@@ -6,6 +6,10 @@ import SleepGraph from './SleepGraph.jsx'
 import "../../../node_modules/react-datetime/css/react-datetime.css";
 
 const Sleep = (props) => {
+  var yesterday = moment().subtract( 1, 'day' );
+  var valid = function( current ){
+      return current.isBefore( yesterday );
+  };
 
   return (
     <div className='sleep'>
@@ -28,12 +32,16 @@ const Sleep = (props) => {
               <DateTime 
                 onBlur={(date) => props.getSleepTime(date)}
                 defaultValue={new Date()}
+                viewMode={'time'}
+                isValidDate={valid}
                 />
             </td>
             <td>
               <DateTime 
                 onBlur={(date) => props.getWakeTime(date)}
                 defaultValue={new Date()}
+                viewMode={'time'}
+                isValidDate={valid}
               />
             </td>
           </tr>
