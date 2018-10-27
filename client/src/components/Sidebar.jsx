@@ -10,7 +10,6 @@ import '../../css/style.css'
 
 const Sidebar = (props) => {
 
-
   const renderView = (viewOption) => {
     if (viewOption === 'nutrition') {
       //props.getSleepData()
