@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import moment from 'moment';
 
-import Welcome from './components/Welcome.jsx';
-import Login from './components/Login.jsx';
-import Sidebar from './components/Sidebar.jsx';
+import Welcome from './components/Welcome.jsx'
+import Login from './components/Login.jsx'
+import Sidebar from './components/Sidebar.jsx'
+import BlobWindow from './components/BlobWindow.jsx';
 import Blob from './components/BlobBuddy.jsx';
 
 import '../css/style.css'
@@ -242,6 +243,9 @@ class App extends React.Component {
           />
           <div className='blobWindow'>
             <Blob weeklyAverage={this.state.weeklyAverage}/>
+            <BlobWindow 
+              globalTimeOfDay={this.state.globalTimeOfDay}
+            />
           </div>
           <div className='sidebar'>
             <Sidebar
