@@ -4,14 +4,19 @@ import Blob from '../components/BlobBuddy.jsx'
 
 import '../../css/style.css'
 
-const BlobWindow = ({globalTimeOfDay, weeklyAverage}) => {
+const BlobWindow = ({globalTimeOfDay, weeklyAverage, totalCalories}) => {
   
   return (
     <div>
       <Background 
         globalTimeOfDay={globalTimeOfDay}
       />
-      <Blob weeklyAverage={weeklyAverage}/>
+      <Blob 
+        weeklyAverage={weeklyAverage}
+        totalCalories={totalCalories}
+        globalTimeOfDay={globalTimeOfDay}
+
+      />
     </div>
   )
 }

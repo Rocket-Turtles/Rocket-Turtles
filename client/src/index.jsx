@@ -253,14 +253,10 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            <Blob 
-              weeklyAverage={this.state.weeklyAverage}
-              totalCalories={this.state.totalCalories}
-              globalTimeOfDay={this.state.globalTimeOfDay}
-
-            />
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
+              weeklyAverage={this.state.weeklyAverage}
+              totalCalories={this.state.totalCalories}
             />
           </div>
           <div className='sidebar'>
@@ -303,7 +299,9 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange} 
             />
           <div className='footer'>
-            ® Rocket Turtle LLC
+            <div className='footerReg'>
+              ® Rocket Turtle
+            </div>
           </div>
         </div>
       )

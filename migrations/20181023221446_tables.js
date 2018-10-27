@@ -6,7 +6,7 @@ exports.up = function (knex, Promise) {
       table.increments('id');
       table.string('name');
       table.integer('weight');
-      table.decimalgi('height');
+      table.decimal('height');
       table.integer('age');
     })
   }
