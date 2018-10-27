@@ -7,7 +7,6 @@ import Welcome from './components/Welcome.jsx'
 import Login from './components/Login.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import BlobWindow from './components/BlobWindow.jsx';
-import Blob from './components/BlobBuddy.jsx';
 
 import '../css/style.css'
 
@@ -29,7 +28,7 @@ class App extends React.Component {
       users: [],
       // current user's state
       user: {
-        id: 'a',
+        id: '',
         name: '',
         age: '',
         weight: '',

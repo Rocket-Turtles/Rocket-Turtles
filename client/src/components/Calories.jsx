@@ -5,7 +5,7 @@ const Calories = (props) => {
 
   return (
     <div className='calories'>
-      <h1>Calories</h1> 
+      <div className='caloriesTitle'>Calories</div> 
       <form >
         <label>What did you eat?</label>
         <input type="text" name="calories" onChange={props.handleChange}/>
