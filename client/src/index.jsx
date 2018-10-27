@@ -242,7 +242,6 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            <Blob weeklyAverage={this.state.weeklyAverage}/>
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
             />
