@@ -9,7 +9,7 @@ const database = require('knex')(configuration); // connect to DB via knex using
 const { USDA_TOKEN } = require('../config');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -168,6 +168,6 @@ app.post('/api/calories', (req, res) => {
 })
 
 
-app.listen(PORT, () => {
+app.listen((process.env.PORT || 3000), () => {
   console.log(`listening on port ${PORT}`);
 });
