@@ -207,6 +207,10 @@ class App extends React.Component {
     })
   }
 
+  getCalTotal(totalCalories){
+    this.setState({totalCalories})
+  }
+
   render() {
     {if (this.state.user.id !== '') {
       return(
@@ -225,12 +229,9 @@ class App extends React.Component {
           <div className='sidebar'>
             <Sidebar
               view={this.state.view}
-              user={this.state.user}
+              user={this.state.user}  // used also in calories component
               globalTimeOfDay={this.state.globalTimeOfDay}
               
-              // handleChange={this.handleChange} 
-              // handleClick={this.handleClick}
-
               // getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
@@ -238,11 +239,9 @@ class App extends React.Component {
               getWakeTime={this.getWakeTime}
               postSleepEntry={this.postSleepEntry}
 
-              
-              // food={this.state.food.food}
-              // calDisplay={this.state.food.calDisplay}
-              // nutrients={this.state.nutrients}
+              // for calories component calories
               totalCalories={this.state.totalCalories}
+              getCalTotal={this.getCalTotal.bind(this)}
             />
           </div>
           <div className='footer'>

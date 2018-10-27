@@ -5,16 +5,6 @@ class Calories extends React.Component {
   constructor(props) {
     super(props);
 
-<<<<<<< HEAD
-  return (
-    <div className='calories'>
-      <div className='caloriesTitle'>Calories</div> 
-      <form >
-        <label>What did you eat?</label>
-        <input type="text" name="calories" onChange={props.handleChange}/>
-        <input type="submit" name="calories" onClick={props.handleClick}/>
-      </form>
-=======
     this.state = {
       food: '',  // food input from user
       calDisplay: false,  // whether to display retrieved calories from USDA
@@ -22,10 +12,9 @@ class Calories extends React.Component {
       totalCalories: props.totalCalories,  // total amount of kcal consumed today
       
     }
->>>>>>> refactor calories
 
   }
-
+  
   handleClick(event){
     event.preventDefault();
     

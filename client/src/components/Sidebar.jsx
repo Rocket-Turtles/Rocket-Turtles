@@ -17,6 +17,7 @@ const Sidebar = (props) => {
       <Calories 
         totalCalories={props.totalCalories}
         id={props.user.id}
+        getCalTotal={props.getCalTotal}
 
       />
       )
