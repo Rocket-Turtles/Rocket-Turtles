@@ -114,17 +114,60 @@ nav {
 .blobWindow {
   position: relative;
   display: inline-flex;
-  border: 1px solid purple;
+  background-color: rgba(184, 184, 184, 0.384);
   height: 567px;
   width: 67%;
 }
 
+.blobContainer {
+  border: 1px solid black;
+}
+
 .blob {
   position: absolute;
-  bottom: 0;
-  left: 35%;
+  width: 280px;
+  height: 280px;
+  left: 25%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 100px;
-  content: url('../../images/placeholder.png')
+  content: url('../../images/blob/blob-body.png');
+  animation: bounce 1s;
+  transform: translateY(0px);
+  animation-iteration-count: infinite;
+  position: absolute;
+  margin: 50px;
+}
+
+@keyframes bounce {
+	0% {
+    top: 0px;
+		-webkit-animation-timing-function: ease-in;
+	}
+	50% {
+    top: 200px;
+    height: 280px;
+    width: 280px;
+    left: 25%;
+		-webkit-animation-timing-function: ease-out;
+	}
+  55% {
+    top: 220px; 
+    height: 240px;
+    width: 320px; 
+    left: 22%;
+		-webkit-animation-timing-function: ease-in;}
+  65% {
+    top: 180px; 
+    height: 280px; 
+    width: 280px;
+    left: 25%;
+		-webkit-animation-timing-function: ease-out;}
+	95% {
+		top: 0;		
+		-webkit-animation-timing-function: ease-in;
+	}
+	100% {
+    top: 0;
+		-webkit-animation-timing-function: ease-in;
+	}
 }
