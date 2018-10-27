@@ -3,12 +3,13 @@ import Background from '../components/Background.jsx'
 
 import '../../css/style.css'
 
-const BlobWindow = (props) => {
+const BlobWindow = ({globalTimeOfDay}) => {
   
   return (
     <div>
-      Blob Window
-      <Background />
+      <Background 
+        globalTimeOfDay={globalTimeOfDay}
+      />
     </div>
   )
 }

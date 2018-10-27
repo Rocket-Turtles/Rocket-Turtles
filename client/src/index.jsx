@@ -28,7 +28,7 @@ class App extends React.Component {
       users: [],
       // current user's state
       user: {
-        id: '',
+        id: 'a',
         name: '',
         age: '',
         weight: '',
@@ -242,7 +242,9 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            <BlobWindow />
+            <BlobWindow 
+              globalTimeOfDay={this.state.globalTimeOfDay}
+            />
           </div>
           <div className='sidebar'>
             <Sidebar
