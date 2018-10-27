@@ -6,6 +6,7 @@ import moment from 'moment';
 import Welcome from './components/Welcome.jsx'
 import Login from './components/Login.jsx'
 import Sidebar from './components/Sidebar.jsx'
+import BlobWindow from './components/BlobWindow.jsx';
 
 import '../css/style.css'
 
@@ -241,7 +242,7 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            
+            <BlobWindow />
           </div>
           <div className='sidebar'>
             <Sidebar
