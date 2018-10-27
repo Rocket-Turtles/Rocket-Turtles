@@ -6,7 +6,11 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
-    "seed:tables": "knex seed:run"
+    "heroku-postbuild": "webpack -p"
+  },
+  "engines": {
+    "node": "^8.11.3",
+    "npm": "^5.6.0"
   },
   "repository": {
     "type": "git",
@@ -22,9 +26,11 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.3",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "knex": "^0.15.2",
     "moment": "^2.22.2",
+    "nodemon": "^1.18.5",
     "pg": "^7.5.0",
     "react": "^16.5.2",
     "react-chartjs-2": "^2.7.4",
@@ -43,6 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "style-loader": "^0.23.1",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "nodemon": "^1.18.5"
   }
 }

@@ -258,6 +258,7 @@ class App extends React.Component {
               getSleepTime={this.getSleepTime}
               getWakeTime={this.getWakeTime}
               postSleepEntry={this.postSleepEntry}
+              nutrients={this.nutrients}
             />
           </div>
           <div className='footer'>

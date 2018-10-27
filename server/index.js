@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const moment = require('moment');
 
-const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
+const USDA_TOKEN = process.env.USDA_TOKEN;
+const environment = process.env.NODE_ENV || 'production'; // if something else isn't setting ENV, use development
 const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
 const database = require('knex')(configuration); // connect to DB via knex using env's settings
-const { USDA_TOKEN } = require('../config');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,8 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 
-// user routes
-// grab user data from database
+// user routes grab user data from database
 app.get('/api/user', (req, res) => {
   database.select()
     .from('users')
@@ -29,20 +29,18 @@ app.get('/api/user', (req, res) => {
       console.error(`error on server getting userData ${err}`);
     })
 })
+
 // user input data
 app.post('/api/user', (req, res) => {
-  console.log(req.body)
   database('users').insert(req.body)
     .then(() => {
-      console.log('Post Success');
       res.send('Post Success');
     }).catch(err => {
       console.error(`error on server posting user ${err}`);
     })
 });
 
-//sleep routes
-//gets sleep data
+// sleep routes gets sleep data
 app.get('/api/sleep/:userID', (req, res) => {
   database.select()
     .where({user: req.params.userID})
@@ -55,10 +53,11 @@ app.get('/api/sleep/:userID', (req, res) => {
     .catch(err => {
       console.error(`error on server getting sleepData ${err}`)
     })
+
 });
 
 app.post('/api/sleep/post', (req, res) => {
-  sleepObj = req.body;
+  const sleepObj = req.body;
   database('sleep').insert({
     user: sleepObj.user,
     hourCount: sleepObj.hourCount,
