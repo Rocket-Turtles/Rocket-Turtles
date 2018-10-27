@@ -4,7 +4,7 @@
   "description": "rocket-turtle fitness app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "dev:react": "webpack -d --watch",
     "heroku-postbuild": "webpack -p"
   },
