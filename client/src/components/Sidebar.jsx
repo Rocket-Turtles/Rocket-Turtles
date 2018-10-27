@@ -13,7 +13,8 @@ const Sidebar = (props) => {
   const renderView = (viewOption) => {
     if (viewOption === 'nutrition') {
       //props.getSleepData()
-      return (<Calories 
+      return (
+      <Calories 
         handleChange={props.handleChange} 
         handleClick={props.handleClick} 
         food={props.food}

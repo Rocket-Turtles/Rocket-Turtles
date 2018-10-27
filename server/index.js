@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const moment = require('moment');
 
-const USDA_TOKEN = process.env.USDA_TOKEN;
+const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
 const database = require('knex')(configuration); // connect to DB via knex using env's settings
@@ -100,7 +100,7 @@ app.post('/api/getCalories', (req, res) => {
     // send back to front end
     res.send(JSON.stringify(totalCal))
 
-  }).catch((err) => console.error(err))
+  }).catch((err) => console.log('>>> ERROR in retrieving total cal from db', err))
 
 })
 
@@ -117,6 +117,8 @@ app.post('/api/calories', (req, res) => {
       ds: 'Standard Reference',  // choose b/w branded or standard reference
       api_key: USDA_TOKEN
     }
+  }).catch((err)=> {
+    console.log('>>> ERROR getting query for food from USDA in query', err)
   }).then((search) => {
     const ndbno = search.data.list.item[0].ndbno;  // get top most relevant object (is array)
 
@@ -155,8 +157,9 @@ app.post('/api/calories', (req, res) => {
       // save 'food' and 'ndbno' to database
       database('calories').insert(nutObj).then((data) => {
         // console.log('>>> DB inserted!')
-      }).catch((err) => {
-        console.error(err)
+      })
+      .catch((err) => {
+        console.log('>>> ERROR in inserting nutrients to DB!', err)
       })
       // send to front end
       res.status(201).send(nutObj)

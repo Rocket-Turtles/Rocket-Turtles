@@ -28,7 +28,8 @@ class App extends React.Component {
       // list of all users in the db:
       users: [],
       // current user's state
-      user: {
+      // TODO:: can we add gender?
+      user: {  
         id: '',
         name: '',
         age: '',
@@ -132,6 +133,8 @@ class App extends React.Component {
           nutrients: res.data,
           totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
         })
+      }).catch((err) => {
+        console.log('>>>> ERROR in axios post request for USDA cal', err)
       })
     }
   }
@@ -150,6 +153,14 @@ class App extends React.Component {
   handleUserChange(e){
     this.setState({
       user: JSON.parse(e.target.value)
+    }, () => {
+
+      axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
+        this.setState({totalCalories: JSON.parse(cal.data)})
+      }).catch((err) => {
+        console.log('>>>> ERROR in getting cal from DB from axios', err)
+      })
+
     })
   }
 
@@ -161,11 +172,6 @@ class App extends React.Component {
         this.setState({
           users: userData.data
         })
-      }).then(() => {
-        axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
-          this.setState({totalCalories: JSON.parse(cal.data)})
-        })
-        
       })
   }
 
@@ -242,7 +248,12 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            <Blob weeklyAverage={this.state.weeklyAverage}/>
+            <Blob 
+              weeklyAverage={this.state.weeklyAverage}
+              totalCalories={this.state.totalCalories}
+              globalTimeOfDay={this.state.globalTimeOfDay}
+
+            />
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
             />
