@@ -132,6 +132,9 @@ class App extends React.Component {
           totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
         })
       })
+      .catch(err => {
+        console.log('error in handleClick in index.jsx: ', err)
+      })
     }
   }
 
@@ -165,6 +168,9 @@ class App extends React.Component {
           this.setState({totalCalories: JSON.parse(cal.data)})
         })
         
+      })
+      .catch(err => {
+        console.log('error in getUserData on index.jsx: ', err)
       })
   }
 

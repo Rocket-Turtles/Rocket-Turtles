@@ -31,10 +31,10 @@ const Sleep = (props) => {
             <td>
               <DateTime 
                 onBlur={(date) => props.getSleepTime(date)}
-                defaultValue={new Date()}
+                defaultValue={(new Date())}
                 viewMode={'time'}
                 isValidDate={valid}
-                />
+              />
             </td>
             <td>
               <DateTime 
