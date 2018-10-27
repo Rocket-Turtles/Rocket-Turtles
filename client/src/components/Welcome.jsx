@@ -8,7 +8,8 @@ const Welcome = (props) => {
         
       </header>
       <nav>
-        <div className='logo'>
+        <div 
+          className='logo'>
           Rocket Turtle
         </div>
         <div 
@@ -22,6 +23,13 @@ const Welcome = (props) => {
           onClick={() => props.handleViewChange('sleep')}
         >
           Sleep
+        </div>
+        <div
+          className='navbtn'
+          onClick={() => props.handleViewChange('login')}
+        >
+          Logout
+
         </div>
       </nav>
     </div>

@@ -16,6 +16,7 @@ class App extends React.Component {
 
     this.state = {
       view: 'nutrition',
+      globalTimeOfDay: 'morning',
 
       // calories states:
       food: '',
@@ -47,25 +48,25 @@ class App extends React.Component {
       sleepTime: '',
       wakeTime: ''
     };
+
     this.handleViewChange = this.handleViewChange.bind(this);
 
     this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
-    //this.getSleepData = this.getSleepData.bind(this);
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
 
-    // this.handleNumber = this.handleNumber.bind(this);
-    // this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
     this.getUserData = this.getUserData.bind(this);
   }
   
+  // global methods
   componentDidMount() {
     this.getUserData();
+    this.setGlobalTime();
   };
 
   handleViewChange(option) {
@@ -73,14 +74,51 @@ class App extends React.Component {
       this.setState({
         view: 'nutrition'
       })
-    } else {
+    } else if (option === 'sleep') {
       this.setState({
         view: 'sleep'
       })
       this.getSleepData();
+    } else if (option === 'login') {
+      this.setState({
+        view: 'login',
+        user: {
+          id: '',
+          name: '',
+          age: '',
+          weight: '',
+          height: ''
+        }
+      })
     }
   };
 
+  setGlobalTime() {
+
+    const afternoon = 12;
+    const evening = 17;
+    const night = 20;
+    const currentHour = moment().format('HH');
+
+    if (currentHour >= afternoon && currentHour <= evening) {
+      this.setState({
+        globalTimeOfDay: 'afternoon'
+      })
+    } else if (currentHour >= evening && currentHour <= night) {
+      this.setState({
+        globalTimeOfDay: 'evening'
+      })
+    } else if (currentHour >= night) {
+      this.setState({
+        globalTimeOfDay: 'night'
+      })
+    } else {
+      this.setState({
+        globalTimeOfDay: 'morning'
+      })
+    }
+
+  }
   // calorie methods
   handleClick(event){
     event.preventDefault();
@@ -148,7 +186,7 @@ class App extends React.Component {
   };
 
   //calculates average hours from most recent 7 nights of sleep
-  getAverage(weekData) {
+  getAverage() {
     const reducer = (acc, cur) => acc + cur.hourCount;
     let average = this.state.sleepWeek.length ? (this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length).toFixed(2) : 0;
     this.setState({
@@ -170,6 +208,7 @@ class App extends React.Component {
     });
   }
 
+  //posts new sleep entry
   postSleepEntry() {
     let duration = moment.duration(moment(this.state.wakeTime).diff(moment(this.state.sleepTime)));
     let hourCount = duration.asHours();
@@ -193,7 +232,6 @@ class App extends React.Component {
     })
   }
 
-
   render() {
     {if (this.state.user.id !== '') {
       return(
@@ -202,17 +240,19 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange}
             view={this.state.view}
           />
-          <Blob weeklyAverage={this.state.weeklyAverage}/>
+          <div className='blobWindow'>
+            <Blob weeklyAverage={this.state.weeklyAverage}/>
+          </div>
           <div className='sidebar'>
             <Sidebar
-
               view={this.state.view}
               user={this.state.user}
+              globalTimeOfDay={this.state.globalTimeOfDay}
               
               handleChange={this.handleChange} 
               handleClick={this.handleClick}
 
-              getSleepData={this.getSleepData}
+              // getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
               getSleepTime={this.getSleepTime}
@@ -226,7 +266,9 @@ class App extends React.Component {
             />
           </div>
           <div className='footer'>
-            ® Rocket Turtle
+            <div className='footerReg'>
+              ® Rocket Turtle
+            </div>
           </div>
         </div>
       )
@@ -234,7 +276,12 @@ class App extends React.Component {
       return(
         <div className='main'>
           <Welcome />
-          <Login getUserData={this.getUserData} handleUserChange={this.handleUserChange} users={this.state.users}/>
+          <Login 
+            getUserData={this.getUserData} 
+            handleUserChange={this.handleUserChange} 
+            users={this.state.users}
+            handleViewChange={this.handleViewChange} 
+            />
           <div className='footer'>
             ® Rocket Turtle LLC
           </div>

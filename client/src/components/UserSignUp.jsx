@@ -18,7 +18,7 @@ class UserSignUp extends React.Component {
     if (!isNaN(e.target.value)) {
       this.setState({[state]: Number(e.target.value)})
     } else {
-      console.log('Invalid Number');
+      window.alert('Invalid Number');
     }
   }
 
@@ -33,6 +33,9 @@ class UserSignUp extends React.Component {
     Axios.post('/api/user', newUser)
     .then(() => {
       this.props.getUserData();
+    })
+    .catch(err => {
+      console.log('error signing up',)
     });
   }
 

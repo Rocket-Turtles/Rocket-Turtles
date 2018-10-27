@@ -39,10 +39,9 @@ const Sidebar = (props) => {
     <div>
       <UserProfile 
         user={props.user}
+        globalTimeOfDay={props.globalTimeOfDay}
       />
     {renderView(props.view)}  
-      
-      
       
     </div>
   )
