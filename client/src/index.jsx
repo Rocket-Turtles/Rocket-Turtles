@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import moment from 'moment';
 
-import Welcome from './components/Welcome.jsx'
-import Login from './components/Login.jsx'
-import Sidebar from './components/Sidebar.jsx'
+import Welcome from './components/Welcome.jsx';
+import Login from './components/Login.jsx';
+import Sidebar from './components/Sidebar.jsx';
+import Blob from './components/BlobBuddy.jsx';
 
 import '../css/style.css'
 
@@ -232,7 +233,6 @@ class App extends React.Component {
   }
 
   render() {
-
     {if (this.state.user.id !== '') {
       return(
         <div className='main'>
@@ -241,7 +241,7 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            
+            <Blob weeklyAverage={this.state.weeklyAverage}/>
           </div>
           <div className='sidebar'>
             <Sidebar
@@ -258,7 +258,11 @@ class App extends React.Component {
               getSleepTime={this.getSleepTime}
               getWakeTime={this.getWakeTime}
               postSleepEntry={this.postSleepEntry}
-              nutrients={this.nutrients}
+
+              food={this.state.food}
+              calDisplay={this.state.calDisplay}
+              nutrients={this.state.nutrients}
+              totalCalories={this.state.totalCalories}
             />
           </div>
           <div className='footer'>
