@@ -65,7 +65,6 @@ const SleepGraph = (props) => {
       }
     ]
   }
-  console.log('sleepGraph', data)
   const options = {
     legend: {
       display: false

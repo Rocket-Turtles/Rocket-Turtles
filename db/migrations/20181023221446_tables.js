@@ -1,5 +1,3 @@
-
-
 exports.up = function (knex, Promise) {
 
   //makes user table
@@ -65,6 +63,7 @@ exports.up = function (knex, Promise) {
   return createUserTable()
     .then(createSleepTable)
     .then(createCalorieTable)
+    .then(createBlobTable)
     .catch('error creating tables');
 }
 

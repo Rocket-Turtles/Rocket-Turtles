@@ -195,7 +195,6 @@ class App extends React.Component {
 
 
   render() {
-
     {if (this.state.user.id !== '') {
       return(
         <div className='main'>
@@ -203,13 +202,12 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange}
             view={this.state.view}
           />
-          <Blob state={this.state}/>
+          <Blob weeklyAverage={this.state.weeklyAverage}/>
           <div className='sidebar'>
             <Sidebar
 
               view={this.state.view}
               user={this.state.user}
-              
               
               handleChange={this.handleChange} 
               handleClick={this.handleClick}
@@ -220,6 +218,11 @@ class App extends React.Component {
               getSleepTime={this.getSleepTime}
               getWakeTime={this.getWakeTime}
               postSleepEntry={this.postSleepEntry}
+
+              food={this.state.food}
+              calDisplay={this.state.calDisplay}
+              nutrients={this.state.nutrients}
+              totalCalories={this.state.totalCalories}
             />
           </div>
           <div className='footer'>

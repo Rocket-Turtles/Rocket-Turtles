@@ -47,13 +47,13 @@ const Sleep = (props) => {
             <td>
               <DateTime 
                 onBlur={(date) => props.getSleepTime(date)}
-                defaultValue={'01/01/2018 12:00 AM'}
+                defaultValue={new Date()}
                 />
             </td>
             <td>
               <DateTime 
                 onBlur={(date) => props.getWakeTime(date)}
-                defaultValue={'01/01/2018 12:00 AM'}
+                defaultValue={new Date()}
               />
             </td>
           </tr>
