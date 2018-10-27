@@ -6,7 +6,9 @@ const Background = ({globalTimeOfDay}) => {
   
   return (
     <div>
-      <div className='skyMorning'></div>
+      <div className='skyMorning'>
+        <div className='ground'></div>
+      </div>
     </div>
   )
 }

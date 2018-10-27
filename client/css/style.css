@@ -113,6 +113,22 @@ nav {
   width: 69%;
 }
 
+.blob {
+  position: absolute;
+}
+
 .skyMorning {
+  position: absolute;
   background: rgb(175, 222, 255);
+  height: 567px;
+  width: 44%;
+}
+
+.ground {
+  position: absolute;
+  top: 367px;
+  float: bottom;
+  height: 200px;
+  width: 100%;
+  background: rgb(130, 226, 127);
 }
