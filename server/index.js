@@ -75,7 +75,10 @@ app.post('/api/sleep/post', (req, res) => {
   })
 })
 
-// calories
+
+// ---------------- CALORIES -----------------
+
+// get total calories for today from database
 app.post('/api/getCalories', (req, res) => {
   database
   .where({user: req.body.user})
@@ -93,7 +96,7 @@ app.post('/api/getCalories', (req, res) => {
         todayCalArr.push(obj);
         totalCal += obj.calories;
       } else {
-        break;
+        break; 
       }
     }
 
@@ -104,6 +107,8 @@ app.post('/api/getCalories', (req, res) => {
 
 })
 
+
+// get calories from USDA API
 app.post('/api/calories', (req, res) => {
   const food = req.body.food;
   const user = req.body.user;
@@ -170,6 +175,7 @@ app.post('/api/calories', (req, res) => {
 
 })
 
+// ----------------- END -------------------
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`listening on port ${PORT}`);

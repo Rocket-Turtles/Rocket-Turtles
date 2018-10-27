@@ -18,10 +18,6 @@ class App extends React.Component {
       view: 'nutrition',
       globalTimeOfDay: 'morning',
 
-      // calories states:
-      food: '',
-      calDisplay: false,
-      nutrients: {},
       totalCalories: 0,
 
       // list of all users in the db:
@@ -57,8 +53,6 @@ class App extends React.Component {
     this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
 
     this.getUserData = this.getUserData.bind(this);
@@ -120,37 +114,6 @@ class App extends React.Component {
     }
 
   }
-  // calorie methods
-  handleClick(event){
-    event.preventDefault();
-    // send to server
-    if (event.target.name === 'calories') {
-      axios.post('/api/calories', {food: this.state.food, user: this.state.user.id}).then((res) => {
-        // display on screen
-        this.setState({
-          calDisplay: true,
-          nutrients: res.data,
-          totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
-        })
-      }).catch((err) => {
-        console.log('>>>> ERROR in axios post request for USDA cal', err)
-      })
-      .catch(err => {
-        console.log('error in handleClick in index.jsx: ', err)
-      })
-    }
-  }
-
-  handleChange(event){
-    event.preventDefault();
-    event.persist();
-
-    if (event.target.name === 'calories') {
-      this.setState({
-        food: event.target.value
-      })
-    }
-  };
 
   handleUserChange(e){
     this.setState({
@@ -244,6 +207,10 @@ class App extends React.Component {
     })
   }
 
+  getCalTotal(totalCalories){
+    this.setState({totalCalories})
+  }
+
   render() {
     {if (this.state.user.id !== '') {
       return(
@@ -262,12 +229,9 @@ class App extends React.Component {
           <div className='sidebar'>
             <Sidebar
               view={this.state.view}
-              user={this.state.user}
+              user={this.state.user}  // used also in calories component
               globalTimeOfDay={this.state.globalTimeOfDay}
               
-              handleChange={this.handleChange} 
-              handleClick={this.handleClick}
-
               // getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
@@ -275,10 +239,9 @@ class App extends React.Component {
               getWakeTime={this.getWakeTime}
               postSleepEntry={this.postSleepEntry}
 
-              food={this.state.food}
-              calDisplay={this.state.calDisplay}
-              nutrients={this.state.nutrients}
+              // for calories component calories
               totalCalories={this.state.totalCalories}
+              getCalTotal={this.getCalTotal.bind(this)}
             />
           </div>
           <div className='footer'>
