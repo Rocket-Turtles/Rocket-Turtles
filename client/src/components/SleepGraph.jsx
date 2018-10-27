@@ -4,15 +4,6 @@ import {HorizontalBar} from 'react-chartjs-2';
 
 import '../../css/style.css'
 
-const sleepWeekEntryExample = {
-  endHour: "07:03:00",
-  hourCount: 8.05,
-  id: 51,
-  nightSlept: "2018-10-03T05:00:00.000Z",
-  startHour: "23:00:00",
-  user: 18
-}
-
 const SleepGraph = (props) => {
 
   const data = {

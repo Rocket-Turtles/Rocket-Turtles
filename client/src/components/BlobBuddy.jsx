@@ -76,6 +76,7 @@ class Blob extends React.Component {
     return (
       <div>
         I'm {this.state.blob.name}.
+        <div className='blob'></div>
         <div>{this.checkSleep()}</div>
         <div>{this.checkCalories()}</div>
       </div>

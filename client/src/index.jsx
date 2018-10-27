@@ -7,7 +7,6 @@ import Welcome from './components/Welcome.jsx'
 import Login from './components/Login.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import BlobWindow from './components/BlobWindow.jsx';
-import Blob from './components/BlobBuddy.jsx';
 
 import '../css/style.css'
 
@@ -136,6 +135,9 @@ class App extends React.Component {
       }).catch((err) => {
         console.log('>>>> ERROR in axios post request for USDA cal', err)
       })
+      .catch(err => {
+        console.log('error in handleClick in index.jsx: ', err)
+      })
     }
   }
 
@@ -172,6 +174,9 @@ class App extends React.Component {
         this.setState({
           users: userData.data
         })
+      })
+      .catch(err => {
+        console.log('error in getUserData on index.jsx: ', err)
       })
   }
 
@@ -248,14 +253,10 @@ class App extends React.Component {
             view={this.state.view}
           />
           <div className='blobWindow'>
-            <Blob 
-              weeklyAverage={this.state.weeklyAverage}
-              totalCalories={this.state.totalCalories}
-              globalTimeOfDay={this.state.globalTimeOfDay}
-
-            />
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
+              weeklyAverage={this.state.weeklyAverage}
+              totalCalories={this.state.totalCalories}
             />
           </div>
           <div className='sidebar'>
@@ -298,7 +299,9 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange} 
             />
           <div className='footer'>
-            ® Rocket Turtle LLC
+            <div className='footerReg'>
+              ® Rocket Turtle
+            </div>
           </div>
         </div>
       )
