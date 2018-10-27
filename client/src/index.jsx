@@ -132,6 +132,8 @@ class App extends React.Component {
           nutrients: res.data,
           totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
         })
+      }).catch((err) => {
+        console.log('>>>> ERROR in axios post request for USDA cal', err)
       })
     }
   }
@@ -150,6 +152,14 @@ class App extends React.Component {
   handleUserChange(e){
     this.setState({
       user: JSON.parse(e.target.value)
+    }, () => {
+
+      axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
+        this.setState({totalCalories: JSON.parse(cal.data)})
+      }).catch((err) => {
+        console.log('>>>> ERROR in getting cal from DB from axios', err)
+      })
+
     })
   }
 
@@ -161,11 +171,6 @@ class App extends React.Component {
         this.setState({
           users: userData.data
         })
-      }).then(() => {
-        axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
-          this.setState({totalCalories: JSON.parse(cal.data)})
-        })
-        
       })
   }
 
