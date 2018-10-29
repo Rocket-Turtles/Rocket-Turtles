@@ -48,37 +48,37 @@ class Blob extends React.Component {
     
     if (timeOfDay === 'morning') {
       if (totalCalories < 100) {
-        this.setState({calories: 'hungry'})
+        this.setState({calories: 'Hungry'})
       } else if (totalCalories < 700) {
-        this.setState({calories: 'normal'})
+        this.setState({calories: 'Normal'})
       } else {
-        this.setState({calories: 'hyper'})
+        this.setState({calories: 'Hyper'})
       }
     } else if (timeOfDay === 'afternoon') {
       if (totalCalories < 1400) {
-        this.setState({calories: 'hungry'})
+        this.setState({calories: 'Hungry'})
       } else if (totalCalories < 1900) {
-        this.setState({calories: 'normal'})
+        this.setState({calories: 'Normal'})
       } else {
-        this.setState({calories: 'hyper'})
+        this.setState({calories: 'Hyper'})
       }
       
     } else if (timeOfDay === 'evening') {
       if (totalCalories < 2000) {
-        this.setState({calories: 'hungry'})
+        this.setState({calories: 'Hungry'})
       } else if (totalCalories < 2400) {
-        this.setState({calories: 'normal'})
+        this.setState({calories: 'Normal'})
       } else {
-        this.setState({calories: 'hyper'})
+        this.setState({calories: 'Hyper'})
       }
       
     } else if (timeOfDay === 'night') {
       if (totalCalories < 2000) {
-        this.setState({calories: 'hungry'})
+        this.setState({calories: 'Hungry'})
       } else if (totalCalories < 2400) {
-        this.setState({calories: 'normal'})
+        this.setState({calories: 'Normal'})
       } else {
-        this.setState({calories: 'hyper'})
+        this.setState({calories: 'Hyper'})
       }
     } 
   }
@@ -128,8 +128,10 @@ class Blob extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.weeklyAverage !== prevProps.weeklyAverage || this.props.totalCalories !== prevProps.totalCalories) {
       this.setBlobStates();
+      this.setCalorieState();
     }
   }
+  
   render() {
     return (
       <div>
