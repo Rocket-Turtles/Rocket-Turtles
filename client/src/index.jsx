@@ -212,6 +212,7 @@ class App extends React.Component {
     })
   }
 
+  // relays total calories to parent when there is an update from calories component
   getCalTotal(totalCalories){
     this.setState({totalCalories})
   }
