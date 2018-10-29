@@ -38,6 +38,8 @@ app.post('/api/user', (req, res) => {
     })
 });
 
+// ----------------- SLEEP -------------------
+
 // sleep routes gets sleep data
 app.get('/api/sleep/:userID', (req, res) => {
   database.select()

@@ -8,6 +8,7 @@ import "../../../../node_modules/react-datetime/css/react-datetime.css";
 //this is the sleep view sidebar component
 //i used react-datetime for the time selector
 
+
 const Sleep = (props) => {
   var today = moment();
   var valid = function(current){
@@ -33,10 +34,10 @@ const Sleep = (props) => {
           <tr>
             <td>
               <DateTime 
-                onBlur={(date) => props.getSleepTime(date)}
-                defaultValue={(new Date())}
-                viewMode={'time'}
-                isValidDate={valid}
+                onBlur={(date) => props.getSleepTime(date)} // getSleepTime will only invoke when user focuses on a different element
+                defaultValue={(new Date())} // this can be any valid date will crash if no default value is in place when focus is changed
+                viewMode={'time'} //renders the time picker first. 
+                isValidDate={valid} // used for disabling future dates
               />
             </td>
             <td>

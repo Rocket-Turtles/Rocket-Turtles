@@ -10,6 +10,7 @@ class Blob extends React.Component {
     }
   }
 
+  //this function sets the blob's sleep state based on average hours slept
   setBlobStates() {
     let average = this.props.weeklyAverage;
     if (average < 6) {
@@ -27,6 +28,7 @@ class Blob extends React.Component {
     }
   }
 
+  //renders a message describing sleep data
   checkSleep() {
     let average = this.props.weeklyAverage;
     if (average === 0) {
@@ -125,6 +127,7 @@ class Blob extends React.Component {
     } 
   }
   
+  // ?
   componentDidUpdate(prevProps) {
     if (this.props.weeklyAverage !== prevProps.weeklyAverage || this.props.totalCalories !== prevProps.totalCalories) {
       this.setBlobStates();

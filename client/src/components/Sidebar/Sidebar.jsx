@@ -2,6 +2,7 @@ import React from 'react';
 import Sleep from './Sleep.jsx';
 import UserProfile from './UserProfile.jsx';
 import Calories from './Calories.jsx';
+//renders the sidebar on the right. user info is static and sleep or nutrition renders depending on view state.
 
 const Sidebar = (props) => {
   const renderView = (viewOption) => {
