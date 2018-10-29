@@ -4,13 +4,13 @@ class Blob extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-      blob: {
-        name: 'Blobby',
-        calories: 'hyper',
-        sleep: 'tired'
-      }
+      name: 'Blobby',
+      calories: 'hyper',
+      sleep: 'normal'
     }
     this.checkSleep = this.checkSleep.bind(this);
+    this.renderBlob = this.renderBlob.bind(this);
+    this.setBlobStates = this.setBlobStates.bind(this);
   }
 
   setBlobStates() {
@@ -93,16 +93,14 @@ class Blob extends React.Component {
   }
 
   renderBlob() {
-    console.log('hello 1')
     if (this.state.calories === 'hyper') {
-      console.log('hello 2')
       if (this.state.sleep === 'tired') {
         return (
           <div className='blobContainer'>
             <div className='blobHyperTired'></div>
           </div>
         );
-      } else if (this.state.sleep === 'nomral') {
+      } else if (this.state.sleep === 'normal') {
         return (
           <div className='blobContainer'>
             <div className='blobHyperNormal'></div>
@@ -116,15 +114,13 @@ class Blob extends React.Component {
         );
       }
     } else if (this.state.calories === 'normal') {
-      console.log('hello?!?')
       if (this.state.sleep === 'tired') {
         return (
           <div className='blobContainer'>
             <div className='blobNormalTired'></div>
           </div>
         );
-      } else if (this.state.sleep === 'nomral') {
-        console.log('hello??')
+      } else if (this.state.sleep === 'normal') {
         return (
           <div className='blobContainer'>
             <div className='blobNormalHappy'></div>
@@ -144,7 +140,7 @@ class Blob extends React.Component {
             <div className='blobHungryTired'></div>
           </div>
         );
-      } else if (this.state.sleep === 'nomral') {
+      } else if (this.state.sleep === 'normal') {
         return (
           <div className='blobContainer'>
             <div className='blobHungryHappy'></div>
@@ -160,12 +156,15 @@ class Blob extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setBlobStates()
+  }
+
   render() {
     return (
       <div>
-        I'm {this.state.blob.name}.
+        I'm {this.state.name}.
         <div>
-          <div className='blobHungryNeutral'></div>
           {this.renderBlob()}
         </div>
         <div>{this.checkSleep()}</div>
