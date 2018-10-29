@@ -23,14 +23,17 @@ class Calories extends React.Component {
     .then((res) => {
 
       // display on screen
+      console.log('>>> calories comp handle click totalcalories (state, props)', this.state.totalCalories, this.props.totalCalories)
       this.setState({
         calDisplay: true,
         nutrients: res.data,
-        totalCalories: res.data.calories ? this.state.totalCalories + res.data.calories : this.state.totalCalories
+        totalCalories: res.data.calories ? this.props.totalCalories + res.data.calories : this.props.totalCalories
       })
     })
     .catch((err) => {
-      console.log('>>>> ERROR in axios post request for USDA cal', err)
+      console.log('>>>> ERROR in axios post request for USDA cal', err.error)
+    }).then(() => {
+      this.props.getCalTotal(this.state.totalCalories)
     })
 
   }
@@ -46,7 +49,7 @@ class Calories extends React.Component {
 
 
   render(){
-    let totalCal = this.state.totalCalories ? this.state.totalCalories : this.props.totalCalories;
+    let totalCal = this.props.totalCalories // ? this.state.totalCalories : this.props.totalCalories;
     let calDisElem = this.state.calDisplay ? <div>+ {this.state.nutrients.calories} kcal</div> : <div></div> ;
     
     return (
