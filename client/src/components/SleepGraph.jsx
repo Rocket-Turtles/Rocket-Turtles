@@ -10,6 +10,7 @@ import '../../css/style.css'
 const SleepGraph = (props) => {
 
   const data = {
+    //takes only the night user went to sleep and maps that into a labels array
     labels: props.sleepWeek.map(night => {
       return moment(night.nightSlept).format('ddd MMM Do')
     }),
@@ -53,6 +54,7 @@ const SleepGraph = (props) => {
           "rgba(241, 196, 15, 1.0)"
         ],
         borderWidth: 1,
+        //takes only hourCount for each night from the sleepWeek array and maps to a data array for graph
         data: props.sleepWeek.map(night => {
           return night.hourCount
         })

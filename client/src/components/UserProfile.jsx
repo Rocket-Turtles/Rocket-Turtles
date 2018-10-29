@@ -2,6 +2,7 @@ import React from 'react';
 
 const UserProfile = ({user: {name, age, weight, height}, globalTimeOfDay}) => {
 
+  //renders a dynamic user greeting message based on time of day
   const renderWelcome = (timeOfDay) => {
     { if (timeOfDay === 'morning') {
       return (<h2> Good Morning {name}! </h2>)
@@ -25,6 +26,7 @@ const UserProfile = ({user: {name, age, weight, height}, globalTimeOfDay}) => {
       <span className='userData'>
         <div className='userEntry'>Age: {age}</div>
         <div className='userEntry'>Weight: {weight} lbs</div>
+        {/* height is stored as a decimal in db so this line is used to turn in back into a foot/inches value */}
         <div className='userEntry'>Height: {Math.floor(height) + '\'' + Math.floor((height - Math.floor(height)) * 12) + '\"'}</div>
       </span>
     </div>

@@ -37,10 +37,12 @@ nav {
   font-size: 0.8em;
 }
 
+/* text in footer */
 .footerReg {
   margin-left: 10px;
   text-align: right;
 }
+
 
 .logo {
   flex-grow: 1;
