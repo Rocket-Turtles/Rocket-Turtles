@@ -5,7 +5,7 @@ class Blob extends React.Component {
     super(props);
     this.state= {
       name: 'Blobby',
-      calories: 'hyper',
+      calories: 'normal',
       sleep: 'normal'
     }
     this.checkSleep = this.checkSleep.bind(this);
@@ -15,7 +15,7 @@ class Blob extends React.Component {
 
   setBlobStates() {
     let average = this.props.weeklyAverage;
-   
+    let totalCalories = this.props.totalCalories;
     if (average < 6) {
       this.setState({
         sleep: 'tired'
@@ -29,6 +29,11 @@ class Blob extends React.Component {
         sleep: 'neutral'
       })
     }
+
+    if (totalCalories) {
+      
+    }
+
   }
 
   checkSleep() {
@@ -93,6 +98,7 @@ class Blob extends React.Component {
   }
 
   renderBlob() {
+    console.log('hello 1')
     if (this.state.calories === 'hyper') {
       if (this.state.sleep === 'tired') {
         return (
@@ -160,7 +166,12 @@ class Blob extends React.Component {
     this.setBlobStates()
   }
 
+  componentWillReceiveProps() {
+    this.setBlobStates()
+  }
+
   render() {
+    //this.setBlobStates();
     return (
       <div>
         I'm {this.state.name}.
