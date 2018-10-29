@@ -12,8 +12,6 @@ class Blob extends React.Component {
 
   setBlobStates() {
     let average = this.props.weeklyAverage;
-    let totalCalories = this.props.totalCalories;
-    console.log('weekly average', average);
     if (average < 6) {
       this.setState({
         sleep: 'Tired'
@@ -27,10 +25,6 @@ class Blob extends React.Component {
         sleep: 'Neutral'
       })
     }
-    if (totalCalories) {
-      
-    }
-
   }
 
   checkSleep() {
@@ -46,15 +40,56 @@ class Blob extends React.Component {
       return `You've been getting too much sleep! Your sleep average is currently ${average} hours.`;
     }
   }
-
+  
+  // changes calories state
+  setCalorieState() {
+    let totalCalories = this.props.totalCalories;
+    let timeOfDay = this.props.globalTimeOfDay;
+    
+    if (timeOfDay === 'morning') {
+      if (totalCalories < 100) {
+        this.setState({calories: 'hungry'})
+      } else if (totalCalories < 700) {
+        this.setState({calories: 'normal'})
+      } else {
+        this.setState({calories: 'hyper'})
+      }
+    } else if (timeOfDay === 'afternoon') {
+      if (totalCalories < 1400) {
+        this.setState({calories: 'hungry'})
+      } else if (totalCalories < 1900) {
+        this.setState({calories: 'normal'})
+      } else {
+        this.setState({calories: 'hyper'})
+      }
+      
+    } else if (timeOfDay === 'evening') {
+      if (totalCalories < 2000) {
+        this.setState({calories: 'hungry'})
+      } else if (totalCalories < 2400) {
+        this.setState({calories: 'normal'})
+      } else {
+        this.setState({calories: 'hyper'})
+      }
+      
+    } else if (timeOfDay === 'night') {
+      if (totalCalories < 2000) {
+        this.setState({calories: 'hungry'})
+      } else if (totalCalories < 2400) {
+        this.setState({calories: 'normal'})
+      } else {
+        this.setState({calories: 'hyper'})
+      }
+    } 
+  }
+  
+  // gives comments on calorie intake
   checkCalories() {
     // checkout https://health.gov/dietaryguidelines/2015/guidelines/appendix-2/
     let totalCalories = this.props.totalCalories;
     let timeOfDay = this.props.globalTimeOfDay;
     let sentence = `(total kcal: ${totalCalories})`
-
-    // 2400 / 3 700 + 300
-
+    
     if (timeOfDay === 'morning') {
       if (totalCalories < 100) {
         return `You should have more breakfast! ${sentence}`
@@ -89,13 +124,12 @@ class Blob extends React.Component {
       }
     } 
   }
-
+  
   componentDidUpdate(prevProps) {
     if (this.props.weeklyAverage !== prevProps.weeklyAverage || this.props.totalCalories !== prevProps.totalCalories) {
       this.setBlobStates();
     }
   }
-
   render() {
     return (
       <div>
