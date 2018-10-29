@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: 'nutrition',
+      view: 'login',
       globalTimeOfDay: 'morning',
 
       totalCalories: 0,
@@ -22,7 +22,6 @@ class App extends React.Component {
       // list of all users in the db:
       users: [],
       // current user's state
-      // TODO:: can we add gender?
       user: {  
         id: '',
         name: '',
@@ -54,6 +53,8 @@ class App extends React.Component {
 
     this.handleUserChange = this.handleUserChange.bind(this);
     this.getUserData = this.getUserData.bind(this);
+
+    this.renderView = this.renderView.bind(this);
   }
   
   // global methods
@@ -109,18 +110,19 @@ class App extends React.Component {
         globalTimeOfDay: 'morning'
       });
     }
-
   }
 
+  // my hacky way of setting a user in the login screen
   handleUserChange(e){
     this.setState({
-      user: JSON.parse(e.target.value)
+      user: JSON.parse(e.target.value),
+      view: 'nutrition'
     }, 
     () => {
       axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
         this.setState({totalCalories: JSON.parse(cal.data)})
       }).catch((err) => {
-        console.log('>>>> ERROR in getting cal from DB from axios', err)
+        console.log('ERROR sending post request to /api/getCalories/', err)
       }).then(() => {
         this.getSleepData();
       }).catch((err) => {
@@ -138,7 +140,7 @@ class App extends React.Component {
         })
       })
       .catch(err => {
-        console.log('error in getUserData on index.jsx: ', err)
+        console.log('ERROR sending get request to /api/user/', err)
       })
   }
 
@@ -157,7 +159,7 @@ class App extends React.Component {
       this.getAverage(this.state.sleepWeek);
     })
     .catch(err => {
-      console.log(`error getting sleepdata on client: ${err}`)
+      console.log('ERROR sending get request to /api/sleep/:id', err)
     });
   };
 
@@ -208,23 +210,19 @@ class App extends React.Component {
       this.getSleepData();
     })
     .catch(err => {
-      console.log('error posting new sleep night on client: ', err)
+      console.log('ERROR sending post request to /api/sleep/post', err)
     })
   }
 
+  // relays total calories to parent when there is an update from calories component
   getCalTotal(totalCalories){
     this.setState({totalCalories})
   }
 
-  render() {
-    //if user is not set then sends to login screen
-    {if (this.state.user.id !== '') {
+  renderView() {
+    if (this.state.user.id !== '') {
       return(
         <div className='main'>
-          <Welcome 
-            handleViewChange={this.handleViewChange}
-            view={this.state.view}
-          />
           <div className='blobWindow'>
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
@@ -251,17 +249,11 @@ class App extends React.Component {
               getCalTotal={this.getCalTotal.bind(this)}
             />
           </div>
-          <div className='footer'>
-            <div className='footerReg'>
-              ® Rocket Turtle
-            </div>
-          </div>
         </div>
       )
     } else {
       return(
         <div className='main'>
-          <Welcome />
           <Login 
             getUserData={this.getUserData} 
             handleUserChange={this.handleUserChange} 
@@ -269,14 +261,28 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange} 
             getSleepData={this.getSleepData}
             />
-          <div className='footer'>
-            <div className='footerReg'>
-              ® Rocket Turtle
-            </div>
-          </div>
         </div>
       )
-    }}
+    }
+  }
+
+  render() {
+    //if user is not set then sends to login screen
+    return (
+    <div>
+      <Welcome 
+        handleViewChange={this.handleViewChange}
+        view={this.state.view}
+      />
+      {this.renderView()}
+      <div className='footer'>
+        <div className='footerReg'>
+          ® Rocket Turtle
+        </div>
+      </div>
+    </div>
+    )
+    
   };
 }
 

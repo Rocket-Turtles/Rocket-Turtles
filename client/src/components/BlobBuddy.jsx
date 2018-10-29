@@ -5,8 +5,8 @@ class Blob extends React.Component {
     super(props);
     this.state= {
       name: 'Blobby',
-      calories: 'Hungry',
-      sleep: 'Normal'
+      calories: 'Normal',
+      sleep: 'Happy'
     }
   }
 
@@ -55,16 +55,16 @@ class Blob extends React.Component {
         this.setState({calories: 'Hyper'})
       }
     } else if (timeOfDay === 'afternoon') {
-      if (totalCalories < 1400) {
+      if (totalCalories < 700) {
         this.setState({calories: 'Hungry'})
-      } else if (totalCalories < 1900) {
+      } else if (totalCalories < 1400) {
         this.setState({calories: 'Normal'})
       } else {
         this.setState({calories: 'Hyper'})
       }
       
     } else if (timeOfDay === 'evening') {
-      if (totalCalories < 2000) {
+      if (totalCalories < 1400) {
         this.setState({calories: 'Hungry'})
       } else if (totalCalories < 2400) {
         this.setState({calories: 'Normal'})
@@ -131,15 +131,18 @@ class Blob extends React.Component {
       this.setCalorieState();
     }
   }
+  
   render() {
     return (
       <div>
-        I'm {this.state.name}.
+        <div className='blobMessage'>
+          I'm {this.state.name}.
+          <div>{this.checkSleep()}</div>
+          <div>{this.checkCalories()}</div>
+        </div>
         <div className='blobContainer'>
         <div className={`blob${this.state.calories}${this.state.sleep}`}></div>
         </div>
-        <div>{this.checkSleep()}</div>
-        <div>{this.checkCalories()}</div>
       </div>
     )
   }

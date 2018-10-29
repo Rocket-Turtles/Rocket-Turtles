@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const moment = require('moment');
+const authorization = 'no'; // This is our authorization
 
 const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
@@ -26,7 +27,7 @@ app.get('/api/user', (req, res) => {
       res.send(userData);
     })
     .catch(err => {
-      console.error(`error on server getting userData ${err}`);
+      console.error('ERROR on server getting userData', err);
     })
 })
 
@@ -36,7 +37,7 @@ app.post('/api/user', (req, res) => {
     .then(() => {
       res.send('Post Success');
     }).catch(err => {
-      console.error(`error on server posting user ${err}`);
+      console.error('ERROR on server posting user', err);
     })
 });
 
@@ -51,7 +52,7 @@ app.get('/api/sleep/:userID', (req, res) => {
       res.json(sleepData);
     })
     .catch(err => {
-      console.error(`error on server getting sleepData ${err}`)
+      console.error('ERROR on server getting sleepData', err)
     })
 
 });
@@ -70,7 +71,7 @@ app.post('/api/sleep/post', (req, res) => {
     res.end('sleep post successful')
     })
   .catch((err) => {
-    console.log('error posting', err)
+    console.error('ERROR inserting sleep info to db', err)
     res.end('error posting sleep data', err)
   })
 
@@ -107,7 +108,7 @@ app.post('/api/getCalories', (req, res) => {
     // send back to front end
     res.send(JSON.stringify(totalCal))
 
-  }).catch((err) => console.log('>>> ERROR in retrieving total cal from db', err.error))
+  }).catch((err) => console.error('ERROR in retrieving total cal from db', err))
 
 })
 
@@ -127,60 +128,65 @@ app.post('/api/calories', (req, res) => {
       api_key: USDA_TOKEN
     }
   }).catch((err)=> {
-    console.log('>>> ERROR getting query for food from USDA in query', err.error)
+    console.error('ERROR getting query for food from USDA in query', err)
   }).then((search) => {
-    const ndbno = search.data.list.item[0].ndbno;  // get top most relevant object (is array)
-
-    // make USDA API report request for nutrients
-    axios.get('https://api.nal.usda.gov/ndb/V2/reports/', {
-      params: {
-        format: 'json',
-        ndbno: ndbno,
-        api_key: USDA_TOKEN
-      }
-    }).then((report) => {
-      const nutrients = report.data.foods[0].food.nutrients;  // first food report
-
-      const nutObj = {};
-      for (let obj of nutrients) {
-        if (obj.nutrient_id === '208') {
-          nutObj.calories = parseFloat(obj.value)
-        } else if (obj.nutrient_id === '203') {
-          nutObj.protein = parseFloat(obj.value)
-        } else if (obj.nutrient_id === '205') {
-          nutObj.carbs = parseFloat(obj.value)
-        } else if (obj.nutrient_id === '291') {
-          nutObj.fiber = parseFloat(obj.value)
-        } else if (obj.nutrient_id === '269') {
-          nutObj.sugar = parseFloat(obj.value)
-        } else if (obj.nutrient_id === '204') {
-          nutObj.fat = parseFloat(obj.value)
+    if (search.data.list) {
+      const ndbno = search.data.list.item[0].ndbno;  // get top most relevant object (is array)
+  
+      // make USDA API report request for nutrients
+      axios.get('https://api.nal.usda.gov/ndb/V2/reports/', {
+        params: {
+          format: 'json',
+          ndbno: ndbno,
+          api_key: USDA_TOKEN
         }
-      }
-
-      nutObj.user = user;
-      nutObj.food = food;
-      nutObj.ndbno = parseInt(ndbno);
-      nutObj.currDate = moment().format('YYYY-MM-DD');
-
-      
-      // save 'food' and 'ndbno' to database
-      database('calories').insert(nutObj).then((data) => {
-        // console.log('>>> DB inserted!', nutObj.food) 
+      }).then((report) => {
+        const nutrients = report.data.foods[0].food.nutrients;  // first food report
+  
+        const nutObj = {};
+        for (let obj of nutrients) {
+          if (obj.nutrient_id === '208') {
+            nutObj.calories = parseFloat(obj.value)
+          } else if (obj.nutrient_id === '203') {
+            nutObj.protein = parseFloat(obj.value)
+          } else if (obj.nutrient_id === '205') {
+            nutObj.carbs = parseFloat(obj.value)
+          } else if (obj.nutrient_id === '291') {
+            nutObj.fiber = parseFloat(obj.value)
+          } else if (obj.nutrient_id === '269') {
+            nutObj.sugar = parseFloat(obj.value)
+          } else if (obj.nutrient_id === '204') {
+            nutObj.fat = parseFloat(obj.value)
+          }
+        }
+  
+        nutObj.user = user;
+        nutObj.food = food;
+        nutObj.ndbno = parseInt(ndbno);
+        nutObj.currDate = moment().format('YYYY-MM-DD');
+  
+        
+        // save 'food' and 'ndbno' to database
+        database('calories').insert(nutObj).then((data) => {
+          // console.log('>>> DB inserted!', nutObj.food) 
+        })
+        .catch((err) => {
+          console.log('>>> ERROR in inserting nutrients to DB!', err.error)
+        })
+        
+        // save calories to blob table
+        database('blobs').insert({calories: nutObj.calories, user: user}).catch((err) => {
+          console.log('>>> ERROR in inserting calories to blob table', err.error)
+        })
+        
+        // send to front end
+        res.status(201).send(nutObj)
+  
       })
-      .catch((err) => {
-        console.log('>>> ERROR in inserting nutrients to DB!', err.error)
-      })
-      
-      // save calories to blob table
-      database('blobs').insert({calories: nutObj.calories, user: user}).catch((err) => {
-        console.log('>>> ERROR in inserting calories to blob table', err.error)
-      })
-      
-      // send to front end
-      res.status(201).send(nutObj)
 
-    })
+    } else {
+      console.log('ERROR no food in USDA db')
+    }
 
   })
 
