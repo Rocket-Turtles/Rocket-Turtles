@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
+// ----------------- USERS -------------------
+
 // user routes grab user data from database
 app.get('/api/user', (req, res) => {
   database.select()
@@ -56,7 +58,7 @@ app.get('/api/sleep/:userID', (req, res) => {
 
 });
 
-app.post('/api/sleep/post', (req, res) => {
+app.post('/api/sleep', (req, res) => {
   const sleepObj = req.body;
   database('sleep').insert({
     user: sleepObj.user,
@@ -66,7 +68,6 @@ app.post('/api/sleep/post', (req, res) => {
     nightSlept: sleepObj.nightSlept
   })
   .then(() => {
-    console.log('post successful')
     res.end('sleep post successful')
     })
   .catch((err) => {
@@ -74,9 +75,10 @@ app.post('/api/sleep/post', (req, res) => {
     res.end('error posting sleep data', err)
   })
 
-  database('blobs').insert({
-    sleep: sleepObj.hourCount
-  })
+  // For the unused blob table
+  // database('blobs').insert({
+  //   sleep: sleepObj.hourCount
+  // })
 })
 
 
@@ -102,10 +104,8 @@ app.post('/api/getCalories', (req, res) => {
         break; 
       }
     }
-
     // send back to front end
     res.send(JSON.stringify(totalCal))
-
   }).catch((err) => console.error('ERROR in retrieving total cal from db', err))
 })
 
@@ -171,9 +171,9 @@ app.post('/api/calories', (req, res) => {
         })
         
         // save calories to blob table
-        database('blobs').insert({calories: nutObj.calories, user: user}).catch((err) => {
-          console.log('>>> ERROR in inserting calories to blob table', err.error)
-        })
+        // database('blobs').insert({calories: nutObj.calories, user: user}).catch((err) => {
+        //   console.log('>>> ERROR in inserting calories to blob table', err.error)
+        // })
         
         // send to front end
         res.status(201).send(nutObj)
