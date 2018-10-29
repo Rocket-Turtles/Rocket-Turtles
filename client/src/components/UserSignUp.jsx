@@ -36,7 +36,7 @@ class UserSignUp extends React.Component {
       this.props.getUserData();
     })
     .catch(err => {
-      console.error('error signing up', err);
+      console.error('ERROR sending post request to /api/user/', err);
     });
   }
 

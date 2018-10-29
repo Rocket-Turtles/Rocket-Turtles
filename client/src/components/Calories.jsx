@@ -30,7 +30,7 @@ class Calories extends React.Component {
       })
     })
     .catch((err) => {
-      console.log('>>>> ERROR in axios post request for USDA cal', err.error)
+      console.error('ERROR sending post request to /api/calories/', err)
     }).then(() => {
       
       // send total calories to parent
