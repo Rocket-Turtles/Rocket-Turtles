@@ -25,7 +25,7 @@ class App extends React.Component {
       // current user's state
       // TODO:: can we add gender?
       user: {  
-        id: 'b',
+        id: '',
         name: '',
         age: '',
         weight: '',

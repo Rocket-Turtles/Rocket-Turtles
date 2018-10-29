@@ -6,9 +6,9 @@ import SleepGraph from './SleepGraph.jsx'
 import "../../../node_modules/react-datetime/css/react-datetime.css";
 
 const Sleep = (props) => {
-  var yesterday = moment().subtract( 1, 'day' );
-  var valid = function( current ){
-      return current.isBefore( yesterday );
+  var today = moment();
+  var valid = function(current){
+      return current.isBefore(today);
   };
 
   return (

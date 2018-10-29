@@ -5,10 +5,30 @@ class Blob extends React.Component {
     super(props);
     this.state= {
       blob: {
-        name: 'Blobby'
+        name: 'Blobby',
+        calories: 'hyper',
+        sleep: 'tired'
       }
     }
     this.checkSleep = this.checkSleep.bind(this);
+  }
+
+  setBlobStates() {
+    let average = this.props.weeklyAverage;
+   
+    if (average < 6) {
+      this.setState({
+        sleep: 'tired'
+      })
+    } else if (average >= 6 && average < 10) {
+      this.setState({
+        sleep: 'normal'
+      })
+    } else if (average >= 10) {
+      this.setState({
+        sleep: 'neutral'
+      })
+    }
   }
 
   checkSleep() {
@@ -72,12 +92,81 @@ class Blob extends React.Component {
 
   }
 
+  renderBlob() {
+    console.log('hello 1')
+    if (this.state.calories === 'hyper') {
+      console.log('hello 2')
+      if (this.state.sleep === 'tired') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHyperTired'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'nomral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHyperNormal'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'neutral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHyperNeutral'></div>
+          </div>
+        );
+      }
+    } else if (this.state.calories === 'normal') {
+      console.log('hello?!?')
+      if (this.state.sleep === 'tired') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobNormalTired'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'nomral') {
+        console.log('hello??')
+        return (
+          <div className='blobContainer'>
+            <div className='blobNormalHappy'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'neutral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobNormalNeutral'></div>
+          </div>
+        );
+      }
+    } else if (this.state.calories === 'hungry') {
+      if (this.state.sleep === 'tired') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHungryTired'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'nomral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHungryHappy'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'neutral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHungryNeutral'></div>
+          </div>
+        );
+      }
+    }
+  }
+
   render() {
     return (
       <div>
         I'm {this.state.blob.name}.
-        <div className='blobContainer'>
-          <div className='blob'></div>
+        <div>
+          <div className='blobHungryNeutral'></div>
+          {this.renderBlob()}
         </div>
         <div>{this.checkSleep()}</div>
         <div>{this.checkCalories()}</div>
