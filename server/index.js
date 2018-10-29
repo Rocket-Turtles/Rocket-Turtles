@@ -2,13 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const moment = require('moment');
-const authorization = 'no'; // This is our authorization
 
 const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
 const database = require('knex')(configuration); // connect to DB via knex using env's settings
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +14,6 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
-
 
 // user routes grab user data from database
 app.get('/api/user', (req, res) => {
@@ -93,7 +90,6 @@ app.post('/api/getCalories', (req, res) => {
   .from('calories')
   .then((table) => {
     const today = new Date();
-
     const todayCalArr = [];
     let totalCal = 0;
 
@@ -111,7 +107,6 @@ app.post('/api/getCalories', (req, res) => {
     res.send(JSON.stringify(totalCal))
 
   }).catch((err) => console.error('ERROR in retrieving total cal from db', err))
-
 })
 
 
@@ -161,12 +156,11 @@ app.post('/api/calories', (req, res) => {
             nutObj.fat = parseFloat(obj.value)
           }
         }
-  
+
         nutObj.user = user;
         nutObj.food = food;
         nutObj.ndbno = parseInt(ndbno);
         nutObj.currDate = moment().format('YYYY-MM-DD');
-  
         
         // save 'food' and 'ndbno' to database
         database('calories').insert(nutObj).then((data) => {
@@ -183,17 +177,12 @@ app.post('/api/calories', (req, res) => {
         
         // send to front end
         res.status(201).send(nutObj)
-  
       })
-
     } else {
       console.log('ERROR no food in USDA db')
     }
-
   })
-
 })
-
 // ----------------- END -------------------
 
 app.listen(process.env.PORT || 3000, () => {
