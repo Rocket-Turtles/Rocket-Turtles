@@ -29,7 +29,7 @@ class UserSignUp extends React.Component {
       name: this.state._name[0].toUpperCase() + this.state._name.slice(1),
       age: this.state._age,
       weight: this.state._weight,
-      height: Number(this.state._heightFt + (this.state._heightIn / 12))
+      height: Number(this.state._heightFt + (this.state._heightIn / 12)) // Combines height ft and in into one number
     }
     Axios.post('/api/user', newUser)
     .then(() => {

@@ -5,8 +5,8 @@ class Blob extends React.Component {
     super(props);
     this.state= {
       name: 'Blobby',
-      calories: 'Hungry',
-      sleep: 'Normal'
+      calories: 'Normal',
+      sleep: 'Happy'
     }
   }
 
