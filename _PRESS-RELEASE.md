@@ -16,29 +16,29 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Fun Fitness Tracker App ##
-  > Keep yourself and your rocket turtle healthy
+## Fun fitness tracker app ##
+  > Keep yourself and your Blob healthy!
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## An app for those who need the extra motivation ##
+  > Your blob's happiness relies on your lifestyle.
 
 ## Summary ##
   > If your health declines so does your turtle's. Use your love for it as motivation to keep both of you happy and healthy!
 
-## Problem ##
-  > Describe the problem your product solves.
+## Motivation is key ##
+  > Health tracking apps rely on user motivation. Simple health apps lack motivation.
 
-## Solution ##
-  > Describe how your product elegantly solves the problem.
+## Another creature to take care of ##
+  > Rocket Turtle provides a Blob that responds to user attention. The looks make it irresistible to neglect!
 
-## Quote from You ##
-  > "Truely phenomenal" - Yirey
+## Quote from the makers ##
+  > "A fun app" - Yirey
 
-## How to Get Started ##
-  > Describe how easy it is to get started.
+## How to get started ##
+  > Sign up, add your data, and see your blob in action!
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+## Customer quote ##
+  > "Neat" - Hunter
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+## Get started today ##
+  > Head over to our website and adopt a new Blob!
