@@ -62,12 +62,6 @@ class App extends React.Component {
     this.setGlobalTime();
   };
 
-  componentWillReceiveProps() {
-    this.getUserData();
-    this.setGlobalTime();
-    this.getSleepData();
-  }
-
   handleViewChange(option) {
     if (option === 'nutrition') {
       this.setState({
@@ -211,7 +205,7 @@ class App extends React.Component {
     .then(() => {
       console.log('post response received');
       // honestly i've put a bunch of these getSleepDatas trying to track down a bug. at this point im not sure what's being used and what isn't
-      //this.getSleepData();
+      this.getSleepData();
     })
     .catch(err => {
       console.log('error posting new sleep night on client: ', err)
@@ -244,6 +238,7 @@ class App extends React.Component {
               user={this.state.user}  // used also in calories component
               globalTimeOfDay={this.state.globalTimeOfDay}
               
+              //sleep
               getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
