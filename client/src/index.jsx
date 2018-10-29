@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: 'nutrition',
+      view: 'login',
       globalTimeOfDay: 'morning',
 
       totalCalories: 0,
@@ -53,6 +53,8 @@ class App extends React.Component {
 
     this.handleUserChange = this.handleUserChange.bind(this);
     this.getUserData = this.getUserData.bind(this);
+
+    this.renderView = this.renderView.bind(this);
   }
   
   // global methods
@@ -113,7 +115,8 @@ class App extends React.Component {
   // my hacky way of setting a user in the login screen
   handleUserChange(e){
     this.setState({
-      user: JSON.parse(e.target.value)
+      user: JSON.parse(e.target.value),
+      view: 'nutrition'
     }, 
     () => {
       axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
@@ -216,15 +219,10 @@ class App extends React.Component {
     this.setState({totalCalories})
   }
 
-  render() {
-    //if user is not set then sends to login screen
+  renderView() {
     if (this.state.user.id !== '') {
       return(
         <div className='main'>
-          <Welcome 
-            handleViewChange={this.handleViewChange}
-            view={this.state.view}
-          />
           <div className='blobWindow'>
             <BlobWindow 
               globalTimeOfDay={this.state.globalTimeOfDay}
@@ -251,17 +249,11 @@ class App extends React.Component {
               getCalTotal={this.getCalTotal.bind(this)}
             />
           </div>
-          <div className='footer'>
-            <div className='footerReg'>
-              ® Rocket Turtle
-            </div>
-          </div>
         </div>
       )
     } else {
       return(
         <div className='main'>
-          <Welcome />
           <Login 
             getUserData={this.getUserData} 
             handleUserChange={this.handleUserChange} 
@@ -269,14 +261,28 @@ class App extends React.Component {
             handleViewChange={this.handleViewChange} 
             getSleepData={this.getSleepData}
             />
-          <div className='footer'>
-            <div className='footerReg'>
-              ® Rocket Turtle
-            </div>
-          </div>
         </div>
       )
     }
+  }
+
+  render() {
+    //if user is not set then sends to login screen
+    return (
+    <div>
+      <Welcome 
+        handleViewChange={this.handleViewChange}
+        view={this.state.view}
+      />
+      {this.renderView()}
+      <div className='footer'>
+        <div className='footerReg'>
+          ® Rocket Turtle
+        </div>
+      </div>
+    </div>
+    )
+    
   };
 }
 
