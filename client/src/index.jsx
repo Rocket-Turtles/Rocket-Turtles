@@ -4,9 +4,9 @@ import axios from 'axios';
 import moment from 'moment';
 
 import Welcome from './components/Welcome.jsx'
-import Login from './components/Login.jsx'
-import Sidebar from './components/Sidebar.jsx'
-import BlobWindow from './components/BlobWindow.jsx';
+import Login from './components/Login/Login.jsx'
+import Sidebar from './components/Sidebar/Sidebar.jsx'
+import BlobWindow from './components/Blob/BlobWindow.jsx';
 
 import '../css/style.css'
 
@@ -17,11 +17,9 @@ class App extends React.Component {
       view: 'login',
       globalTimeOfDay: 'morning',
 
-      totalCalories: 0,
-
       // list of all users in the db:
       users: [],
-      // current user's state
+      // current user's state:
       user: {  
         id: '',
         name: '',
@@ -29,6 +27,9 @@ class App extends React.Component {
         weight: '',
         height: ''
       },
+
+      //calories state:
+      totalCalories: 0,
 
       //sleep states:
       sleepWeek: [{
@@ -53,8 +54,6 @@ class App extends React.Component {
 
     this.handleUserChange = this.handleUserChange.bind(this);
     this.getUserData = this.getUserData.bind(this);
-
-    this.renderView = this.renderView.bind(this);
   }
   
   // global methods
@@ -282,7 +281,6 @@ class App extends React.Component {
       </div>
     </div>
     )
-    
   };
 }
 

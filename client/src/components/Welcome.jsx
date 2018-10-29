@@ -1,9 +1,7 @@
 import React from 'react';
-import '../../css/style.css'
 
 //this is the navigation bar/title of the site. It always renders above either the login or blob/user pages.
 //it has a handleViewChange function passed down from index.jsx which switches between different views.
-
 
 const Welcome = (props) => {
   if (props.view !== 'login') {
