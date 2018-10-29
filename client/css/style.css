@@ -8,6 +8,7 @@ I kinda just hacked it together until it worked.
 body {
   font-family: 'Niramit', sans-serif;
   background-color: rgba(209, 209, 209, 0.726);
+  margin-left: 0;
 }
 
 /* nav = Header Bar */
@@ -166,7 +167,7 @@ three blob faces for hyper speed
   margin: 50px;
 }
 
-.blobHyperNormal {
+.blobHyperHappy {
   position: absolute;
   width: 280px;
   height: 280px;
