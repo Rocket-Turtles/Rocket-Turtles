@@ -28,4 +28,13 @@ exports.seed = function (knex, Promise) {
         currDate: moment().format('YYYY-MM-DD')
       }])
     })
+    .then(() => {
+      return knex('blobs').insert([{
+        id: 1,
+        name: 'Blobby',
+        user: 1,
+        sleep: 8,
+        calories: 200
+      }])
+    })
 };
