@@ -4,7 +4,6 @@ import axios from 'axios';
 class Calories extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       food: '',  // food input from user
       calDisplay: false,  // whether to display retrieved calories from USDA
@@ -61,14 +60,11 @@ class Calories extends React.Component {
           <input type="text" name="calories" onChange={this.handleChange.bind(this)}/>
           <input type="submit" name="calories" onClick={this.handleClick.bind(this)}/>
         </form>
-
         {calDisElem}
         <div>Today's Total: {totalCal} kcal</div>
       </div>
-
     )
   }
-
 } 
 
 export default Calories;

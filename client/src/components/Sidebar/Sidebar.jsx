@@ -2,8 +2,8 @@ import React from 'react';
 import Sleep from './Sleep.jsx';
 import UserProfile from './UserProfile.jsx';
 import Calories from './Calories.jsx';
-//renders the sidebar on the right. user info is static and sleep or nutrition renders depending on view state.
 
+//renders the sidebar on the right. user info is static and sleep or nutrition renders depending on view state.
 const Sidebar = (props) => {
   const renderView = (viewOption) => {
     if (viewOption === 'nutrition') {
@@ -13,11 +13,10 @@ const Sidebar = (props) => {
         totalCalories={props.totalCalories}
         id={props.user.id}
         getCalTotal={props.getCalTotal}
-
-      />
-      )
+      />)
     } else {
-      return (<Sleep 
+      return (
+      <Sleep 
         user={props.user}
         sleepWeek={props.sleepWeek}
         weeklyAverage={props.weeklyAverage}
@@ -27,7 +26,6 @@ const Sidebar = (props) => {
       />)
     }
   }
-
   return (
     <div>
       <UserProfile 
