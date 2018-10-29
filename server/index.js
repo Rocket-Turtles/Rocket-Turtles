@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const moment = require('moment');
+const authorization = 'no'; // This is our authorization
 
 const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development

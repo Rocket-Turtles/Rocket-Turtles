@@ -12,14 +12,17 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
         handleViewChange={handleViewChange}
         handleUserChange={handleUserChange}
       />
-      <select 
-        onChange={(e) => handleUserChange(e)}
-        onClick={() => handleViewChange('nutrition')}>
-        <option>Select</option>
-        {users.map((user, i) => {
-          return <option value={JSON.stringify(user)} key={i}>{user.name}</option>
-        })}
-      </select>
+      {/* User Select List */}
+      <div>
+        <select 
+          onChange={(e) => handleUserChange(e)}
+          onClick={() => handleViewChange('nutrition')}>
+          <option>Select</option>
+          {users.map((user, i) => {
+            return <option value={JSON.stringify(user)} key={i}>{user.name}</option>
+          })}
+        </select>
+      </div>
     </div>
   )
 }

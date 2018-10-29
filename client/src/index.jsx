@@ -22,7 +22,6 @@ class App extends React.Component {
       // list of all users in the db:
       users: [],
       // current user's state
-      // TODO:: can we add gender?
       user: {  
         id: '',
         name: '',
@@ -109,9 +108,9 @@ class App extends React.Component {
         globalTimeOfDay: 'morning'
       });
     }
-
   }
 
+  // my hacky way of setting a user in the login screen
   handleUserChange(e){
     this.setState({
       user: JSON.parse(e.target.value)
@@ -211,7 +210,7 @@ class App extends React.Component {
   }
 
   render() {
-    {if (this.state.user.id !== '') {
+    if (this.state.user.id !== '') {
       return(
         <div className='main'>
           <Welcome 
@@ -267,7 +266,7 @@ class App extends React.Component {
           </div>
         </div>
       )
-    }}
+    }
   };
 }
 
