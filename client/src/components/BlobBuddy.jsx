@@ -31,7 +31,7 @@ class Blob extends React.Component {
     }
 
     if (totalCalories) {
-      
+
     }
 
   }
@@ -98,7 +98,6 @@ class Blob extends React.Component {
   }
 
   renderBlob() {
-    console.log('hello 1')
     if (this.state.calories === 'hyper') {
       if (this.state.sleep === 'tired') {
         return (

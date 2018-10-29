@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Niramit');
 
+/*
+I'm still learning css so there could be some odd or useless stuff in here
+I kinda just hacked it together until it worked.
+*/
+
 body {
   font-family: 'Niramit', sans-serif;
   background-color: rgba(209, 209, 209, 0.726);
@@ -60,6 +65,7 @@ nav {
 
 .sidebar {
   display: inline-flex;
+  height: 576px;
   width: 30%;
   float: right;
   margin-bottom: 40px;
@@ -121,6 +127,13 @@ nav {
 .blobContainer {
   border: 1px solid black;
 }
+
+/*
+i didn't spend a TON of time figuring out how to swap blob bounce speed and face
+this is a pretty repetative solution that could be refactored.
+there are 3 calorie states and 3 sleep states so that makes 9 possible combinations
+i made a class for each possible and swap out className depending on the blob's state.
+*/
 
 /*
 three blob faces for hyper speed
@@ -219,6 +232,10 @@ three faces for blobNormal speed
   margin: 50px;
 }
 
+/*
+three faces for blob hungry speed
+*/
+
 .blobHungryTired {
   position: absolute;
   width: 280px;
@@ -264,56 +281,9 @@ three faces for blobNormal speed
   margin: 50px;
 }
 
-
-
-
-
-/* 
-.blobFaceHappy {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  left: 25%;
-  margin-left: auto;
-  margin-right: auto;
-  content: url('../../images/blob/face/face-happy.png');
-  animation: bounce 1s;
-  transform: translateY(0px);
-  animation-iteration-count: infinite;
-  position: absolute;
-  margin: 50px;
-}
-
-.blobFaceTired {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  left: 25%;
-  margin-left: auto;
-  margin-right: auto;
-  content: url('../../images/blob/face/face-tired.png');
-  animation: bounce 1s;
-  transform: translateY(0px);
-  animation-iteration-count: infinite;
-  position: absolute;
-  margin: 50px;
-}
-
-.blobFaceNeutral {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  left: 25%;
-  margin-left: auto;
-  margin-right: auto;
-  content: url('../../images/blob/face/face-neutral.png');
-  animation: bounce 1s;
-  transform: translateY(0px);
-  animation-iteration-count: infinite;
-  position: absolute;
-  margin: 50px;
-} */
-
+/*
+this is the animation for the blob's bounce
+*/
 @keyframes bounce {
 	0% {
     top: 0px;

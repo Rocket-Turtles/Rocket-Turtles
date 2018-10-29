@@ -5,6 +5,9 @@ import SleepGraph from './SleepGraph.jsx'
 
 import "../../../node_modules/react-datetime/css/react-datetime.css";
 
+//this is the sleep view sidebar component
+//i used react-datetime for the time selector
+
 const Sleep = (props) => {
   var today = moment();
   var valid = function(current){
@@ -53,7 +56,7 @@ const Sleep = (props) => {
         Submit
       </button>
       <br></br>
-      {/* Start of Sleep Week Table */}
+      {/* Start of Sleep Week Graph */}
       <div>
         Average:{' ' + props.weeklyAverage + ' hrs'}
       </div>

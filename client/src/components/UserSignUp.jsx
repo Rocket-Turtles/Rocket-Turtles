@@ -32,7 +32,7 @@ class UserSignUp extends React.Component {
     }
     Axios.post('/api/user', newUser)
     .then(() => {
-      this.props.getUserData();
+      //this.props.getUserData();
     })
     .catch(err => {
       console.log('error signing up',)

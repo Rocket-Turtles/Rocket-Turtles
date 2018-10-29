@@ -4,6 +4,9 @@ import {HorizontalBar} from 'react-chartjs-2';
 
 import '../../css/style.css'
 
+//this component holds the sleep graph. It uses moment.js and react-chart
+//above the render are two objects: data and options. they are used to feed data to the graph.
+
 const SleepGraph = (props) => {
 
   const data = {
@@ -56,6 +59,7 @@ const SleepGraph = (props) => {
       }
     ]
   }
+
   const options = {
     legend: {
       display: false
