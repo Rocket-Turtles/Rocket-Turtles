@@ -202,7 +202,7 @@ class App extends React.Component {
       endHour: end,
       nightSlept: nightSlept
     }
-    axios.post('/api/sleep/post', sleepObj)
+    axios.post('/api/sleep', sleepObj)
     .then(() => {
       console.log('post response received');
       // honestly i've put a bunch of these getSleepDatas trying to track down a bug. at this point im not sure what's being used and what isn't
