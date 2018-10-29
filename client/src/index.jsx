@@ -143,7 +143,9 @@ class App extends React.Component {
   }
 
   //sleep methods:
-  //gets sleep data
+  //gets sleep data 
+  //  sends axios request based on current user Id
+  //  receives an up to 7 length array of objects each with information on a night of sleep data
   getSleepData() {
     axios.get(`/api/sleep/${this.state.user.id}`)
     .then(sleepData => {
@@ -168,14 +170,14 @@ class App extends React.Component {
     })
   }
 
-  //gets time for new going to sleep entry
+  //gets date and time data when selecting when you went to sleep
   getSleepTime(date) {
     this.setState({
       sleepTime: date.toDate()
     });
   }
-
-  //gets time for new waking up entry
+  
+  //gets date and time data when selecting when you woke up
   getWakeTime(date) {
     this.setState({
       wakeTime: date.toDate()
@@ -184,11 +186,14 @@ class App extends React.Component {
 
   //posts new sleep entry
   postSleepEntry() {
+    //calculates the difference in time between waking up and going to bed
     let duration = moment.duration(moment(this.state.wakeTime).diff(moment(this.state.sleepTime)));
     let hourCount = duration.asHours();
+    //these format the moment object into what the db is expecting
     let nightSlept = moment(this.state.sleepTime).format('YYYY-MM-DD');
     let start = moment(this.state.sleepTime).format('hh:mm A')
     let end = moment(this.state.wakeTime).format('hh:mm A')
+    //formats all the above data into an object that can be inserted into the db
     let sleepObj = {
       user: this.state.user.id,
       hourCount: hourCount,
@@ -199,6 +204,7 @@ class App extends React.Component {
     axios.post('/api/sleep/post', sleepObj)
     .then(() => {
       console.log('post response received');
+      // honestly i've put a bunch of these getSleepDatas trying to track down a bug. at this point im not sure what's being used and what isn't
       this.getSleepData();
     })
     .catch(err => {
@@ -211,6 +217,7 @@ class App extends React.Component {
   }
 
   render() {
+    //if user is not set then sends to login screen
     {if (this.state.user.id !== '') {
       return(
         <div className='main'>
@@ -231,7 +238,8 @@ class App extends React.Component {
               user={this.state.user}  // used also in calories component
               globalTimeOfDay={this.state.globalTimeOfDay}
               
-              // getSleepData={this.getSleepData}
+              //sleep
+              getSleepData={this.getSleepData}
               sleepWeek={this.state.sleepWeek}
               weeklyAverage={this.state.weeklyAverage}
               getSleepTime={this.getSleepTime}
@@ -259,6 +267,7 @@ class App extends React.Component {
             handleUserChange={this.handleUserChange} 
             users={this.state.users}
             handleViewChange={this.handleViewChange} 
+            getSleepData={this.getSleepData}
             />
           <div className='footer'>
             <div className='footerReg'>
