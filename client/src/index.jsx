@@ -13,7 +13,6 @@ import '../css/style.css'
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       view: 'nutrition',
       globalTimeOfDay: 'morning',
@@ -54,7 +53,6 @@ class App extends React.Component {
     this.postSleepEntry = this.postSleepEntry.bind(this);
 
     this.handleUserChange = this.handleUserChange.bind(this);
-
     this.getUserData = this.getUserData.bind(this);
   }
   
@@ -68,11 +66,11 @@ class App extends React.Component {
     if (option === 'nutrition') {
       this.setState({
         view: 'nutrition'
-      })
+      });
     } else if (option === 'sleep') {
       this.setState({
         view: 'sleep'
-      })
+      });
       this.getSleepData();
     } else if (option === 'login') {
       this.setState({
@@ -84,12 +82,11 @@ class App extends React.Component {
           weight: '',
           height: ''
         }
-      })
+      });
     }
   };
 
   setGlobalTime() {
-
     const afternoon = 12;
     const evening = 17;
     const night = 20;
@@ -98,19 +95,19 @@ class App extends React.Component {
     if (currentHour >= afternoon && currentHour <= evening) {
       this.setState({
         globalTimeOfDay: 'afternoon'
-      })
+      });
     } else if (currentHour >= evening && currentHour <= night) {
       this.setState({
         globalTimeOfDay: 'evening'
-      })
+      });
     } else if (currentHour >= night) {
       this.setState({
         globalTimeOfDay: 'night'
-      })
+      });
     } else {
       this.setState({
         globalTimeOfDay: 'morning'
-      })
+      });
     }
 
   }
@@ -118,18 +115,20 @@ class App extends React.Component {
   handleUserChange(e){
     this.setState({
       user: JSON.parse(e.target.value)
-    }, () => {
-
+    }, 
+    () => {
       axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
         this.setState({totalCalories: JSON.parse(cal.data)})
       }).catch((err) => {
         console.log('>>>> ERROR in getting cal from DB from axios', err)
+      }).then(() => {
+        this.getSleepData();
+      }).catch((err) => {
+        console.error('ERROR on getting sleepData', err);
       })
-
     })
   }
 
-  //user methods
   //get user data
   getUserData() {
     axios.get('/api/user')
