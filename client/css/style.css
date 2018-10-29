@@ -10,10 +10,13 @@ body {
   background-color: rgba(209, 209, 209, 0.726);
 }
 
+/* nav = Header Bar */
 nav {
   display: flex;
-  margin: 40px auto 20px;
+  /* margin: 40px auto 20px; */
   width: 100%;
+  top: 0;
+  position: absolute;
   align-items: center;
   height: 60px;
   background-color: rgba(46, 204, 113, 0.8);
@@ -23,7 +26,9 @@ nav {
 
 .footer {
   display: flex;
-  margin: 40px auto 20px;
+  /* margin: 40px auto 20px; */
+  position: absolute;
+  bottom: 0;
   width: 100%;
   align-items: center;
   height: 60px;
@@ -60,12 +65,15 @@ nav {
 
 .main {
   margin: auto;
-  width: 65%;
+  margin-top: 60px;
+  /* width: 65%; */
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .sidebar {
   display: inline-flex;
-  height: 576px;
+  height: 516px;
   width: 30%;
   float: right;
   margin-bottom: 40px;
@@ -120,12 +128,18 @@ nav {
   position: relative;
   display: inline-flex;
   background-color: rgba(184, 184, 184, 0.384);
-  height: 576px;
+  height: 516px;
   width: 67%;
 }
 
 .blobContainer {
-  border: 1px solid black;
+  margin-top: 10px;
+  /* border: 1px solid black; */
+}
+
+.blobMessage {
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 /*
@@ -145,11 +159,10 @@ three blob faces for hyper speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyTired.png');
-  animation: bounce .6s;
-  transform: translateY(0px);
-  animation-iteration-count: infinite;
-  position: absolute;
+  content: url('../../images/blob/blob-tired.png');
+  /* animation: bounce .6s; */
+  /* transform: translateY(0px); */
+  /* animation-iteration-count: infinite; */
   margin: 50px;
 }
 
@@ -160,11 +173,10 @@ three blob faces for hyper speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyHappy.png');
+  content: url('../../images/blob/blob-happy.png');
   animation: bounce .6s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
-  position: absolute;
   margin: 50px;
 }
 
@@ -175,11 +187,10 @@ three blob faces for hyper speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyNeutral.png');
+  content: url('../../images/blob/blob-neutral.png');
   animation: bounce .6s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
-  position: absolute;
   margin: 50px;
 }
 
@@ -194,11 +205,10 @@ three faces for blobNormal speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyTired.png');
-  animation: bounce 1s;
-  transform: translateY(0px);
-  animation-iteration-count: infinite;
-  position: absolute;
+  content: url('../../images/blob/blob-tired.png');
+  /* animation: bounce 1s; */
+  /* transform: translateY(0px); */
+  /* animation-iteration-count: infinite; */
   margin: 50px;
 }
 
@@ -209,11 +219,10 @@ three faces for blobNormal speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyHappy.png');
+  content: url('../../images/blob/blob-cool.png');
   animation: bounce 1s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
-  position: absolute;
   margin: 50px;
 }
 
@@ -224,11 +233,10 @@ three faces for blobNormal speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyNeutral.png');
+  content: url('../../images/blob/blob-neutral.png');
   animation: bounce 1s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
-  position: absolute;
   margin: 50px;
 }
 
@@ -240,14 +248,14 @@ three faces for blob hungry speed
   position: absolute;
   width: 280px;
   height: 280px;
+  top: 220px;
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyTired.png');
-  animation: bounce 1.4s;
-  transform: translateY(0px);
-  animation-iteration-count: infinite;
-  position: absolute;
+  content: url('../../images/blob/blob-sad.png');
+  /* animation: bounce 1.4s; */
+  /* transform: translateY(0px); */
+  /* animation-iteration-count: infinite; */
   margin: 50px;
 }
 
@@ -258,11 +266,10 @@ three faces for blob hungry speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyHappy.png');
+  content: url('../../images/blob/blob-neutral.png');
   animation: bounce 1.4s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
-  position: absolute;
   margin: 50px;
 }
 
@@ -273,11 +280,10 @@ three faces for blob hungry speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-bodyNeutral.png');
+  content: url('../../images/blob/blob-neutral.png');
   animation: bounce 1.4s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
-  position: absolute;
   margin: 50px;
 }
 
