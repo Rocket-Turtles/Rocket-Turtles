@@ -119,7 +119,7 @@ class App extends React.Component {
       axios.post('/api/getCalories', {user: this.state.user.id}).then((cal) => {
         this.setState({totalCalories: JSON.parse(cal.data)})
       }).catch((err) => {
-        console.log('>>>> ERROR in getting cal from DB from axios', err)
+        console.log('ERROR sending post request to /api/getCalories/', err)
       }).then(() => {
         this.getSleepData();
       }).catch((err) => {
@@ -137,7 +137,7 @@ class App extends React.Component {
         })
       })
       .catch(err => {
-        console.log('error in getUserData on index.jsx: ', err)
+        console.log('ERROR sending get request to /api/user/', err)
       })
   }
 
@@ -156,7 +156,7 @@ class App extends React.Component {
       this.getAverage(this.state.sleepWeek);
     })
     .catch(err => {
-      console.log(`error getting sleepdata on client: ${err}`)
+      console.log('ERROR sending get request to /api/sleep/:id', err)
     });
   };
 
@@ -207,7 +207,7 @@ class App extends React.Component {
       this.getSleepData();
     })
     .catch(err => {
-      console.log('error posting new sleep night on client: ', err)
+      console.log('ERROR sending post request to /api/sleep/post', err)
     })
   }
 
