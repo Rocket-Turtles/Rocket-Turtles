@@ -141,7 +141,8 @@ class Blob extends React.Component {
           <div>{this.checkCalories()}</div>
         </div>
         <div className='blobContainer'>
-        <div className={`blob${this.state.calories}${this.state.sleep}`}></div>
+          {/* Blob Sprite */}
+          <div className={`blob${this.state.calories}${this.state.sleep}`}></div> 
         </div>
       </div>
     )

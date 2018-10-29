@@ -2,13 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import {HorizontalBar} from 'react-chartjs-2';
 
-import '../../css/style.css'
-
 //this component holds the sleep graph. It uses moment.js and react-chart
 //above the render are two objects: data and options. they are used to feed data to the graph.
 
 const SleepGraph = (props) => {
-
   const data = {
     labels: props.sleepWeek.map(night => {
       return moment(night.nightSlept).format('ddd MMM Do')
@@ -75,7 +72,6 @@ const SleepGraph = (props) => {
   }
 
   return (
-
     <div className='sleepGraph'> 
       <HorizontalBar 
         sleepWeek={props.sleepWeek}

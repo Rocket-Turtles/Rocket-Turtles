@@ -3,7 +3,7 @@ import moment from 'moment';
 import DateTime from 'react-datetime';
 import SleepGraph from './SleepGraph.jsx'
 
-import "../../../node_modules/react-datetime/css/react-datetime.css";
+import "../../../../node_modules/react-datetime/css/react-datetime.css";
 
 //this is the sleep view sidebar component
 //i used react-datetime for the time selector

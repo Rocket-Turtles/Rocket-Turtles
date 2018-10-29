@@ -1,8 +1,6 @@
 import React from 'react';
 import UserSignUp from './UserSignUp.jsx'
 
-import '../../css/style.css'
-
 const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
   return (
     <div> 
@@ -13,6 +11,7 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
         handleUserChange={handleUserChange}
       />
       {/* User Select List */}
+      {/* Eventually replace this with an actual login component with authentication */}
       <div>
         <select 
           onChange={(e) => handleUserChange(e)}
