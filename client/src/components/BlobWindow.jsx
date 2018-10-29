@@ -15,7 +15,6 @@ const BlobWindow = ({globalTimeOfDay, weeklyAverage, totalCalories}) => {
         weeklyAverage={weeklyAverage}
         totalCalories={totalCalories}
         globalTimeOfDay={globalTimeOfDay}
-
       />
     </div>
   )

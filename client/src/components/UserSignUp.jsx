@@ -14,6 +14,7 @@ class UserSignUp extends React.Component {
     this.handleNumber = this.handleNumber.bind(this);
   }
 
+  // helper function to ensure specific fields only accepts numbers
   handleNumber(e, state) {
     if (!isNaN(e.target.value)) {
       this.setState({[state]: Number(e.target.value)})
@@ -25,7 +26,7 @@ class UserSignUp extends React.Component {
   submit(e) {
     e.preventDefault();
     let newUser = {
-      name: this.state._name,
+      name: this.state._name[0].toUpperCase() + this.state._name.slice(1),
       age: this.state._age,
       weight: this.state._weight,
       height: Number(this.state._heightFt + (this.state._heightIn / 12))
@@ -35,7 +36,7 @@ class UserSignUp extends React.Component {
       this.props.getUserData();
     })
     .catch(err => {
-      console.log('error signing up',)
+      console.error('error signing up', err);
     });
   }
 
