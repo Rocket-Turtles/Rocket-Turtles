@@ -131,6 +131,7 @@ class Blob extends React.Component {
       this.setCalorieState();
     }
   }
+  
   render() {
     return (
       <div>
