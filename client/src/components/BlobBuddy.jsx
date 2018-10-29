@@ -57,14 +57,14 @@ class Blob extends React.Component {
     } else if (timeOfDay === 'afternoon') {
       if (totalCalories < 700) {
         this.setState({calories: 'Hungry'})
-      } else if (totalCalories < 1500) {
+      } else if (totalCalories < 1400) {
         this.setState({calories: 'Normal'})
       } else {
         this.setState({calories: 'Hyper'})
       }
       
     } else if (timeOfDay === 'evening') {
-      if (totalCalories < 1500) {
+      if (totalCalories < 1400) {
         this.setState({calories: 'Hungry'})
       } else if (totalCalories < 2400) {
         this.setState({calories: 'Normal'})
