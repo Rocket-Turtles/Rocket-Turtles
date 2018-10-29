@@ -128,6 +128,7 @@ class Blob extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.weeklyAverage !== prevProps.weeklyAverage || this.props.totalCalories !== prevProps.totalCalories) {
       this.setBlobStates();
+      this.setCalorieState();
     }
   }
   render() {
