@@ -79,7 +79,7 @@ const SleepGraph = (props) => {
     <div className='sleepGraph'> 
       <HorizontalBar 
         sleepWeek={props.sleepWeek}
-        height={220}
+        height={180}
         data={data}
         options={options}
         redraw
