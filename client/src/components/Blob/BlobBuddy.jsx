@@ -127,7 +127,7 @@ class Blob extends React.Component {
     } 
   }
   
-  // ?
+  // Updates the blob states whenever the prop updates
   componentDidUpdate(prevProps) {
     if (this.props.weeklyAverage !== prevProps.weeklyAverage || this.props.totalCalories !== prevProps.totalCalories) {
       this.setBlobStates();
