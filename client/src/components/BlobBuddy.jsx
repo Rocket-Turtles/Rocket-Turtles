@@ -4,11 +4,31 @@ class Blob extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-      blob: {
-        name: 'Blobby'
-      }
+      name: 'Blobby',
+      calories: 'hyper',
+      sleep: 'normal'
     }
     this.checkSleep = this.checkSleep.bind(this);
+    this.renderBlob = this.renderBlob.bind(this);
+    this.setBlobStates = this.setBlobStates.bind(this);
+  }
+
+  setBlobStates() {
+    let average = this.props.weeklyAverage;
+   
+    if (average < 6) {
+      this.setState({
+        sleep: 'tired'
+      })
+    } else if (average >= 6 && average < 10) {
+      this.setState({
+        sleep: 'normal'
+      })
+    } else if (average >= 10) {
+      this.setState({
+        sleep: 'neutral'
+      })
+    }
   }
 
   checkSleep() {
@@ -72,11 +92,81 @@ class Blob extends React.Component {
 
   }
 
+  renderBlob() {
+    if (this.state.calories === 'hyper') {
+      if (this.state.sleep === 'tired') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHyperTired'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'normal') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHyperNormal'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'neutral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHyperNeutral'></div>
+          </div>
+        );
+      }
+    } else if (this.state.calories === 'normal') {
+      if (this.state.sleep === 'tired') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobNormalTired'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'normal') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobNormalHappy'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'neutral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobNormalNeutral'></div>
+          </div>
+        );
+      }
+    } else if (this.state.calories === 'hungry') {
+      if (this.state.sleep === 'tired') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHungryTired'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'normal') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHungryHappy'></div>
+          </div>
+        );
+      } else if (this.state.sleep === 'neutral') {
+        return (
+          <div className='blobContainer'>
+            <div className='blobHungryNeutral'></div>
+          </div>
+        );
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.setBlobStates()
+  }
+
   render() {
     return (
       <div>
-        I'm {this.state.blob.name}.
-        <div className='blob'></div>
+        I'm {this.state.name}.
+        <div>
+          {this.renderBlob()}
+        </div>
         <div>{this.checkSleep()}</div>
         <div>{this.checkCalories()}</div>
       </div>
