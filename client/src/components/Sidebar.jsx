@@ -6,7 +6,7 @@ import Calories from './Calories.jsx';
 
 import '../../css/style.css'
 
-
+//renders the sidebar on the right. user info is static and sleep or nutrition renders depending on view state.
 
 const Sidebar = (props) => {
 

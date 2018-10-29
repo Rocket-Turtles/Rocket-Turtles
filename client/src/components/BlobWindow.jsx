@@ -4,6 +4,8 @@ import Blob from '../components/BlobBuddy.jsx'
 
 import '../../css/style.css'
 
+//this component was intended to be a parent to the blob and the unused background component
+
 const BlobWindow = ({globalTimeOfDay, weeklyAverage, totalCalories}) => {
   
   return (
