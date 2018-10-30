@@ -61,7 +61,8 @@ class App extends React.Component {
   // global methods
   componentDidMount() {
     console.log('abdullah');
-    console.log('Micah Component: ONLINE');
+    console.log("Chris Athanas was here");
+    console.log("Micah Component: ONLINE");
     console.log("James reporting for duty");
     this.getUserData();
     this.setGlobalTime();
