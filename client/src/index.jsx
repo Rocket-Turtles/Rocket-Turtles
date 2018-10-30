@@ -58,6 +58,7 @@ class App extends React.Component {
   
   // global methods
   componentDidMount() {
+    console.log('Micah Component: ONLINE');
     this.getUserData();
     this.setGlobalTime();
   };
