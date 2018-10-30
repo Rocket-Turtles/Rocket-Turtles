@@ -60,7 +60,11 @@ class App extends React.Component {
 
   // global methods
   componentDidMount() {
+<<<<<<< HEAD
     console.log("Chris Athanas was here");
+=======
+    console.log("James reporting for duty");
+>>>>>>> 1cbb66a228da7151022807b4276362e1f6459676
     this.getUserData();
     this.setGlobalTime();
   }
