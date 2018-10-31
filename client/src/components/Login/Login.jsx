@@ -1,10 +1,10 @@
 import React from 'react';
-import UserSignUp from './UserSignUp.jsx'
+import CreateProfile from './CreateProfile.jsx'
 
 const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
   return (
     <div> 
-      <UserSignUp
+      <CreateProfile
         users={users}
         getUserData={getUserData}
         handleViewChange={handleViewChange}

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const moment = require('moment');
-
+const path = require('path');
 const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
@@ -182,6 +182,9 @@ app.post('/api/calories', (req, res) => {
       console.log('ERROR no food in USDA db')
     }
   })
+})
+app.get('/*', (err, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 })
 // ----------------- END -------------------
 
