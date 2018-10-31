@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
 
 import "../css/style.css";
+import CreateProfile from "./components/Login/CreateProfile.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -47,15 +48,13 @@ class App extends React.Component {
       wakeTime: ""
     };
 
-    this.handleViewChange = this.handleViewChange.bind(this);
-
+    this.getUserData = this.getUserData.bind(this);
+    this.getWakeTime = this.getWakeTime.bind(this);
     this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
-    this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
-
+    this.handleViewChange = this.handleViewChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
-    this.getUserData = this.getUserData.bind(this);
   }
 
   // global methods
@@ -182,8 +181,8 @@ class App extends React.Component {
     const reducer = (acc, cur) => acc + cur.hourCount;
     let average = this.state.sleepWeek.length
       ? (
-          this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length
-        ).toFixed(2)
+        this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length
+      ).toFixed(2)
       : 0;
     this.setState({
       weeklyAverage: average
@@ -288,16 +287,31 @@ class App extends React.Component {
   render() {
     //if user is not set then sends to login screen
     return (
-      <div>
-        <Welcome
-          handleViewChange={this.handleViewChange}
-          view={this.state.view}
-        />
-        {this.renderView()}
-        <div className="footer">
-          <div className="footerReg">® Rocket Turtle</div>
+
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route path="/" Component={Welcome} exact={true} />
+            <Route path="/home" Component={Home} />
+            <Route path="/createprofile" Component={CreateProfile} />
+            <Route Component Component={Welcome} />
+          </Switch>
         </div>
-      </div>
+      </BrowserRouter>
+
+
+
+
+      // <div>
+      //   <Welcome
+      //     handleViewChange={this.handleViewChange}
+      //     view={this.state.view}
+      //   />
+      //   {this.renderView()}
+      //   <div className="footer">
+      //     <div className="footerReg">® Rocket Turtle</div>
+      //   </div>
+      // </div>
     );
   }
 }

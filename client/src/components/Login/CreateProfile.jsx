@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 
-class UserSignUp extends React.Component {
+class CreateProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +43,7 @@ class UserSignUp extends React.Component {
   render() {
     return(
       <div>
-        <h2>Sign Up</h2>
+        <h2>Create Profile</h2>
         <form>
           <ul>
             <li className=''><input type='text' value={this.state._name} placeholder='name' onChange={(e) => {this.setState({_name: e.target.value})}}></input></li>
@@ -59,4 +59,4 @@ class UserSignUp extends React.Component {
   }
 }
 
-export default UserSignUp;
+export default CreateProfile;

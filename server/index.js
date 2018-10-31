@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+const express = require('express');
+const bodyParser = require('body-parser');
+const axios = require('axios');
+const moment = require('moment');
+const path = require('path');
+const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
+const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
+const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
+const database = require('knex')(configuration); // connect to DB via knex using env's settings
+=======
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
@@ -7,6 +18,7 @@ const USDA_TOKEN = process.env.USDA_TOKEN || require("../config").USDA_TOKEN;
 const environment = process.env.NODE_ENV || "development"; // if something else isn't setting ENV, use development
 const configuration = require("../knexfile")[environment]; // require environment's settings from knexfile
 const database = require("knex")(configuration); // connect to DB via knex using env's settings
+>>>>>>> c2cf55ed7a9398abd6ac9e0d78961160abe98665
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -198,6 +210,9 @@ app.post("/api/calories", (req, res) => {
       }
     });
 });
+app.get('/*', (err, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+})
 // ----------------- END -------------------
 
 app.listen(process.env.PORT || 3000, () => {
