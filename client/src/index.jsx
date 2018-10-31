@@ -1,15 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 import axios from "axios";
 import moment from "moment";
-
 import Welcome from "./components/Welcome.jsx";
 import Login from "./components/Login/Login.jsx";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
-
 import "../css/style.css";
-import CreateProfile from "./components/Login/CreateProfile.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -59,7 +56,7 @@ class App extends React.Component {
 
   // global methods
   componentDidMount() {
-    console.log('abdullah');
+    console.log("abdullah");
     console.log("Chris Athanas was here");
     console.log("Micah Component: ONLINE");
     console.log("James reporting for duty");
@@ -181,8 +178,8 @@ class App extends React.Component {
     const reducer = (acc, cur) => acc + cur.hourCount;
     let average = this.state.sleepWeek.length
       ? (
-        this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length
-      ).toFixed(2)
+          this.state.sleepWeek.reduce(reducer, 0) / this.state.sleepWeek.length
+        ).toFixed(2)
       : 0;
     this.setState({
       weeklyAverage: average
@@ -276,7 +273,7 @@ class App extends React.Component {
             getUserData={this.getUserData}
             handleUserChange={this.handleUserChange}
             users={this.state.users}
-            handleViewChange={this.handleViewChange}
+            handleViewChange={this.handleViewChange} // somewhere in this area, +/- 20 lines from here, add a diclaimer that renders the landing page
             getSleepData={this.getSleepData}
           />
         </div>
@@ -287,33 +284,18 @@ class App extends React.Component {
   render() {
     //if user is not set then sends to login screen
     return (
-
-      <BrowserRouter>
-        <div>
-          <Switch>
-            <Route path="/" Component={Welcome} exact={true} />
-            <Route path="/home" Component={Home} />
-            <Route path="/createprofile" Component={CreateProfile} />
-            <Route Component Component={Welcome} />
-          </Switch>
+      <div>
+        <Welcome
+          handleViewChange={this.handleViewChange}
+          view={this.state.view}
+        />
+        {this.renderView()}
+        <div className="footer">
+          <div className="footerReg">® Rocket Turtle</div>
         </div>
-      </BrowserRouter>
-
-
-
-
-      // <div>
-      //   <Welcome
-      //     handleViewChange={this.handleViewChange}
-      //     view={this.state.view}
-      //   />
-      //   {this.renderView()}
-      //   <div className="footer">
-      //     <div className="footerReg">® Rocket Turtle</div>
-      //   </div>
-      // </div>
+      </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("App"));
+export default App;
