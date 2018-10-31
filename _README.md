@@ -73,7 +73,7 @@ Checking logs
 heroku logs --tail
 ```
 
-Opening pate
+Opening page
 
 ```sh
 heroku open
