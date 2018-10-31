@@ -4,17 +4,17 @@
 
 ## Team
 
-  - __Product Owner__: Rikki
-  - __Scrum Master__: Steven
-  - __Development Team Members__: Yirey, Ethan
+- **Product Owner**: Rikki
+- **Scrum Master**: Steven
+- **Development Team Members**: Yirey, Ethan
 
 ## Table of Contents
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
+   1. [Installing Dependencies](#installing-dependencies)
+   1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
@@ -50,26 +50,31 @@ npm install
 ### Manipulating Postgresql from Heroku
 
 Resetting db
+
 ```sh
 heroku pg:reset DATABASE
 ```
 
 Migrating DB
+
 ```sh
 heroku run knex migrate:latest
 ```
 
 Seeding DB
+
 ```sh
 heroku run knex seed:run
 ```
 
 Checking logs
+
 ```sh
 heroku logs --tail
 ```
 
-Opening pate
+Opening page
+
 ```sh
 heroku open
 ```
@@ -83,7 +88,6 @@ git push heroku master
 ### Roadmap
 
 View the project roadmap [here](https://github.com/Rocket-Turtles/Rocket-Turtles/issues)
-
 
 ## Contributing
 
