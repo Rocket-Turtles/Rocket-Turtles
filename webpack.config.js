@@ -9,8 +9,7 @@ module.exports = {
     path: DIST_DIR
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.jsx?/,
         include: SRC_DIR,
         loader: 'babel-loader',
@@ -19,11 +18,11 @@ module.exports = {
         }
       },
       {
-      test: /\.(css|less)$/,
-      use: ["style-loader", "css-loader"]
+        test: /\.(css|less)$/,
+        use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'url-loader'
       }
     ]

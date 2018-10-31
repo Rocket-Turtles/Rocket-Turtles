@@ -92,3 +92,48 @@ View the project roadmap [here](https://github.com/Rocket-Turtles/Rocket-Turtles
 ## Contributing
 
 See [CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
+
+PRIORITY NUMBER ONE destroy the blob
+new Name: Virtual Granny
+
+1. auth--ab and mi
+
+2. add friends (request) --chris
+   a) track other users (not all, just ones you choose to 'follow')
+
+3. profile improvements --flex
+   a) cartoon-avatar for profile (expressions, trigger gifs)
+   c) male or female
+
+4. landing page --
+   a) welcome, description, log in or sign up!
+   b) track your sleep, food/calorie intake
+   c) inspirational quote / testimonials
+   d) disclaimer at bottom (for entertainment not real health)
+   e) serious css work (hover)
+
+5. list/remove food items --chris//flex
+   check out breaking foods
+
+-------optional start here---------
+
+b) profile bling? for good habits (start with gold stars perhaps) (score)
+d) friends tab / leaderboards --pending on scoring system implementation
+
+5. calories additions:
+   a) nutritional info, daily totals
+   b) removing food items
+   c) list of things theyve eaten, click to expand? click to remove?
+   d) score mechanic
+
+6. water consumption
+   a) glasses towards total goal? percentage? graph?
+   b) counts score
+
+7) sun or moon depending on time of day access program -----short time
+   a) whoever finishes first
+
+## nightmare mode
+
+3. improve sleep tracking- when you go to bed vs wake up (stay consistent)
+   //twitter bot? reminders to go to bed
