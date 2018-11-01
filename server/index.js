@@ -1,18 +1,20 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const axios = require("axios");
-const moment = require("moment");
-
-const USDA_TOKEN = process.env.USDA_TOKEN || require("../config").USDA_TOKEN;
-const environment = process.env.NODE_ENV || "development"; // if something else isn't setting ENV, use development
-const configuration = require("../knexfile")[environment]; // require environment's settings from knexfile
-const database = require("knex")(configuration); // connect to DB via knex using env's settings
+const express = require('express');
+const bodyParser = require('body-parser');
+const axios = require('axios');
+const moment = require('moment');
+const path = require('path');
+const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
+const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
+const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
+const database = require('knex')(configuration); // connect to DB via knex using env's settings
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static(__dirname + "/../client/dist"));
 
 // ----------------- USERS -------------------
@@ -78,7 +80,9 @@ app.post("/api/friend", (req, res) => {
 app.get("/api/sleep/:userID", (req, res) => {
   database
     .select()
-    .where({ user: req.params.userID })
+    .where({
+      user: req.params.userID
+    })
     .from("sleep")
     .orderBy("nightSlept", "desc")
     .limit(7)
@@ -119,7 +123,9 @@ app.post("/api/sleep", (req, res) => {
 // get total calories for today from database
 app.post("/api/getCalories", (req, res) => {
   database
-    .where({ user: req.body.user })
+    .where({
+      user: req.body.user
+    })
     .select("currDate", "calories")
     .from("calories")
     .then(table => {
@@ -227,6 +233,9 @@ app.post("/api/calories", (req, res) => {
       }
     });
 });
+app.get('/*', (err, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+})
 // ----------------- END -------------------
 
 app.listen(process.env.PORT || 3000, () => {

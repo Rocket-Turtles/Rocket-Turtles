@@ -94,7 +94,7 @@ nav {
 
 .userEntry {
   display: flex;
-  margin: 0px 3px 10px 3px ;
+  margin: 0px 3px 10px 3px;
 }
 
 .calories {
@@ -162,7 +162,7 @@ three blob faces for hyper speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-tired.png');
+  content: url("../../images/Gifs/Tired.gif");
   /* animation: bounce .6s; */
   /* transform: translateY(0px); */
   /* animation-iteration-count: infinite; */
@@ -176,7 +176,7 @@ three blob faces for hyper speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-happy.png');
+  content: url('../../images/Gifs/Happy.gif');
   animation: bounce .6s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
@@ -190,7 +190,7 @@ three blob faces for hyper speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-neutral.png');
+  content: url('../../images/Gifs/Normal.gif');
   animation: bounce .6s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
@@ -208,7 +208,7 @@ three faces for blobNormal speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-tired.png');
+  content: url("../../images/Gifs/Tired.gif");
   /* animation: bounce 1s; */
   /* transform: translateY(0px); */
   /* animation-iteration-count: infinite; */
@@ -222,7 +222,7 @@ three faces for blobNormal speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-cool.png');
+  content: url('../../images/Gifs/Normal.gif');
   animation: bounce 1s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
@@ -236,7 +236,7 @@ three faces for blobNormal speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-neutral.png');
+  content: url('../../images/Gifs/Normal.gif');
   animation: bounce 1s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
@@ -255,7 +255,7 @@ three faces for blob hungry speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-sad.png');
+  content: url('../../images/Gifs/FeedMeGif.gif');
   /* animation: bounce 1.4s; */
   /* transform: translateY(0px); */
   /* animation-iteration-count: infinite; */
@@ -269,7 +269,7 @@ three faces for blob hungry speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-neutral.png');
+  content: url('../../images/Gifs/FeedMeGif.gif');
   animation: bounce 1.4s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
@@ -283,7 +283,7 @@ three faces for blob hungry speed
   left: 25%;
   margin-left: auto;
   margin-right: auto;
-  content: url('../../images/blob/blob-neutral.png');
+  content: url('../../images/Gifs/FeedMeGif.gif');
   animation: bounce 1.4s;
   transform: translateY(0px);
   animation-iteration-count: infinite;
@@ -294,35 +294,42 @@ three faces for blob hungry speed
 this is the animation for the blob's bounce
 */
 @keyframes bounce {
-	0% {
+  0% {
     top: 0px;
-		-webkit-animation-timing-function: ease-in;
-	}
-	55% {
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  55% {
     top: 200px;
     height: 280px;
     width: 280px;
     left: 25%;
-		-webkit-animation-timing-function: ease-out;
-	}
+    -webkit-animation-timing-function: ease-out;
+  }
+
   60% {
-    top: 220px; 
+    top: 220px;
     height: 240px;
-    width: 320px; 
+    width: 320px;
     left: 22%;
-		-webkit-animation-timing-function: ease-in;}
+    -webkit-animation-timing-function: ease-in;
+  }
+
   70% {
-    top: 180px; 
-    height: 280px; 
+    top: 180px;
+    height: 280px;
     width: 280px;
     left: 25%;
-		-webkit-animation-timing-function: ease-out;}
-	95% {
-		top: 0;		
-		-webkit-animation-timing-function: ease-in;
-	}
-	100% {
+    -webkit-animation-timing-function: ease-out;
+  }
+
+  95% {
     top: 0;
-		-webkit-animation-timing-function: ease-in;
-	}
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  100% {
+    top: 0;
+    -webkit-animation-timing-function: ease-in;
+  }
 }

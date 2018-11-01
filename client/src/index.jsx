@@ -1,13 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 import axios from "axios";
 import moment from "moment";
-
 import Welcome from "./components/Welcome.jsx";
 import Login from "./components/Login/Login.jsx";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
-
 import "../css/style.css";
 
 class App extends React.Component {
@@ -49,19 +47,18 @@ class App extends React.Component {
       wakeTime: ""
     };
 
-    this.handleViewChange = this.handleViewChange.bind(this);
-
+    this.getUserData = this.getUserData.bind(this);
+    this.getWakeTime = this.getWakeTime.bind(this);
     this.getSleepData = this.getSleepData.bind(this);
     this.getSleepTime = this.getSleepTime.bind(this);
-    this.getWakeTime = this.getWakeTime.bind(this);
     this.postSleepEntry = this.postSleepEntry.bind(this);
-
+    this.handleViewChange = this.handleViewChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
-    this.getUserData = this.getUserData.bind(this);
   }
 
   // global methods
   componentDidMount() {
+    console.log("abdullah");
     console.log("Chris Athanas was here");
     console.log("Micah Component: ONLINE");
     console.log("James reporting for duty");
@@ -286,7 +283,7 @@ class App extends React.Component {
             getUserData={this.getUserData}
             handleUserChange={this.handleUserChange}
             users={this.state.users}
-            handleViewChange={this.handleViewChange}
+            handleViewChange={this.handleViewChange} // somewhere in this area, +/- 20 lines from here, add a diclaimer that renders the landing page
             getSleepData={this.getSleepData}
           />
         </div>
@@ -311,4 +308,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("App"));
+export default App;
