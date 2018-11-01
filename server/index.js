@@ -43,6 +43,35 @@ app.post("/api/user", (req, res) => {
     });
 });
 
+// ----------------- FRIENDS -------------------
+
+// read friends from db
+app.get("/api/friend", (req, res) => {
+  database
+    .select("friend_id") // FIX only get friend_id's that match the user_id
+    .from("friends")
+    .where("user_id", req.query.user_id)
+    .orderBy("id", "asc")
+    .then(userData => {
+      res.send(userData);
+    })
+    .catch(err => {
+      console.error("ERROR on server getting friends", err);
+    });
+});
+
+// Add a friend for this user // FIX
+app.post("/api/friend", (req, res) => {
+  database("friends")
+    .insert(req.body)
+    .then(() => {
+      res.send("Post Success");
+    })
+    .catch(err => {
+      console.error("ERROR on server posting friend", err);
+    });
+});
+
 // ----------------- SLEEP -------------------
 
 // sleep routes gets sleep data

@@ -28,6 +28,8 @@ class App extends React.Component {
         height: ""
       },
 
+      friends: [],
+
       //calories state:
       totalCalories: 0,
 
@@ -149,6 +151,14 @@ class App extends React.Component {
       .then(userData => {
         this.setState({
           users: userData.data
+        });
+        return userData;
+      })
+      .then(userData => {
+        axios.get("/api/friends").then(friendsData => {
+          this.setState({
+            friends: friendsData.data
+          });
         });
       })
       .catch(err => {
