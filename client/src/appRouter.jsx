@@ -10,9 +10,9 @@ const AppRouter = () => (
   <BrowserRouter>
     <main>
       <Switch>
-        <Route exact path="/" component={Welcome} />
         <Route path="/home" component={Home} />
-        <Route path="/create" component={CreateProfile} />
+        <Route path="/" component={Welcome} />
+        {/* <Route path="/create" component={CreateProfile} /> */}
       </Switch>
     </main>
   </BrowserRouter>
