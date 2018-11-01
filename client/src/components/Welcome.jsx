@@ -21,6 +21,14 @@ const Welcome = props => {
           >
             Sleep
           </div>
+
+          <div
+            className="navbtn"
+            onClick={() => props.handleViewChange("friends")}
+          >
+            Friends
+          </div>
+
           <div
             className="navbtn"
             onClick={() => props.handleViewChange("login")}
