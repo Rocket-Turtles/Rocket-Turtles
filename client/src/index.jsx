@@ -197,10 +197,10 @@ class App extends React.Component {
       })
       .then(userData => {
         axios.get("/api/friends").then(friendsData => {
-          // FIX when loading friends
-          // this.setState({
-          //   friends: friendsData.data
-          // });
+          console.log(friendsData);
+          this.setState({
+            friends: friendsData.data
+          });
           return friendsData;
         });
       })
