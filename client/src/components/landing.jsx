@@ -1,15 +1,13 @@
 import React from "react";
 import Auth from '../auth.js';
-//import router
-//import auth0
-
-//const auth = new Auth();
+const auth= new Auth();
 
 const Landing = () => (
   <React.Fragment>
     <header>
       <h1 className="lpheader">TO-BE-DETERMINED</h1>
-      <button className="lptopbutton" onClick = {Auth.login}>Resume your Journey</button>
+      {<button className="lptopbutton" onClick = {()=>{
+        auth.login()}}>Resume your Journey</button>}
     </header>
     <div className="lpfirst">
       <h1>Are you feeling at the top of your game?</h1>
