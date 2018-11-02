@@ -13,7 +13,6 @@ const Friends = props => {
 };
 
 const Friend = props => {
-  debugger;
   var { age, weight, height } = props.friend.friend;
   return (
     <div className="friendsProfile">
