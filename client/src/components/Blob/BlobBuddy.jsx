@@ -28,6 +28,8 @@ class Blob extends React.Component {
     }
   }
 
+
+  
   //renders a message describing sleep data
   checkSleep() {
     let average = this.props.weeklyAverage;

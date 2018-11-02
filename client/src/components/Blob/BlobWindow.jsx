@@ -18,4 +18,6 @@ const BlobWindow = ({globalTimeOfDay, weeklyAverage, totalCalories}) => {
   )
 }
 
+
+
 export default BlobWindow;

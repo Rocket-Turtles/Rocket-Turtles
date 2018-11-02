@@ -14,6 +14,8 @@ class Calories extends React.Component {
 
   }
   
+
+  
   handleClick(event){
     event.preventDefault();
     

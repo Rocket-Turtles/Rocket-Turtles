@@ -6,6 +6,8 @@ import {NavLink} from 'react-router-dom';
 
 const auth = new Auth();
 
+
+
 const Welcome = props => {
   if (props.view !== "login") {
     return (
