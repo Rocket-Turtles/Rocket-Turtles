@@ -89,12 +89,12 @@ class App extends React.Component {
     this.setGlobalTime();
 
     //Auth before all
-    const auth= new Auth();
-    if(auth.isAuthenticated() === false){
-      console.log('Not prior authed');
+    const auth = new Auth();
+    if (auth.isAuthenticated() === false) {
+      console.log("Not prior authed");
       auth.handleAuthentication();
     } else {
-      console.log('Already authenticated');
+      console.log("Already authenticated");
     }
   }
 
