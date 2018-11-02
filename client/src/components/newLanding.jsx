@@ -1,5 +1,6 @@
 import React from "react";
 import Auth from "../auth.js";
+const auth = new Auth();
 
 const Landing = () => {
   window.addEventListener("scroll", function(event) {
@@ -31,7 +32,12 @@ const Landing = () => {
       <div className="fullpage">
         <header>
           <h1 className="lpheader">TO-BE-DETERMINED</h1>
-          <button className="lptopbutton" onClick={Auth.login}>
+          <button
+            className="lptopbutton"
+            onClick={() => {
+              auth.login();
+            }}
+          >
             Resume your Journey
           </button>
         </header>
@@ -59,7 +65,12 @@ const Landing = () => {
             management system!
           </h2>
         </div>
-        <button className="lpbottombutton" onClick={Auth.login}>
+        <button
+          className="lpbottombutton"
+          onClick={() => {
+            auth.login();
+          }}
+        >
           GET STARTED HERE!
         </button>
 

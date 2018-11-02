@@ -24,7 +24,7 @@ nav {
   position: absolute;
   align-items: center;
   height: 60px;
-  background-color: rgba(46, 204, 113, 0.8);
+  background-color: rgb(46, 17, 45);
   color: white;
   font-size: 2em;
 }
@@ -37,7 +37,7 @@ nav {
   width: 100%;
   align-items: center;
   height: 60px;
-  background-color: rgba(46, 204, 113, 0.8);
+  background-color: rgb(46, 17, 45);
   color: white;
   font-size: 0.8em;
 }
