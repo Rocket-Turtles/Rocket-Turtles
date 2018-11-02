@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom";
-import Welcome from "./components/newLanding.jsx";
+import Welcome from "./components/landing.jsx";
 import "../css/style.css";
 import CreateProfile from "./components/Login/Login.jsx";
 import Home from "./index.jsx";
