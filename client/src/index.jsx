@@ -84,7 +84,6 @@ class App extends React.Component {
     });
 
     // save friend to DB
-    debugger;
     console.log("this.state.friendToAdd.id=", this.state.friendToAdd.id);
     axios
       .post("/api/friend", {
