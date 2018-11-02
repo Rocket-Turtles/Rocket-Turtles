@@ -28,6 +28,21 @@ const Welcome = props => {
           >
             Sleep
           </div>
+
+          <div
+            className="navbtn"
+            onClick={() => props.handleViewUserOrFriendsChange("friends")}
+          >
+            Friends
+          </div>
+
+          <div
+            className="navbtn"
+            onClick={() => props.handleViewUserOrFriendsChange("user")}
+          >
+            Profile
+          </div>
+
           <div
             className="navbtn"
             onClick={() => auth.logout()}

@@ -4,11 +4,15 @@
 I'm still learning css so there could be some odd or useless stuff in here
 I kinda just hacked it together until it worked.
 */
+html {
+  height: 100%;
+}
 
 body {
   font-family: 'Niramit', sans-serif;
   background-color: rgba(209, 209, 209, 0.726);
   margin-left: 0;
+  height: 100%;
 }
 
 /* nav = Header Bar */
@@ -332,4 +336,51 @@ this is the animation for the blob's bounce
     top: 0;
     -webkit-animation-timing-function: ease-in;
   }
+}
+
+.hungry {
+  content: url('../../images/Gifs/emptyStomach.jpg');
+  float: left;
+  margin: 40px;
+}
+
+.tired {
+  content: url('../../images/Gifs/tiredBrain.jpg');
+  float: right;
+  margin: 80px;
+}
+
+.lptopbutton {
+  float: right;
+
+}
+
+.lpheader {
+  text-align: center;
+  background-color: aquamarine;
+}
+
+.lpfirst {
+  text-align: center;
+  width: 100%;
+  height: 1000px;
+}
+
+.lpfirstbox {
+  width: 100%;
+  height: 600px;
+  background-color: bisque;
+}
+
+.lpsecondbox {
+  width: 100%;
+  height: 600px;
+  background-color: antiquewhite;
+
+}
+
+.lpthirdbox {
+  width: 100%;
+  height: 600px;
+
 }

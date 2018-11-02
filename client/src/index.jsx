@@ -6,6 +6,7 @@ import Welcome from "./components/Welcome.jsx";
 import Login from "./components/Login/Login.jsx";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
+import Friends from "./components/Friends.jsx";
 import "../css/style.css";
 import Auth from './auth.js';
 
@@ -39,6 +40,7 @@ class App extends React.Component {
       },
 
       friends: [],
+      viewUserOrFriends: "user",
 
       //calories state:
       totalCalories: 0,
@@ -66,6 +68,9 @@ class App extends React.Component {
     this.postSleepEntry = this.postSleepEntry.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
+    this.handleViewUserOrFriendsChange = this.handleViewUserOrFriendsChange.bind(
+      this
+    );
   }
 
   // global methods
@@ -105,6 +110,18 @@ class App extends React.Component {
           weight: "",
           height: ""
         }
+      });
+    }
+  }
+
+  handleViewUserOrFriendsChange(option) {
+    if (option === "user") {
+      this.setState({
+        viewUserOrFriends: "user"
+      });
+    } else if (option === "friends") {
+      this.setState({
+        viewUserOrFriends: "friends"
       });
     }
   }
@@ -269,13 +286,39 @@ class App extends React.Component {
     if (this.state.user.id !== "") {
       return (
         <div className="main">
-          <div className="blobWindow">
-            <BlobWindow
-              globalTimeOfDay={this.state.globalTimeOfDay}
-              weeklyAverage={this.state.weeklyAverage}
-              totalCalories={this.state.totalCalories}
-            />
-          </div>
+          {this.state.viewUserOrFriends === "friends" ? (
+            <div className="blobWindow">
+              <Friends
+                friends={[
+                  {
+                    friend: {
+                      name: "test 1",
+                      age: 1000,
+                      weight: 2000,
+                      height: 3000
+                    }
+                  } /*props.friends[0]*/,
+                  {
+                    friend: {
+                      name: "test 2",
+                      age: 10000,
+                      weight: 20000,
+                      height: 30000
+                    }
+                  }
+                ]}
+              />
+            </div>
+          ) : (
+            <div className="blobWindow">
+              <BlobWindow
+                globalTimeOfDay={this.state.globalTimeOfDay}
+                weeklyAverage={this.state.weeklyAverage}
+                totalCalories={this.state.totalCalories}
+              />
+            </div>
+          )}
+
           <div className="sidebar">
             <Sidebar
               view={this.state.view}
@@ -316,6 +359,7 @@ class App extends React.Component {
       <div>
         <Welcome
           handleViewChange={this.handleViewChange}
+          handleViewUserOrFriendsChange={this.handleViewUserOrFriendsChange}
           view={this.state.view}
         />
         
