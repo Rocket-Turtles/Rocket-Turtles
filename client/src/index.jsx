@@ -8,19 +8,18 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
 import Friends from "./components/Friends.jsx";
 import "../css/style.css";
-import Auth from './auth.js';
+import Auth from "./auth.js";
 
 //Auth before all
-const auth= new Auth();
-if(auth.isAuthenticated() === false){
-  console.log('Not prior authed');
+const auth = new Auth();
+if (auth.isAuthenticated() === false) {
+  console.log("Not prior authed");
   auth.handleAuthentication();
 } else {
-  console.log('Already authenticated');
+  console.log("Already authenticated");
 }
 
 class App extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -41,6 +40,7 @@ class App extends React.Component {
 
       friends: [],
       viewUserOrFriends: "user",
+      friendToAdd: "",
 
       //calories state:
       totalCalories: 0,
@@ -71,6 +71,16 @@ class App extends React.Component {
     this.handleViewUserOrFriendsChange = this.handleViewUserOrFriendsChange.bind(
       this
     );
+    this.handleFriendToAddChange = this.handleFriendToAddChange.bind(this);
+    this.handleAddFriend = this.handleAddFriend.bind(this);
+  }
+
+  handleFriendToAddChange(event) {
+    //change which friend we are gonna add
+  }
+
+  handleAddFriend() {
+    // add the friend and update the database
   }
 
   // global methods
@@ -78,7 +88,7 @@ class App extends React.Component {
     console.log("Components mounted.");
     //handleAuthentication goes here
     //const auth = new Auth();
-    
+
     // if(auth.isAuthenticated() === false){
     //   console.log('Not yet authed');
     //   auth.handleAuthentication();
@@ -289,6 +299,9 @@ class App extends React.Component {
           {this.state.viewUserOrFriends === "friends" ? (
             <div className="blobWindow">
               <Friends
+                users={this.state.users}
+                handleFriendToAddChange={this.state.handleFriendToAddChange}
+                handleAddFriend={this.state.handleAddFriend}
                 friends={[
                   {
                     friend: {
@@ -362,7 +375,7 @@ class App extends React.Component {
           handleViewUserOrFriendsChange={this.handleViewUserOrFriendsChange}
           view={this.state.view}
         />
-        
+
         {this.renderView()}
         <div className="footer">
           <div className="footerReg">® Rocket Turtle</div>
