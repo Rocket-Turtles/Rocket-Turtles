@@ -14,6 +14,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      condition: "FeedMe",
       isAuthed: false,
       view: "login",
       globalTimeOfDay: "morning",
@@ -51,7 +52,8 @@ class App extends React.Component {
       sleepTime: "",
       wakeTime: ""
     };
-
+    this.eat = this.eat.bind(this);
+    this.handleBlobConditionChange = this.handleBlobConditionChange.bind(this);
     this.getUserData = this.getUserData.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.getSleepData = this.getSleepData.bind(this);
@@ -112,7 +114,12 @@ class App extends React.Component {
       console.log("Already authenticated");
     }
   }
-
+  handleBlobConditionChange() {
+    this.setState({ condition: "OpenMouth" });
+  }
+  eat() {
+    this.setState({ condition: "MonchCronch" });
+  }
   handleViewChange(option) {
     if (option === "nutrition") {
       this.setState({
@@ -340,6 +347,7 @@ class App extends React.Component {
           ) : (
             <div className="blobWindow">
               <BlobWindow
+                blobCondition={this.state.condition}
                 globalTimeOfDay={this.state.globalTimeOfDay}
                 weeklyAverage={this.state.weeklyAverage}
                 totalCalories={this.state.totalCalories}
@@ -349,6 +357,8 @@ class App extends React.Component {
 
           <div className="sidebar">
             <Sidebar
+              eat={this.eat}
+              handleBlobConditionChange={this.handleBlobConditionChange}
               view={this.state.view}
               user={this.state.user} // used also in calories component
               globalTimeOfDay={this.state.globalTimeOfDay}
