@@ -10,7 +10,7 @@ export default class Auth {
       redirectUri: 'http://localhost:3000/home',
       //do not change
       responseType: 'token id_token',
-      scope: 'openid'
+      scope: 'openid profile'
     });
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -51,7 +51,7 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    //profile
+    localStorage.setItem('name', authResult.idTokenPayload.name);
     // navigate to the home route
     // history.replace('/home');
   }
