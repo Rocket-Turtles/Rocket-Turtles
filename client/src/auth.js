@@ -10,25 +10,37 @@ export default class Auth {
       redirectUri: 'http://localhost:3000/home',
       //do not change
       responseType: 'token id_token',
-      scope: 'openid'
+      scope: 'openid profile'
     });
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    }
+  }
     
-    login() {
-      this.auth0.authorize();
-    }
+  login() {
+    this.auth0.authorize();
+  }
+
   handleAuthentication() {
+    console.log('handle auth called');
     this.auth0.parseHash((err, authResult) => {
+
+      // console.log('authResult : ', authResult)
+      // console.log('authResult.accesstoken : ', authResult.accessToken)
+      // console.log('authResult.idToken : ', authResult.idToken);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        console.log('Auth successful');
+        console.log('authResult', authResult) //fires before setsession
         // history.replace('/home');
       } else if (err) {
-        // history.replace('/home');
+        // history.replace('/home')
+        this.auth0.authorize();
         console.log(err);
+      } else{
+        console.log('Error in handleAuthentication parameters');
+        this.auth0.authorize();
       }
     });
   }
@@ -39,6 +51,7 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('name', authResult.idTokenPayload.name);
     // navigate to the home route
     // history.replace('/home');
   }

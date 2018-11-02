@@ -8,11 +8,23 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
 import Friends from "./components/Friends.jsx";
 import "../css/style.css";
+import Auth from './auth.js';
+
+//Auth before all
+const auth= new Auth();
+if(auth.isAuthenticated() === false){
+  console.log('Not prior authed');
+  auth.handleAuthentication();
+} else {
+  console.log('Already authenticated');
+}
 
 class App extends React.Component {
+
   constructor() {
     super();
     this.state = {
+      isAuthed: false,
       view: "login",
       globalTimeOfDay: "morning",
 
@@ -63,10 +75,17 @@ class App extends React.Component {
 
   // global methods
   componentDidMount() {
-    console.log("abdullah");
-    console.log("Chris Athanas was here");
-    console.log("Micah Component: ONLINE");
-    console.log("James reporting for duty");
+    console.log("Components mounted.");
+    //handleAuthentication goes here
+    //const auth = new Auth();
+    
+    // if(auth.isAuthenticated() === false){
+    //   console.log('Not yet authed');
+    //   auth.handleAuthentication();
+    // } else {
+    //   console.log('Already authenticated')
+    // }
+
     this.getUserData();
     this.setGlobalTime();
   }
@@ -343,6 +362,7 @@ class App extends React.Component {
           handleViewUserOrFriendsChange={this.handleViewUserOrFriendsChange}
           view={this.state.view}
         />
+        
         {this.renderView()}
         <div className="footer">
           <div className="footerReg">® Rocket Turtle</div>
