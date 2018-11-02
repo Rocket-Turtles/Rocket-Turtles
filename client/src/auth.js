@@ -17,7 +17,7 @@ export default class Auth {
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
-    
+
   login() {
     this.auth0.authorize();
   }
@@ -38,7 +38,7 @@ export default class Auth {
         // history.replace('/home')
         this.auth0.authorize();
         console.log(err);
-      } else{
+      } else {
         console.log('Error in handleAuthentication parameters');
         this.auth0.authorize();
       }
@@ -61,6 +61,10 @@ export default class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.idToken = null;
+    this.profile = null;
+    this.expiresAt = null;
+    this.auth0.logout();
     // navigate to the home route
     // history.replace('/home');
   }
