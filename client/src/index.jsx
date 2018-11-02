@@ -77,10 +77,18 @@ class App extends React.Component {
 
   handleFriendToAddChange(event) {
     //change which friend we are gonna add
+    this.state.friendToAdd = this.state.users[
+      event.currentTarget.selectedIndex - 1
+    ];
   }
 
   handleAddFriend() {
     // add the friend and update the database
+    // FIX does not check if friend already exists in friends list
+    this.state.friends.push(this.state.friendToAdd);
+    this.setState({
+      friends: this.state.friends.slice()
+    });
   }
 
   // global methods
@@ -199,9 +207,11 @@ class App extends React.Component {
       })
       .then(userData => {
         axios.get("/api/friends").then(friendsData => {
-          this.setState({
-            friends: friendsData.data
-          });
+          // FIX when loading friends
+          // this.setState({
+          //   friends: friendsData.data
+          // });
+          return friendsData;
         });
       })
       .catch(err => {
@@ -300,26 +310,9 @@ class App extends React.Component {
             <div className="blobWindow">
               <Friends
                 users={this.state.users}
-                handleFriendToAddChange={this.state.handleFriendToAddChange}
-                handleAddFriend={this.state.handleAddFriend}
-                friends={[
-                  {
-                    friend: {
-                      name: "test 1",
-                      age: 1000,
-                      weight: 2000,
-                      height: 3000
-                    }
-                  } /*props.friends[0]*/,
-                  {
-                    friend: {
-                      name: "test 2",
-                      age: 10000,
-                      weight: 20000,
-                      height: 30000
-                    }
-                  }
-                ]}
+                handleFriendToAddChange={this.handleFriendToAddChange}
+                handleAddFriend={this.handleAddFriend}
+                friends={this.state.friends}
               />
             </div>
           ) : (

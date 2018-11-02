@@ -1,5 +1,24 @@
 import React from "react";
 
+// [
+//   {
+//     friend: {
+//       name: "test 1",
+//       age: 1000,
+//       weight: 2000,
+//       height: 3000
+//     }
+//   } /*props.friends[0]*/,
+//   {
+//     friend: {
+//       name: "test 2",
+//       age: 10000,
+//       weight: 20000,
+//       height: 30000
+//     }
+//   }
+// ]
+
 const Friends = props => {
   // loop over the friends
   return (
@@ -22,9 +41,9 @@ const Friends = props => {
         />
       </div>
       <div>
-        {props.friends.map(elem => (
+        {props.friends.map((elem, i) => (
           <div>
-            <Friend friend={elem} />
+            <Friend friend={elem} key={i.toString()} />
             <br />
           </div>
         ))}
@@ -34,7 +53,7 @@ const Friends = props => {
 };
 
 const Friend = props => {
-  var { name, age, weight, height } = props.friend.friend;
+  var { name, age, weight, height } = props.friend;
   return (
     <div className="friendsProfile">
       <span className="friendsData">
