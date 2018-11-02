@@ -66,6 +66,7 @@ app.get("/api/friends", (req, res) => {
 
 // Add a friend for this user // FIX
 app.post("/api/friend", (req, res) => {
+  debugger;
   database("friends")
     .insert(req.body)
     .then(() => {
