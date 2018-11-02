@@ -10,15 +10,6 @@ import Friends from "./components/Friends.jsx";
 import "../css/style.css";
 import Auth from "./auth.js";
 
-//Auth before all
-const auth = new Auth();
-if (auth.isAuthenticated() === false) {
-  console.log("Not prior authed");
-  auth.handleAuthentication();
-} else {
-  console.log("Already authenticated");
-}
-
 class App extends React.Component {
   constructor() {
     super();
@@ -94,18 +85,26 @@ class App extends React.Component {
   // global methods
   componentDidMount() {
     console.log("Components mounted.");
-    //handleAuthentication goes here
-    //const auth = new Auth();
+    const auth = new Auth();
 
-    // if(auth.isAuthenticated() === false){
-    //   console.log('Not yet authed');
-    //   auth.handleAuthentication();
-    // } else {
-    //   console.log('Already authenticated')
-    // }
+    if (auth.isAuthenticated() === false) {
+      console.log("Not yet authed");
+      auth.handleAuthentication();
+    } else {
+      console.log("Already authenticated");
+    }
 
     this.getUserData();
     this.setGlobalTime();
+
+    //Auth before all
+    const auth = new Auth();
+    if (auth.isAuthenticated() === false) {
+      console.log("Not prior authed");
+      auth.handleAuthentication();
+    } else {
+      console.log("Already authenticated");
+    }
   }
 
   handleViewChange(option) {
