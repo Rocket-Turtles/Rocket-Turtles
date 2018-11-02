@@ -10,9 +10,8 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
         handleViewChange={handleViewChange}
         handleUserChange={handleUserChange}
       />
-      {/* User Select List */}
-      {/* Eventually replace this with an actual login component with authentication */}
-      <div>
+      {/* User Select List (artifact from original codebase)*/}
+      {/* <div> 
         <select 
           onChange={(e) => handleUserChange(e)}
         >
@@ -21,8 +20,8 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
             return <option value={JSON.stringify(user)} key={i}>{user.name}</option>
           })}
         </select>
-      </div>
-    </div>
+        </div> */}
+    </div> 
   )
 }
 

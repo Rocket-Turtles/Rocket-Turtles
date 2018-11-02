@@ -15,7 +15,6 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      isAuthed: false,
       view: "login",
       globalTimeOfDay: "morning",
 
