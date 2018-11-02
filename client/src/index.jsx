@@ -8,10 +8,9 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
 import Friends from "./components/Friends.jsx";
 import "../css/style.css";
-import Auth from './auth.js';
+import Auth from "./auth.js";
 
 class App extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -32,6 +31,7 @@ class App extends React.Component {
 
       friends: [],
       viewUserOrFriends: "user",
+      friendToAdd: "",
 
       //calories state:
       totalCalories: 0,
@@ -62,6 +62,24 @@ class App extends React.Component {
     this.handleViewUserOrFriendsChange = this.handleViewUserOrFriendsChange.bind(
       this
     );
+    this.handleFriendToAddChange = this.handleFriendToAddChange.bind(this);
+    this.handleAddFriend = this.handleAddFriend.bind(this);
+  }
+
+  handleFriendToAddChange(event) {
+    //change which friend we are gonna add
+    this.state.friendToAdd = this.state.users[
+      event.currentTarget.selectedIndex - 1
+    ];
+  }
+
+  handleAddFriend() {
+    // add the friend and update the database
+    // FIX does not check if friend already exists in friends list
+    this.state.friends.push(this.state.friendToAdd);
+    this.setState({
+      friends: this.state.friends.slice()
+    });
   }
 
   // global methods
@@ -179,9 +197,11 @@ class App extends React.Component {
       })
       .then(userData => {
         axios.get("/api/friends").then(friendsData => {
-          this.setState({
-            friends: friendsData.data
-          });
+          // FIX when loading friends
+          // this.setState({
+          //   friends: friendsData.data
+          // });
+          return friendsData;
         });
       })
       .catch(err => {
@@ -279,24 +299,10 @@ class App extends React.Component {
           {this.state.viewUserOrFriends === "friends" ? (
             <div className="blobWindow">
               <Friends
-                friends={[
-                  {
-                    friend: {
-                      name: "test 1",
-                      age: 1000,
-                      weight: 2000,
-                      height: 3000
-                    }
-                  } /*props.friends[0]*/,
-                  {
-                    friend: {
-                      name: "test 2",
-                      age: 10000,
-                      weight: 20000,
-                      height: 30000
-                    }
-                  }
-                ]}
+                users={this.state.users}
+                handleFriendToAddChange={this.handleFriendToAddChange}
+                handleAddFriend={this.handleAddFriend}
+                friends={this.state.friends}
               />
             </div>
           ) : (
@@ -352,7 +358,7 @@ class App extends React.Component {
           handleViewUserOrFriendsChange={this.handleViewUserOrFriendsChange}
           view={this.state.view}
         />
-        
+
         {this.renderView()}
         <div className="footer">
           <div className="footerReg">® Rocket Turtle</div>
