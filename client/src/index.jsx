@@ -85,15 +85,6 @@ class App extends React.Component {
   // global methods
   componentDidMount() {
     console.log("Components mounted.");
-    const auth = new Auth();
-
-    if (auth.isAuthenticated() === false) {
-      console.log("Not yet authed");
-      auth.handleAuthentication();
-    } else {
-      console.log("Already authenticated");
-    }
-
     this.getUserData();
     this.setGlobalTime();
 
