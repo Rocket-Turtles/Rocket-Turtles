@@ -17,6 +17,19 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(__dirname + "/../client/dist"));
 
+// ---------------- PROFILES -----------------
+app.get('/api/profiles/:id', (req, res)=>{
+  console.log('GET request at /api/profiles/')
+  console.log('params', req.params.id);
+  database
+    .select()
+    .from("users")
+    .where("email_id", req.params.id)
+    .then((profile)=>{
+      res.send(profile)
+    })
+    .catch(err => console.log(err));
+});
 // ----------------- USERS -------------------
 
 // read user from db
