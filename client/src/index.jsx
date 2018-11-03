@@ -360,6 +360,7 @@ class App extends React.Component {
           ) : (
             <div className="blobWindow">
               <BlobWindow
+                user={this.state.user}
                 blobCondition={this.state.condition}
                 globalTimeOfDay={this.state.globalTimeOfDay}
                 weeklyAverage={this.state.weeklyAverage}
