@@ -28,6 +28,7 @@ app.get('/api/profiles/:id', (req, res)=>{
     .from("users")
     .where("email_id", req.params.id)
     .then((profile)=>{
+      console.log('SENDING PROFILE')
       res.send(profile)
     })
     .catch(err => console.log(err));
