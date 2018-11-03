@@ -415,7 +415,10 @@ class App extends React.Component {
 
         {this.renderView()}
         <div className="footer">
-          <div className="footerReg">® Rocket Turtle</div>
+          <div className="footerReg">
+            ® Health Monsters, Inc. All Rights Reserved by The Dream Team :
+            Abdullah, Micah, James, Chris A.
+          </div>
         </div>
       </div>
     );
