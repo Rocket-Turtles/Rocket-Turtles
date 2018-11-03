@@ -183,25 +183,24 @@ class App extends React.Component {
   handleUserChange(profile) {
     this.setState(
       {
-        
         user: {
           id: profile.id,
           name: profile.name,
           age: profile.age,
           weight: profile.weight,
-          height: profile.height,
+          height: profile.height
         },
         view: "nutrition"
       },
       () => {
-        console.log('PROFILE LODADED?');
-        console.log('USER is:', {
+        console.log("PROFILE LODADED?");
+        console.log("USER is:", {
           id: profile.id,
           name: profile.name,
           age: profile.age,
           weight: profile.weight,
-          height: profile.height,
-        })
+          height: profile.height
+        });
         axios
           .post("/api/getCalories", { user: this.state.user.id })
           .then(cal => {
@@ -259,8 +258,6 @@ class App extends React.Component {
       .catch(err => {
         console.log("ERROR sending get request to /api/friends/", err);
       });
-
-      
   }
 
   //sleep methods:
@@ -413,7 +410,7 @@ class App extends React.Component {
         <Welcome
           handleViewChange={this.handleViewChange}
           handleViewUserOrFriendsChange={this.handleViewUserOrFriendsChange}
-          view={this.state.view}
+          view={this.state}
         />
 
         {this.renderView()}
