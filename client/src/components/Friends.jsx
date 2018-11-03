@@ -5,14 +5,18 @@ const Friends = props => {
   const nonFriends =[];
   console.log('users', props.users);
   console.log('friends', props.friends);
+  console.log('localname', localStorage.name);
   for(let i=0; i<props.users.length; i++){
     let potentialFriend = true;
     for(let j=0; j<props.friends.length;j++){
       if(props.users[i].email_id === props.friends[j].email_id){
+        console.log('found a friend');
         potentialFriend = false;
-      } else if (localStorage.name === props.friends[j].email_id){
-        potentialFriend = false;
-      }
+      } 
+    }
+    if (localStorage.name === props.users[i].email_id){
+      console.log('found yourself');
+      potentialFriend = false;
     }
     if(potentialFriend){
       nonFriends.push(props.users[i]);
@@ -24,7 +28,7 @@ const Friends = props => {
       <div>
         <select onChange={e => props.handleFriendToAddChange(e)}>
           <option>Select</option>
-          {props.users.map((user, i) => {
+          {nonFriends.map((user, i) => {
             return (
               <option value={JSON.stringify(user)} key={i}>
                 {user.name}
