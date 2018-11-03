@@ -82,6 +82,20 @@ class App extends React.Component {
     this.setState({
       friends: this.state.friends.slice()
     });
+
+    // save friend to DB
+    console.log("this.state.friendToAdd.id=", this.state.friendToAdd.id);
+    axios
+      .post("/api/friend", {
+        user_id: this.state.user.id,
+        friend_id: this.state.friendToAdd.id
+      })
+      .then(() => {
+        console.log("post friend response received");
+      })
+      .catch(err => {
+        console.log("ERROR sending post request to /api/friend", err);
+      });
   }
 
   // global methods
@@ -187,6 +201,9 @@ class App extends React.Component {
           })
           .catch(err => {
             console.error("ERROR on getting sleepData", err);
+          })
+          .then(() => {
+            this.getFriendsForUser(this.state.user.id);
           });
       }
     );
@@ -202,17 +219,31 @@ class App extends React.Component {
         });
         return userData;
       })
-      .then(userData => {
-        axios.get("/api/friends").then(friendsData => {
-          // FIX when loading friends
-          // this.setState({
-          //   friends: friendsData.data
-          // });
-          return friendsData;
-        });
-      })
       .catch(err => {
         console.log("ERROR sending get request to /api/user/", err);
+      });
+  }
+
+  // get friends of this user
+  getFriendsForUser(userId) {
+    var self = this;
+    axios
+      .get("/api/friends/?user_id=" + userId)
+      .then(friendsData => {
+        console.log("Get friendsData=", friendsData);
+        //Need to get the actual users data for each friend
+        // For each friend, put the 'user' data of each friend ID into friends array
+        let friends = [];
+        for (let i of friendsData.data) {
+          friends.push(self.state.users[i.friend_id - 1]);
+        }
+        this.setState({
+          friends: friends
+        });
+        return friendsData;
+      })
+      .catch(err => {
+        console.log("ERROR sending get request to /api/friends/", err);
       });
   }
 

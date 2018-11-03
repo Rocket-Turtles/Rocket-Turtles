@@ -1,20 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios');
-const moment = require('moment');
-const path = require('path');
-const USDA_TOKEN = process.env.USDA_TOKEN || require('../config').USDA_TOKEN;
-const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
-const configuration = require('../knexfile')[environment]; // require environment's settings from knexfile
-const database = require('knex')(configuration); // connect to DB via knex using env's settings
+const express = require("express");
+const bodyParser = require("body-parser");
+const axios = require("axios");
+const moment = require("moment");
+const path = require("path");
+const USDA_TOKEN = process.env.USDA_TOKEN || require("../config").USDA_TOKEN;
+const environment = process.env.NODE_ENV || "development"; // if something else isn't setting ENV, use development
+const configuration = require("../knexfile")[environment]; // require environment's settings from knexfile
+const database = require("knex")(configuration); // connect to DB via knex using env's settings
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 app.use(express.static(__dirname + "/../client/dist"));
 
 // ----------------- USERS -------------------
@@ -48,7 +50,7 @@ app.post("/api/user", (req, res) => {
 // ----------------- FRIENDS -------------------
 
 // read friends from db
-app.get("/api/friend", (req, res) => {
+app.get("/api/friends", (req, res) => {
   database
     .select("friend_id") // FIX only get friend_id's that match the user_id
     .from("friends")
@@ -233,9 +235,9 @@ app.post("/api/calories", (req, res) => {
       }
     });
 });
-app.get('/*', (err, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-})
+app.get("/*", (err, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 // ----------------- END -------------------
 
 app.listen(process.env.PORT || 3000, () => {
