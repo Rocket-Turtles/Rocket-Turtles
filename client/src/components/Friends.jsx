@@ -6,7 +6,7 @@ const Friends = props => {
     <div>
       <div>
         <select onChange={e => props.handleFriendToAddChange(e)}>
-          <option>Select</option>
+          <option key={0}>Select</option>
           {props.users.map((friend, i) => {
             // The list of users is also the list of potential friends
             return friend.id !== props.user.id ? (
@@ -24,8 +24,8 @@ const Friends = props => {
       </div>
       <div>
         {props.friends.map((elem, i) => (
-          <div>
-            <Friend friend={elem} key={i.toString()} />
+          <div key={i}>
+            <Friend friend={elem} />
             <br />
           </div>
         ))}
