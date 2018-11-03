@@ -13,11 +13,11 @@ const Friends = props => {
 };
 
 const Friend = props => {
-  debugger;
-  var { age, weight, height } = props.friend.friend;
+  var { name, age, weight, height } = props.friend.friend;
   return (
     <div className="friendsProfile">
       <span className="friendsData">
+        <div className="friendEntry">Name: {name}</div>
         <div className="friendEntry">Age: {age}</div>
         <div className="friendEntry">Weight: {weight} lbs</div>
         {/* height is stored as a decimal in db so this line is used to turn in back into a foot/inches value */}
