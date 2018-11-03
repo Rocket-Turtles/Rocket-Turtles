@@ -55,7 +55,7 @@ const Welcome = props => {
     return (
       <div>
         <nav>
-          <div className="logo">Rocket Turtle</div>
+          <div className="logo">Health Monsters</div>
         </nav>
       </div>
     );
