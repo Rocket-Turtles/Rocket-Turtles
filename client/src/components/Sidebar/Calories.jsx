@@ -11,10 +11,11 @@ class Calories extends React.Component {
       totalCalories: props.totalCalories,  // total amount of kcal consumed today
       
     }
+    this.onSubmit = this.onSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this);
 
   }
-  
-
   
   handleClick(event){
     event.preventDefault();
@@ -40,15 +41,20 @@ class Calories extends React.Component {
 
   }
 
-  handleChange(event){
-    event.preventDefault();
-    event.persist();
-
+  handleChange(e){
+    this.props.handleBlobConditionChange();
+    e.preventDefault();
+    e.persist();
     this.setState({
-      food: event.target.value
+      food: e.target.value
     })
   };
+  onSubmit(e) {
 
+    this.handleClick(e);
+    this.props.eat();
+
+  }
 
   render(){
     let totalCal = this.props.totalCalories;
@@ -59,8 +65,9 @@ class Calories extends React.Component {
         <div className='caloriesTitle'>Calories</div> 
         <form >
           <label>What did you eat?</label>
+
           <input type="text" name="calories" onChange={this.handleChange.bind(this)}/>
-          <input type="submit" name="calories" onClick={this.handleClick.bind(this)}/>
+          <input type="submit" name="calories" onClick={this.onSubmit.bind(this)}/>
         </form>
         {calDisElem}
         <div>Today's Total: {totalCal} kcal</div>

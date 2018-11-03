@@ -1,7 +1,6 @@
 import React from "react";
 
 
-
 const Friends = props => {
   // loop over the friends
   return (

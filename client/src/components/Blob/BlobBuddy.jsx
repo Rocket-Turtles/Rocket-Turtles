@@ -28,8 +28,6 @@ class Blob extends React.Component {
     }
   }
 
-
-  
   //renders a message describing sleep data
   checkSleep() {
     let average = this.props.weeklyAverage;
@@ -147,7 +145,7 @@ class Blob extends React.Component {
         </div>
         <div className='blobContainer'>
           {/* Blob Sprite */}
-          <div className={`blob${this.state.calories}${this.state.sleep}`}></div> 
+          <div className={`blob${this.props.blobCondition}`}></div> 
         </div>
       </div>
     )
