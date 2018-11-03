@@ -446,3 +446,36 @@ this is the animation for the blob's bounce
   background-position-y: 530px;
   ;
 }
+.blobOpenMouth {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  content: url('../../images/Gifs/OpenMouth.gif');
+  margin: 50px;
+}
+.blobFeedMe {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  content: url('../../images/Gifs/FeedMeGif.gif');
+  animation: bounce 1.4s;
+  transform: translateY(0px);
+  animation-iteration-count: infinite;
+  margin: 50px;
+}
+.blobMonchCronch {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  content: url('../../images/Gifs/MonchCronch.gif');
+  margin: 50px;
+}
