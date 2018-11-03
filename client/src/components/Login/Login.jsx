@@ -1,7 +1,20 @@
 import React from 'react';
 import CreateProfile from './CreateProfile.jsx'
+import axios from 'axios';
+
+
 
 const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
+  axios
+    .get('/api/profiles/' + localStorage.name)
+    .then(function(response) {
+      console.log('profile match?', response.data);
+      if(response.data.length > 0){
+        console.log('SETTING USER TO', response.data[0]);
+        handleUserChange(response.data[0]);
+      }
+      //use handleViewChange to set state
+    });
   return (
     <div> 
       <CreateProfile
@@ -10,9 +23,8 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
         handleViewChange={handleViewChange}
         handleUserChange={handleUserChange}
       />
-      {/* User Select List */}
-      {/* Eventually replace this with an actual login component with authentication */}
-      <div>
+      {/* User Select List (artifact from original codebase)*/}
+      {/* <div> 
         <select 
           onChange={(e) => handleUserChange(e)}
         >
@@ -21,8 +33,8 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
             return <option value={JSON.stringify(user)} key={i}>{user.name}</option>
           })}
         </select>
-      </div>
-    </div>
+        </div> */}
+    </div> 
   )
 }
 

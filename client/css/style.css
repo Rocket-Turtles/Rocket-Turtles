@@ -4,11 +4,17 @@
 I'm still learning css so there could be some odd or useless stuff in here
 I kinda just hacked it together until it worked.
 */
+html {
+  height: 100%;
+}
+
+
 
 body {
   font-family: 'Niramit', sans-serif;
   background-color: rgba(209, 209, 209, 0.726);
   margin-left: 0;
+  height: 100%;
 }
 
 /* nav = Header Bar */
@@ -20,7 +26,7 @@ nav {
   position: absolute;
   align-items: center;
   height: 60px;
-  background-color: rgba(46, 204, 113, 0.8);
+  background-color: rgb(46, 17, 45);
   color: white;
   font-size: 2em;
 }
@@ -33,7 +39,7 @@ nav {
   width: 100%;
   align-items: center;
   height: 60px;
-  background-color: rgba(46, 204, 113, 0.8);
+  background-color: rgb(46, 17, 45);
   color: white;
   font-size: 0.8em;
 }
@@ -332,4 +338,144 @@ this is the animation for the blob's bounce
     top: 0;
     -webkit-animation-timing-function: ease-in;
   }
+}
+
+.hungry {
+  content: url('../../images/Gifs/emptyStomach.jpg');
+  float: left;
+  margin: 40px;
+}
+
+.tired {
+  content: url('../../images/Gifs/tiredBrain.jpg');
+  float: right;
+  margin: 80px;
+}
+
+.lptopbutton {
+  float: right;
+
+}
+
+.fullpage {
+  position: relative;
+  width: 100%;
+  background-color: rgb(46, 17, 45);
+  margin-top: 400px;
+}
+
+.lpheader {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  text-align: center;
+}
+
+.lpfirst {
+  text-align: center;
+  width: 100%;
+  height: 1000px;
+}
+
+.lpfirstbox {
+  width: 100%;
+  height: 600px;
+}
+
+.lpsecondbox {
+  width: 100%;
+  height: 600px;
+
+}
+
+.lpthirdbox {
+  width: 100%;
+  height: 600px;
+
+}
+
+#hero {
+  height: 800px;
+  overflow: hidden;
+  position: relative;
+
+}
+
+
+
+.layer {
+  background-position: bottom center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 2600px;
+  position: fixed;
+  z-index: -1;
+}
+
+.layer0 {
+  background-image: url('../../images/layered\ mountain/layered-mountain_0000_furthest.png');
+  background-position: top;
+}
+
+.layer1 {
+  background-image: url('../../images/layered\ mountain/layered-mountain_0001_Layer-1.png');
+  /* background-position: top; */
+  background-position-y: 155px;
+}
+
+.layer2 {
+  background-image: url('../../images/layered\ mountain/layered-mountain_0002_Layer-2.png');
+  background-position-y: 530px;
+}
+
+.layer3 {
+  background-image: url('../../images/layered\ mountain/layered-mountain_0003_Layer-3.png');
+  background-position-y: 530px;
+
+}
+
+.layer4 {
+  background-image: url('../../images/layered\ mountain/layered-mountain_0004_Layer-4.png');
+  background-position-y: 580px;
+
+}
+
+.layer5 {
+  background-image: url('../../images/layered\ mountain/layered-mountain_0005_Layer-5.png');
+  background-position-y: 530px;
+  ;
+}
+.blobOpenMouth {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  content: url('../../images/Gifs/OpenMouth.gif');
+  margin: 50px;
+}
+.blobFeedMe {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  content: url('../../images/Gifs/FeedMeGif.gif');
+  animation: bounce 1.4s;
+  transform: translateY(0px);
+  animation-iteration-count: infinite;
+  margin: 50px;
+}
+.blobMonchCronch {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  content: url('../../images/Gifs/MonchCronch.gif');
+  margin: 50px;
 }

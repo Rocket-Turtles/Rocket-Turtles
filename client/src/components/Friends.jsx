@@ -2,18 +2,39 @@ import React from "react";
 
 const Friends = props => {
   // loop over the friends
-  return props.friends.map(elem => {
-    return (
+  return (
+    <div>
       <div>
-        <Friend friend={elem} />
-        <br />
+        <select onChange={e => props.handleFriendToAddChange(e)}>
+          <option>Select</option>
+          {props.users.map((user, i) => {
+            return (
+              <option value={JSON.stringify(user)} key={i}>
+                {user.name}
+              </option>
+            );
+          })}
+        </select>
+        <input
+          type="button"
+          value="Add Friend"
+          onClick={props.handleAddFriend}
+        />
       </div>
-    );
-  });
+      <div>
+        {props.friends.map((elem, i) => (
+          <div>
+            <Friend friend={elem} key={i.toString()} />
+            <br />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 const Friend = props => {
-  var { name, age, weight, height } = props.friend.friend;
+  var { name, age, weight, height } = props.friend;
   return (
     <div className="friendsProfile">
       <span className="friendsData">

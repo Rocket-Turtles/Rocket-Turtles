@@ -27,6 +27,7 @@ class CreateProfile extends React.Component {
     e.preventDefault();
     let newUser = {
       name: this.state._name[0].toUpperCase() + this.state._name.slice(1),
+      email_id: localStorage.name, //mjw
       age: this.state._age,
       weight: this.state._weight,
       height: Number(this.state._heightFt + (this.state._heightIn / 12)) // Combines height ft and in into one number
