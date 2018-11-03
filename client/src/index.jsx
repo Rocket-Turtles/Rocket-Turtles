@@ -8,13 +8,13 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import BlobWindow from "./components/Blob/BlobWindow.jsx";
 import Friends from "./components/Friends.jsx";
 import "../css/style.css";
-import Auth from './auth.js';
+import Auth from "./auth.js";
 
 class App extends React.Component {
-
   constructor() {
     super();
     this.state = {
+      condition: "FeedMe",
       view: "login",
       globalTimeOfDay: "morning",
 
@@ -31,6 +31,7 @@ class App extends React.Component {
 
       friends: [],
       viewUserOrFriends: "user",
+      friendToAdd: "",
 
       //calories state:
       totalCalories: 0,
@@ -50,7 +51,8 @@ class App extends React.Component {
       sleepTime: "",
       wakeTime: ""
     };
-
+    this.eat = this.eat.bind(this);
+    this.handleBlobConditionChange = this.handleBlobConditionChange.bind(this);
     this.getUserData = this.getUserData.bind(this);
     this.getWakeTime = this.getWakeTime.bind(this);
     this.getSleepData = this.getSleepData.bind(this);
@@ -61,6 +63,38 @@ class App extends React.Component {
     this.handleViewUserOrFriendsChange = this.handleViewUserOrFriendsChange.bind(
       this
     );
+    this.handleFriendToAddChange = this.handleFriendToAddChange.bind(this);
+    this.handleAddFriend = this.handleAddFriend.bind(this);
+  }
+
+  handleFriendToAddChange(event) {
+    //change which friend we are gonna add
+    this.state.friendToAdd = this.state.users[
+      event.currentTarget.selectedIndex - 1
+    ];
+  }
+
+  handleAddFriend() {
+    // add the friend and update the database
+    // FIX does not check if friend already exists in friends list
+    this.state.friends.push(this.state.friendToAdd);
+    this.setState({
+      friends: this.state.friends.slice()
+    });
+
+    // save friend to DB
+    console.log("this.state.friendToAdd.id=", this.state.friendToAdd.id);
+    axios
+      .post("/api/friend", {
+        user_id: this.state.user.id,
+        friend_id: this.state.friendToAdd.id
+      })
+      .then(() => {
+        console.log("post friend response received");
+      })
+      .catch(err => {
+        console.log("ERROR sending post request to /api/friend", err);
+      });
   }
 
   // global methods
@@ -70,15 +104,20 @@ class App extends React.Component {
     this.setGlobalTime();
 
     //Auth before all
-    const auth= new Auth();
-    if(auth.isAuthenticated() === false){
-      console.log('Not prior authed');
+    const auth = new Auth();
+    if (auth.isAuthenticated() === false) {
+      console.log("Not prior authed");
       auth.handleAuthentication();
     } else {
-      console.log('Already authenticated');
+      console.log("Already authenticated");
     }
   }
-
+  handleBlobConditionChange() {
+    this.setState({ condition: "OpenMouth" });
+  }
+  eat() {
+    this.setState({ condition: "MonchCronch" });
+  }
   handleViewChange(option) {
     if (option === "nutrition") {
       this.setState({
@@ -176,6 +215,9 @@ class App extends React.Component {
           })
           .catch(err => {
             console.error("ERROR on getting sleepData", err);
+          })
+          .then(() => {
+            this.getFriendsForUser(this.state.user.id);
           });
       }
     );
@@ -191,15 +233,31 @@ class App extends React.Component {
         });
         return userData;
       })
-      .then(userData => {
-        axios.get("/api/friends").then(friendsData => {
-          this.setState({
-            friends: friendsData.data
-          });
-        });
-      })
       .catch(err => {
         console.log("ERROR sending get request to /api/user/", err);
+      });
+  }
+
+  // get friends of this user
+  getFriendsForUser(userId) {
+    var self = this;
+    axios
+      .get("/api/friends/?user_id=" + userId)
+      .then(friendsData => {
+        console.log("Get friendsData=", friendsData);
+        //Need to get the actual users data for each friend
+        // For each friend, put the 'user' data of each friend ID into friends array
+        let friends = [];
+        for (let i of friendsData.data) {
+          friends.push(self.state.users[i.friend_id - 1]);
+        }
+        this.setState({
+          friends: friends
+        });
+        return friendsData;
+      })
+      .catch(err => {
+        console.log("ERROR sending get request to /api/friends/", err);
       });
 
       
@@ -295,29 +353,16 @@ class App extends React.Component {
           {this.state.viewUserOrFriends === "friends" ? (
             <div className="blobWindow">
               <Friends
-                friends={[
-                  {
-                    friend: {
-                      name: "test 1",
-                      age: 1000,
-                      weight: 2000,
-                      height: 3000
-                    }
-                  } /*props.friends[0]*/,
-                  {
-                    friend: {
-                      name: "test 2",
-                      age: 10000,
-                      weight: 20000,
-                      height: 30000
-                    }
-                  }
-                ]}
+                users={this.state.users}
+                handleFriendToAddChange={this.handleFriendToAddChange}
+                handleAddFriend={this.handleAddFriend}
+                friends={this.state.friends}
               />
             </div>
           ) : (
             <div className="blobWindow">
               <BlobWindow
+                blobCondition={this.state.condition}
                 globalTimeOfDay={this.state.globalTimeOfDay}
                 weeklyAverage={this.state.weeklyAverage}
                 totalCalories={this.state.totalCalories}
@@ -327,6 +372,8 @@ class App extends React.Component {
 
           <div className="sidebar">
             <Sidebar
+              eat={this.eat}
+              handleBlobConditionChange={this.handleBlobConditionChange}
               view={this.state.view}
               user={this.state.user} // used also in calories component
               globalTimeOfDay={this.state.globalTimeOfDay}
@@ -368,7 +415,7 @@ class App extends React.Component {
           handleViewUserOrFriendsChange={this.handleViewUserOrFriendsChange}
           view={this.state.view}
         />
-        
+
         {this.renderView()}
         <div className="footer">
           <div className="footerReg">® Rocket Turtle</div>

@@ -1,6 +1,9 @@
 import React from "react";
-import Auth from '../auth.js';
-const auth= new Auth();
+import Auth from "../auth.js";
+//import router
+//import auth0
+
+//const auth = new Auth();
 
 const Landing = () => (
   <React.Fragment>
@@ -33,7 +36,9 @@ const Landing = () => (
         system!
       </h2>
     </div>
-    <button className="lpbottombutton" onClick = {Auth.login}>GET STARTED HERE!</button>
+    <button className="lpbottombutton" onClick={Auth.login}>
+      GET STARTED HERE!
+    </button>
 
     <footer className="lpfooter">
       <h1>DISCLAIMER</h1>
