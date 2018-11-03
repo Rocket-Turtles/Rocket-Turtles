@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "../auth.js";
-import {NavLink} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 //this is the navigation bar/title of the site. It always renders above either the login or blob/user pages.
 //it has a handleViewChange function passed down from index.jsx which switches between different views.
 
@@ -11,7 +11,7 @@ const Welcome = props => {
     return (
       <div>
         <nav>
-          <div className="logo">Rocket Turtle</div>
+          <div className="logo">Health Monsters</div>
           <div
             className={props.view === "nutrition" ? "navbtnSelected" : "navbtn"}
             onClick={() => props.handleViewChange("nutrition")}
@@ -42,7 +42,7 @@ const Welcome = props => {
           <div
             className="navbtn"
             onClick={() => {
-              console.log('Logout clicked');
+              console.log("Logout clicked");
               auth.logout();
             }}
           >
