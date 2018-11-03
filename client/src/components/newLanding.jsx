@@ -31,7 +31,7 @@ const Landing = () => {
       </div>
       <div className="fullpage">
         <header>
-          <h1 className="lpheader">TO-BE-DETERMINED</h1>
+          <h1 className="lpheader">Wecome to Health Monsters!</h1>
           <button
             className="lptopbutton"
             onClick={() => {
@@ -60,7 +60,7 @@ const Landing = () => {
           <h1 className="lptmess">THEN YOU'RE IN THE RIGHT PLACE!</h1>
         </div>
         <div className="lpfinalbox">
-          <h2>
+          <h2 className="lpfour">
             Take back control of your life with our interactive health
             management system!
           </h2>
@@ -75,7 +75,7 @@ const Landing = () => {
         </button>
 
         <footer className="lpfooter">
-          <h1>DISCLAIMER</h1>
+          <h1 className="disclaim">Please dont take this software seriously</h1>
         </footer>
       </div>
     </React.Fragment>
