@@ -140,7 +140,7 @@ class Blob extends React.Component {
     return (
       <div>
         <div className="blobMessage">
-          <div>Hi! I'm {this.props.user.name}.</div>
+          <div>Hi! I'm {this.state.name}.</div>
           <div>{this.checkSleep()}</div>
           <div>{this.checkCalories()}</div>
         </div>
