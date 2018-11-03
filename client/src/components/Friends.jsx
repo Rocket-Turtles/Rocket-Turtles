@@ -3,6 +3,23 @@ import React from "react";
 
 const Friends = props => {
   // loop over the friends
+  const nonFriends =[];
+  console.log('users', props.users);
+  console.log('friends', props.friends);
+  for(let i=0; i<props.users.length; i++){
+    let potentialFriend = true;
+    for(let j=0; j<props.friends.length;j++){
+      if(props.users[i].email_id === props.friends[j].email_id){
+        potentialFriend = false;
+      } else if (localStorage.name === props.friends[j].email_id){
+        potentialFriend = false;
+      }
+    }
+    if(potentialFriend){
+      nonFriends.push(props.users[i]);
+    }
+  }
+  console.log('nonFriends', nonFriends);
   return (
     <div>
       <div>

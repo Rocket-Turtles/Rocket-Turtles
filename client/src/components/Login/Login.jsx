@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
+  console.log('GET sent to /api/profiles/', localStorage.name);
   axios
     .get('/api/profiles/' + localStorage.name)
     .then(function(response) {
@@ -14,7 +15,8 @@ const Login = ({getUserData, handleUserChange, users, handleViewChange}) => {
         handleUserChange(response.data[0]);
       }
       //use handleViewChange to set state
-    });
+    })
+    .catch((err)=>(console.log('error getting profile', err)));
   return (
     <div> 
       <CreateProfile
