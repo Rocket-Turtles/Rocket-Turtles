@@ -7,12 +7,13 @@ const Friends = props => {
       <div>
         <select onChange={e => props.handleFriendToAddChange(e)}>
           <option>Select</option>
-          {props.users.map((user, i) => {
-            return (
-              <option value={JSON.stringify(user)} key={i}>
-                {user.name}
+          {props.users.map((friend, i) => {
+            // The list of users is also the list of potential friends
+            return friend.id !== props.user.id ? (
+              <option value={JSON.stringify(friend)} key={i}>
+                {friend.name}
               </option>
-            );
+            ) : null;
           })}
         </select>
         <input

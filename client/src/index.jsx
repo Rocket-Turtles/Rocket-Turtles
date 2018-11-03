@@ -350,6 +350,7 @@ class App extends React.Component {
           {this.state.viewUserOrFriends === "friends" ? (
             <div className="blobWindow">
               <Friends
+                user={this.state.user}
                 users={this.state.users}
                 handleFriendToAddChange={this.handleFriendToAddChange}
                 handleAddFriend={this.handleAddFriend}
