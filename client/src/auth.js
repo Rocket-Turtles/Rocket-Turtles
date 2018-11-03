@@ -22,7 +22,7 @@ export default class Auth {
     this.auth0.authorize();
   }
 
-  handleAuthentication() {
+  handleAuthentication(callback) {
     console.log('handle auth called');
     this.auth0.parseHash((err, authResult) => {
 
@@ -33,6 +33,7 @@ export default class Auth {
         this.setSession(authResult);
         console.log('Auth successful');
         console.log('authResult', authResult) //fires before setsession
+        callback();
         // history.replace('/home');
       } else if (err) {
         // history.replace('/home')
@@ -47,6 +48,7 @@ export default class Auth {
 
   setSession(authResult) {
     // Set the time that the Access Token will expire at
+    console.log('==SESSION IS SET===');
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
