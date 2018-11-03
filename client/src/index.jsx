@@ -15,7 +15,6 @@ class App extends React.Component {
     super();
     this.state = {
       condition: "FeedMe",
-      isAuthed: false,
       view: "login",
       globalTimeOfDay: "morning",
 
@@ -181,13 +180,28 @@ class App extends React.Component {
   }
 
   // my hacky way of setting a user in the login screen
-  handleUserChange(e) {
+  handleUserChange(profile) {
     this.setState(
       {
-        user: JSON.parse(e.target.value),
+        
+        user: {
+          id: profile.id,
+          name: profile.name,
+          age: profile.age,
+          weight: profile.weight,
+          height: profile.height,
+        },
         view: "nutrition"
       },
       () => {
+        console.log('PROFILE LODADED?');
+        console.log('USER is:', {
+          id: profile.id,
+          name: profile.name,
+          age: profile.age,
+          weight: profile.weight,
+          height: profile.height,
+        })
         axios
           .post("/api/getCalories", { user: this.state.user.id })
           .then(cal => {
@@ -245,6 +259,8 @@ class App extends React.Component {
       .catch(err => {
         console.log("ERROR sending get request to /api/friends/", err);
       });
+
+      
   }
 
   //sleep methods:

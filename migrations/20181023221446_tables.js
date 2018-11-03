@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
   createUserTable = () => {
     return knex.schema.createTable("users", table => {
       table.increments("id");
+      table.string("email_id")
       table.string("name");
       table.integer("weight");
       table.decimal("height");
@@ -110,16 +111,11 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  let dropUsers = `DROP TABLE IF EXISTS users`;
-  let dropFriends = `DROP TABLE IF EXISTS friends`;
-  let dropSleep = `DROP TABLE IF EXISTS sleep`;
-  let dropCalories = `DROP TABLE IF EXISTS calories`;
-  let dropBlobs = `DROP TABLE IF EXISTS blobs`;
-  return knex
-    .raw(dropCalories)
-    .then(knex.raw(dropSleep))
-    .then(knex.raw(dropBlobs))
-    .then(knex.raw(dropFriends))
-    .then(knex.raw(dropUsers))
-    .catch("error dropping tables");
+  console.log('TEARING IT DOWN')
+  return knex.schema
+    .dropTableIfExists('blobs')
+    .dropTableIfExists('calories')
+    .dropTableIfExists('sleep')
+    .dropTableIfExists('friends')
+    .dropTableIfExists('users');
 };
