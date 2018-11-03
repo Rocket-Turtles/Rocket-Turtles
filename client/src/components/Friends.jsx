@@ -2,27 +2,27 @@ import React from "react";
 
 const Friends = props => {
   // loop over the friends
-  const nonFriends =[];
-  console.log('users', props.users);
-  console.log('friends', props.friends);
-  console.log('localname', localStorage.name);
-  for(let i=0; i<props.users.length; i++){
+  const nonFriends = [];
+  console.log("users", props.users);
+  console.log("friends", props.friends);
+  console.log("localname", localStorage.name);
+  for (let i = 0; i < props.users.length; i++) {
     let potentialFriend = true;
-    for(let j=0; j<props.friends.length;j++){
-      if(props.users[i].email_id === props.friends[j].email_id){
-        console.log('found a friend');
+    for (let j = 0; j < props.friends.length; j++) {
+      if (props.users[i].email_id === props.friends[j].email_id) {
+        console.log("found a friend");
         potentialFriend = false;
-      } 
+      }
     }
-    if (localStorage.name === props.users[i].email_id){
-      console.log('found yourself');
+    if (localStorage.name === props.users[i].email_id) {
+      console.log("found yourself");
       potentialFriend = false;
     }
-    if(potentialFriend){
+    if (potentialFriend) {
       nonFriends.push(props.users[i]);
     }
   }
-  console.log('nonFriends', nonFriends);
+  console.log("nonFriends", nonFriends);
   return (
     <div>
       <div>
@@ -44,8 +44,8 @@ const Friends = props => {
       </div>
       <div>
         {props.friends.map((elem, i) => (
-          <div>
-            <Friend friend={elem} key={i.toString()} />
+          <div key={i}>
+            <Friend friend={elem} />
             <br />
           </div>
         ))}
