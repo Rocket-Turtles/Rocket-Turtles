@@ -22,12 +22,13 @@ const Landing = () => {
   return (
     <React.Fragment>
       <div id="hero">
-        <div className="layer layer0" data-type="parallax" data-depth="0.05" />
-        <div className="layer layer1" data-type="parallax" data-depth="0.20" />
+        <div className="layer layer0" data-type="parallax" data-depth="0.01" />
+        <div className="layer layer1" data-type="parallax" data-depth="0.35" />
         <div className="layer layer2" data-type="parallax" data-depth="0.40" />
         <div className="layer layer3" data-type="parallax" data-depth="0.50" />
-        <div className="layer layer4" data-type="parallax" data-depth="0.55" />
-        <div className="layer layer5" data-type="parallax" data-depth="0.75" />
+        <div className="layer layer4" data-type="parallax" data-depth="0.60" />
+        <div className="layer layer5" data-type="parallax" data-depth="0.70" />
+        <div className="layer layer6" data-type="parallax" data-depth="0.80" />
       </div>
       <div className="fullpage">
         <header>
