@@ -12,7 +12,7 @@ html {
 
 body {
   font-family: 'Niramit', sans-serif;
-  background-color: rgb(209, 209, 209);
+  background-color: rgba(209, 209, 209, 0.726);
   margin-left: 0;
   height: 100%;
 }
@@ -587,9 +587,7 @@ this is the animation for the blob's bounce
   margin-right: 5%;
 }
 
-html {
-  background-color: rgb(46, 17, 45)
-}
+
 
 .blobWindow {
   margin-top: 5%;
